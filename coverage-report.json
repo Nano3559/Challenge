@@ -1,0 +1,5983 @@
+{
+  "generatedAt": "2026-11-05T14:41:54.812Z",
+  "spec": {
+    "source": "gad-gui-api-demo/public/tools/schema/openapi_rest_demo.json",
+    "openapi": "3.0.1",
+    "title": "🦎 GAD ",
+    "version": "1.3.3",
+    "servers": [
+      {
+        "url": "/api"
+      },
+      {
+        "url": "http://localhost:3000/api"
+      }
+    ],
+    "basePaths": [
+      "",
+      "/api"
+    ],
+    "warnings": []
+  },
+  "requests": {
+    "source": "reports/coverage/requests",
+    "files": [
+      "reports/coverage/requests/requests-16520.jsonl",
+      "reports/coverage/requests/requests-20796.jsonl",
+      "reports/coverage/requests/requests-6708.jsonl",
+      "reports/coverage/requests/requests-9380.jsonl"
+    ],
+    "total": 5,
+    "matched": 5,
+    "unmatched": 0
+  },
+  "summary": {
+    "endpoints": {
+      "total": 136,
+      "covered": 3,
+      "uncovered": 133,
+      "fullyCovered": 0,
+      "partiallyCovered": 3,
+      "percentage": 2.21
+    },
+    "operations": {
+      "total": 170,
+      "covered": 3,
+      "uncovered": 167,
+      "percentage": 1.76
+    },
+    "statusCodes": {
+      "total": 387,
+      "covered": 5,
+      "uncovered": 382,
+      "percentage": 1.29
+    },
+    "parameters": {
+      "total": 96,
+      "covered": 1,
+      "uncovered": 95,
+      "percentage": 1.04
+    },
+    "global": {
+      "totalUnits": 653,
+      "coveredUnits": 9,
+      "percentage": 1.38,
+      "formula": "coveredUnits / totalUnits"
+    },
+    "requests": {
+      "total": 5,
+      "matched": 5,
+      "unmatched": 0,
+      "files": 4
+    },
+    "spec": {
+      "paths": 136,
+      "operations": 170,
+      "servers": [
+        "/api",
+        "http://localhost:3000/api"
+      ],
+      "basePaths": [
+        "",
+        "/api"
+      ]
+    }
+  },
+  "coverageModel": {
+    "units": "operaciones documentadas + códigos de estado documentados + parámetros documentados",
+    "globalFormula": "unidades cubiertas / unidades totales (operaciones + status codes + parámetros)",
+    "endpointCoverage": "un endpoint está cubierto si al menos una de sus operaciones recibió una solicitud que coincidió con la spec",
+    "fullEndpointDefinition": "un endpoint es \"full\" si todas sus operaciones recibieron al menos una solicitud, todos sus status codes documentados fueron observados y todos sus parámetros documentados fueron ejercitados",
+    "parameterCoverage": "un parámetro está cubierto si al menos una solicitud de esa operación lo envió en la ubicación documentada (path/query/header/cookie); enviar una solicitud NO cubre automáticamente todos sus parámetros",
+    "statusCodeCoverage": "un status code documentado está cubierto si alguna solicitud de esa operación recibió exactamente ese código; los rangos (2XX) y \"default\" se interpretan según OpenAPI",
+    "gapsScope": "las brechas de status/parámetro de operaciones nunca ejecutadas se incluyen con severidad \"low\" para evitar duplicar el peso de \"untested_method\"",
+    "security": "los esquemas de seguridad (p. ej. bearerAuth) no se cuentan como parámetros; solo se miden parámetros declarados en \"parameters\"",
+    "limitations": [
+      "Solo se registran solicitudes hechas con APIRequestContext (clientes del framework); las solicitudes que dispara la UI con el navegador no se graban en esta primera versión.",
+      "La comparación es a nivel de contrato: no valida el cuerpo de la respuesta, solo método, path, status y presencia de parámetros.",
+      "Un requestBody documentado no se cuenta como parámetro; su cobertura no se mide.",
+      "Los $ref remotos y los servidores con variables complejas no se resuelven por completo.",
+      "Un código \"default\" se considera cubierto si se observó un status que no coincide con ningún código explícito documentado."
+    ]
+  },
+  "endpoints": [
+    {
+      "path": "/login",
+      "covered": true,
+      "coverage": "partial",
+      "operations": [
+        {
+          "path": "/login",
+          "method": "GET",
+          "operationId": "userValidation",
+          "summary": "Validate if token is correct and user is logged in",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        },
+        {
+          "path": "/login",
+          "method": "POST",
+          "operationId": "userLogin",
+          "summary": "Login as user to receive token",
+          "covered": true,
+          "requestCount": 2,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": true,
+              "observedCount": 1
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": true,
+              "observedCount": 1
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/debug/exit",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/debug/exit",
+          "method": "GET",
+          "operationId": "exitApplication",
+          "summary": "Exit the application",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Application exited successfully",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/debug/restart",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/debug/restart",
+          "method": "GET",
+          "operationId": "restartApplication",
+          "summary": "Restart the application (process manager must be running)",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Application restarted successfully",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/articles",
+      "covered": true,
+      "coverage": "partial",
+      "operations": [
+        {
+          "path": "/articles",
+          "method": "GET",
+          "operationId": "getArticles",
+          "summary": "Get articles",
+          "covered": true,
+          "requestCount": 1,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": true,
+              "observedCount": 1
+            }
+          ],
+          "parameters": []
+        },
+        {
+          "path": "/articles",
+          "method": "POST",
+          "operationId": "postArticle",
+          "summary": "Add article",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "201",
+              "description": "Article created",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "400",
+              "description": "Bad request - malformed JSON",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Invalid article supplied",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/articles/{id}",
+      "covered": true,
+      "coverage": "partial",
+      "operations": [
+        {
+          "path": "/articles/{id}",
+          "method": "GET",
+          "operationId": "getArticleById",
+          "summary": "Find article by ID",
+          "covered": true,
+          "requestCount": 2,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": true,
+              "observedCount": 1
+            },
+            {
+              "code": "404",
+              "description": "Article not found",
+              "covered": true,
+              "observedCount": 1
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": true,
+              "observedValues": [
+                "1",
+                "999999"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "/articles/{id}",
+          "method": "PUT",
+          "operationId": "putArticle",
+          "summary": "Updates an article",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Article updated",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "201",
+              "description": "Article created",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "400",
+              "description": "Bad request - malformed JSON",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Article not found",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Invalid article supplied",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        },
+        {
+          "path": "/articles/{id}",
+          "method": "PATCH",
+          "operationId": "patchArticle",
+          "summary": "Updates an article",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Article updated",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "400",
+              "description": "Bad request - malformed JSON",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Article not found",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Invalid article supplied",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        },
+        {
+          "path": "/articles/{id}",
+          "method": "DELETE",
+          "operationId": "deleteArticle",
+          "summary": "Deletes an article",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Article deleted",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "400",
+              "description": "Bad Request",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        },
+        {
+          "path": "/articles/{id}",
+          "method": "HEAD",
+          "operationId": "headArticle",
+          "summary": "Info about article",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Article exists",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "400",
+              "description": "Invalid ID supplied",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Article not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/users",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/users",
+          "method": "GET",
+          "operationId": "getUsers",
+          "summary": "Get users",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        },
+        {
+          "path": "/users",
+          "method": "POST",
+          "operationId": "postUser",
+          "summary": "Create user",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "201",
+              "description": "User created",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "400",
+              "description": "Bad request - malformed JSON",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "409",
+              "description": "Conflict - Invalid user email",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Invalid user supplied",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/users/{id}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/users/{id}",
+          "method": "GET",
+          "operationId": "getUserById",
+          "summary": "Find user by ID",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "400",
+              "description": "Invalid user id supplied",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "User not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        },
+        {
+          "path": "/users/{id}",
+          "method": "PUT",
+          "operationId": "putUser",
+          "summary": "Updates user",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "User updated",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "201",
+              "description": "User created",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "400",
+              "description": "Bad request - malformed JSON",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "User not found",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Invalid user supplied",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        },
+        {
+          "path": "/users/{id}",
+          "method": "PATCH",
+          "operationId": "patchUser",
+          "summary": "Updates user",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "User updated",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "400",
+              "description": "Bad request - malformed JSON",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "User not found",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Invalid user supplied",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        },
+        {
+          "path": "/users/{id}",
+          "method": "DELETE",
+          "operationId": "deleteUser",
+          "summary": "Deletes a user",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "User deleted",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "User not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        },
+        {
+          "path": "/users/{id}",
+          "method": "HEAD",
+          "operationId": "headUser",
+          "summary": "Info about user",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "User exists",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "400",
+              "description": "Invalid user ID",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "User not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/comments",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/comments",
+          "method": "GET",
+          "operationId": "getComments",
+          "summary": "Get comments",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        },
+        {
+          "path": "/comments",
+          "method": "POST",
+          "operationId": "createComment",
+          "summary": "Create comment",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "201",
+              "description": "Comment created",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "400",
+              "description": "Bad request - malformed JSON",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Invalid comment supplied",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/article-labels/articles/{id}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/article-labels/articles/{id}",
+          "method": "GET",
+          "operationId": "getArticleLabels",
+          "summary": "Get labels for article",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        },
+        {
+          "path": "/article-labels/articles/{id}",
+          "method": "PUT",
+          "operationId": "putArticleLabels",
+          "summary": "Creates, updates or deletes labels for article",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "ArticleLabel updated",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "201",
+              "description": "ArticleLabel created",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "400",
+              "description": "Bad request - malformed JSON",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "User not found",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Invalid user supplied",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/labels",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/labels",
+          "method": "GET",
+          "operationId": "getLabels",
+          "summary": "Get labels",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/likes",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/likes",
+          "method": "POST",
+          "operationId": "createLike",
+          "summary": "Like or dislike element on page",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Like deleted",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "201",
+              "description": "Like created",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "400",
+              "description": "Bad request - malformed JSON",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Invalid data supplied",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/likes/article/{id}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/likes/article/{id}",
+          "method": "GET",
+          "operationId": "getLikesForArticleById",
+          "summary": "Get likes for article",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/likes/article",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/likes/article",
+          "method": "GET",
+          "operationId": "getLikesForArticle",
+          "summary": "Get likes for article",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/likes/comment/{id}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/likes/comment/{id}",
+          "method": "GET",
+          "operationId": "getLikesForComment",
+          "summary": "Get likes for comment",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/likes/article/mylikes",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/likes/article/mylikes",
+          "method": "GET",
+          "operationId": "getMyLikes",
+          "summary": "Get myLikes",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "400",
+              "description": "Bad Request",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "query",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "userid",
+              "in": "header",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/captcha",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/captcha",
+          "method": "GET",
+          "operationId": null,
+          "summary": "Get a captcha equation",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Successful response",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        },
+        {
+          "path": "/captcha",
+          "method": "POST",
+          "operationId": null,
+          "summary": "Verify a captcha solution",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Successful response",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "400",
+              "description": "Invalid captcha",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Captcha not found",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Missing fields",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/files/uploaded",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/files/uploaded",
+          "method": "GET",
+          "operationId": "getFiles",
+          "summary": "Get files",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/files/uploaded/{userId}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/files/uploaded/{userId}",
+          "method": "GET",
+          "operationId": "getUserFiles",
+          "summary": "Get user files",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "userId",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/files/uploaded/public",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/files/uploaded/public",
+          "method": "GET",
+          "operationId": "getPublicFiles",
+          "summary": "Get files",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/files/uploaded/public/users/{userIds}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/files/uploaded/public/users/{userIds}",
+          "method": "GET",
+          "operationId": "getUsersPublicFiles",
+          "summary": "Get users public files",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Comment not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "userIds",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/flashposts",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/flashposts",
+          "method": "GET",
+          "operationId": null,
+          "summary": "Get flashposts",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        },
+        {
+          "path": "/flashposts",
+          "method": "POST",
+          "operationId": null,
+          "summary": "Create a new flashpost",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Unprocessable Entity",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/flashposts/{id}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/flashposts/{id}",
+          "method": "GET",
+          "operationId": null,
+          "summary": "Get flashpost by ID",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        },
+        {
+          "path": "/flashposts/{id}",
+          "method": "PATCH",
+          "operationId": null,
+          "summary": "Update flashpost",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "403",
+              "description": "Forbidden",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Unprocessable Entity",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        },
+        {
+          "path": "/flashposts/{id}",
+          "method": "DELETE",
+          "operationId": null,
+          "summary": "Delete flashpost",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "403",
+              "description": "Forbidden",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/book-authors",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-authors",
+          "method": "GET",
+          "operationId": "getBookAuthors",
+          "summary": "Get book authors",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not Found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-genres",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-genres",
+          "method": "GET",
+          "operationId": "getBookGenres",
+          "summary": "Get book genres",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not Found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-roles",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-roles",
+          "method": "GET",
+          "operationId": "getBookShopRoles",
+          "summary": "Get book shop roles",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not Found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-account-payment-cards",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-account-payment-cards",
+          "method": "GET",
+          "operationId": "getUserPaymentCard",
+          "summary": "Get user payment card from logged account",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Card not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        },
+        {
+          "path": "/book-shop-account-payment-cards",
+          "method": "PUT",
+          "operationId": "updatePaymentCard",
+          "summary": "Update payment card from logged account",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Card updated",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Invalid input",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        },
+        {
+          "path": "/book-shop-account-payment-cards",
+          "method": "DELETE",
+          "operationId": "deletePaymentCard",
+          "summary": "Delete payment card from logged account",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Card deleted",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Card not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-account-payment-cards/topup",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-account-payment-cards/topup",
+          "method": "POST",
+          "operationId": "topUpPaymentCard",
+          "summary": "Top up account from payment card",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Top up successful",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Invalid input",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-order-statuses",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-order-statuses",
+          "method": "GET",
+          "operationId": "getBookShopOrderStatuses",
+          "summary": "Get book shop order statuses",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not Found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-orders",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-orders",
+          "method": "GET",
+          "operationId": "getUserOrders",
+          "summary": "Get all user orders",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Orders retrieved successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "User does not have a book shop account",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        },
+        {
+          "path": "/book-shop-orders",
+          "method": "POST",
+          "operationId": "createOrder",
+          "summary": "Create a new order",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "201",
+              "description": "Order created successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "409",
+              "description": "User already has an active order",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-orders/{id}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-orders/{id}",
+          "method": "PATCH",
+          "operationId": "updateOrderStatus",
+          "summary": "Update order status",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Order status updated successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Order not found",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "409",
+              "description": "Cannot change order status to the requested one",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Order has no items or not enough funds",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-orders/coupon",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-orders/coupon",
+          "method": "POST",
+          "operationId": "applyCoupon",
+          "summary": "Apply coupon to order",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Coupon applied successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Coupon or order not found",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "409",
+              "description": "Coupon already applied or usage limit reached",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-orders/items",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-orders/items",
+          "method": "POST",
+          "operationId": "addItemToOrder",
+          "summary": "Add item to order",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "201",
+              "description": "Item added to order successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Item or order not found",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "409",
+              "description": "Item already in order or not in stock",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        },
+        {
+          "path": "/book-shop-orders/items",
+          "method": "DELETE",
+          "operationId": "removeItemFromOrder",
+          "summary": "Remove item from order",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Item removed from order successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Item or order not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-order-items",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-order-items",
+          "method": "POST",
+          "operationId": null,
+          "summary": "Add item to order",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "201",
+              "description": "Item added successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Item not found",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "409",
+              "description": "Item already in order",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        },
+        {
+          "path": "/book-shop-order-items",
+          "method": "DELETE",
+          "operationId": null,
+          "summary": "Remove item from order",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Item removed successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Item not found in order",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/books",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/books",
+          "method": "GET",
+          "operationId": "getBooks",
+          "summary": "Get books",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/books/owned/{id}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/books/owned/{id}",
+          "method": "POST",
+          "operationId": "updateOwnedBooks",
+          "summary": "Add or remove book from owned list",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Book updated",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/books/wishlist/{id}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/books/wishlist/{id}",
+          "method": "POST",
+          "operationId": "updateWishlistBooks",
+          "summary": "Add or remove book from wishlist",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Book updated",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/books/read/{id}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/books/read/{id}",
+          "method": "POST",
+          "operationId": "updateReadBooks",
+          "summary": "Add or remove book from read list",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Book updated",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/books/favorites/{id}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/books/favorites/{id}",
+          "method": "POST",
+          "operationId": "updateFavoriteBooks",
+          "summary": "Add or remove book from favorites",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Book updated",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-accounts",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-accounts",
+          "method": "GET",
+          "operationId": "getBookShopAccount",
+          "summary": "Get book shop account",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Book shop account found",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not Found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        },
+        {
+          "path": "/book-shop-accounts",
+          "method": "POST",
+          "operationId": "createBookShopAccount",
+          "summary": "Create book shop account",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "201",
+              "description": "Book shop account created",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "409",
+              "description": "Conflict - User already has a book shop account",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-accounts/my-books",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-accounts/my-books",
+          "method": "GET",
+          "operationId": "getUserBooks",
+          "summary": "Get user's books",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "User's books retrieved",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "User does not have a book shop account",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-accounts/{id}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-accounts/{id}",
+          "method": "GET",
+          "operationId": "getBookShopAccountById",
+          "summary": "Get book shop account by ID",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Book shop account found",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not Found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        },
+        {
+          "path": "/book-shop-accounts/{id}",
+          "method": "PATCH",
+          "operationId": "updateBookShopAccount",
+          "summary": "Update book shop account",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Book shop account updated",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "403",
+              "description": "Forbidden - No fields to update or invalid fields",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not Found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-authorize",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-authorize",
+          "method": "POST",
+          "operationId": "authorizeBookShopAccount",
+          "summary": "Check if user has a book shop account with the required roles",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "User authorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "403",
+              "description": "Forbidden - User does not have the required role",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "User does not have a book shop account",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-items",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-items",
+          "method": "GET",
+          "operationId": "getBookShopItems",
+          "summary": "Get book shop items",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Book shop items retrieved",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "User does not have a book shop account",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-stats/orders",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-stats/orders",
+          "method": "GET",
+          "operationId": "getBookShopOrdersStats",
+          "summary": "Get book shop orders statistics",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Book shop orders statistics retrieved",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not Found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-stats/users",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-stats/users",
+          "method": "GET",
+          "operationId": "getBookShopUsersStats",
+          "summary": "Get book shop users statistics",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Book shop users statistics retrieved",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not Found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-stats/all",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-stats/all",
+          "method": "GET",
+          "operationId": "getAllBookShopStats",
+          "summary": "Get all book shop statistics",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "All book shop statistics retrieved",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not Found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-book-reviews",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-book-reviews",
+          "method": "GET",
+          "operationId": "getBookReviews",
+          "summary": "Get book reviews or review stats",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Reviews retrieved successfully",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "book_id",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "mean",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "book_ids",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-manage/orders",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-manage/orders",
+          "method": "GET",
+          "operationId": "getAllOrders",
+          "summary": "Get all orders",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Orders retrieved successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "User does not have a book shop account",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-manage/orders/{id}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-manage/orders/{id}",
+          "method": "PATCH",
+          "operationId": "updateOrderStatus",
+          "summary": "Update order status",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Order status updated successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Order not found",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "409",
+              "description": "Cannot change order status to the requested one",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Order has no items or not enough funds",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-manage/items",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-manage/items",
+          "method": "GET",
+          "operationId": "getAllItems",
+          "summary": "Get all items",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Items retrieved successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        },
+        {
+          "path": "/book-shop-manage/items",
+          "method": "POST",
+          "operationId": "createItem",
+          "summary": "Create a new item",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "201",
+              "description": "Item created successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "409",
+              "description": "Item already exists",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Invalid input",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-manage/items/{id}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-manage/items/{id}",
+          "method": "PATCH",
+          "operationId": "updateItem",
+          "summary": "Update an item",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Item updated successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Item not found",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Invalid input",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        },
+        {
+          "path": "/book-shop-manage/items/{id}",
+          "method": "DELETE",
+          "operationId": "deleteItem",
+          "summary": "Delete an item",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Item deleted successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Item not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-manage/items/by-book/{bookId}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-manage/items/by-book/{bookId}",
+          "method": "GET",
+          "operationId": "getItemByBookId",
+          "summary": "Get item by book ID",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Item retrieved successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Item not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "bookId",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-manage/books-without-items",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-manage/books-without-items",
+          "method": "GET",
+          "operationId": "getBooksWithoutItems",
+          "summary": "Get books without items",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Books retrieved successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-manage/users",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-manage/users",
+          "method": "GET",
+          "operationId": "getBookshopUsers",
+          "summary": "Get users",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Users retrieved successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "User not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "query",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/comments/{id}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/comments/{id}",
+          "method": "GET",
+          "operationId": "getCommentById",
+          "summary": "Find comments by ID",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "400",
+              "description": "Invalid comment id supplied",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Comment not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        },
+        {
+          "path": "/comments/{id}",
+          "method": "PUT",
+          "operationId": "putComment",
+          "summary": "Updates comment",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Comment updated",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "201",
+              "description": "Comment created",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "400",
+              "description": "Bad request - malformed JSON",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Comment not found",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Invalid comment supplied",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        },
+        {
+          "path": "/comments/{id}",
+          "method": "PATCH",
+          "operationId": "patchComment",
+          "summary": "Updates comment",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Comment updated",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "400",
+              "description": "Bad request - malformed JSON",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Comment not found",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Invalid comment supplied",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        },
+        {
+          "path": "/comments/{id}",
+          "method": "DELETE",
+          "operationId": "deleteComment",
+          "summary": "Deletes a comment",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Comment deleted",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Comment not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        },
+        {
+          "path": "/comments/{id}",
+          "method": "HEAD",
+          "operationId": "headComment",
+          "summary": "Info about comment",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Comment exists",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "400",
+              "description": "Invalid comment ID",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Comment not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/articles/search",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/articles/search",
+          "method": "GET",
+          "operationId": "getArticlesQuery",
+          "summary": "Get articles with query",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "q",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "id",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "user_id",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "date",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_sort",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_order",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_limit",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_page",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_start",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_end",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_embed",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_expand",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/users/search",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/users/search",
+          "method": "GET",
+          "operationId": "getUsersQuery",
+          "summary": "Get users with query",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "q",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "id",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "firstname",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "lastname",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "email",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_sort",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_order",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_limit",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_page",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_start",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_end",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_embed",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/comments/search",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/comments/search",
+          "method": "GET",
+          "operationId": "getCommentsQuery",
+          "summary": "Get comments with query",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "q",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "id",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "user_id",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "article_id",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "date",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_sort",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_order",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_limit",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_page",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_start",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_end",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "_expand",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/images/user",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/images/user",
+          "method": "GET",
+          "operationId": "getUserPictures",
+          "summary": "Get user pictures",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Images received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/images/posts",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/images/posts",
+          "method": "GET",
+          "operationId": "getArticlesPictures",
+          "summary": "Get articles pictures",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Images received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/messenger/contacts",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/messenger/contacts",
+          "method": "GET",
+          "operationId": "getContacts",
+          "summary": "Get contacts",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Contacts",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        },
+        {
+          "path": "/messenger/contacts",
+          "method": "PUT",
+          "operationId": "addContact",
+          "summary": "Add contact",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Contact added",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "User not found",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "409",
+              "description": "Can not add contact",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/messenger/unread",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/messenger/unread",
+          "method": "GET",
+          "operationId": "getUnreadMessages",
+          "summary": "Get unread messages",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Messages",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/messenger/messages",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/messenger/messages",
+          "method": "GET",
+          "operationId": "getMessages",
+          "summary": "Get messages",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Messages",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "userId",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "idFrom",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        },
+        {
+          "path": "/messenger/messages",
+          "method": "POST",
+          "operationId": "sendMessage",
+          "summary": "Send message",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Message sent",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "User not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/calc/simpleroi",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/calc/simpleroi",
+          "method": "POST",
+          "operationId": "calcSimpleRoi",
+          "summary": "Calculate simple ROI",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Calculated",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/calc/roi",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/calc/roi",
+          "method": "POST",
+          "operationId": "calcAdvRoi",
+          "summary": "Calculate advanced ROI",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Calculated",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/v1/languages",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/v1/languages",
+          "method": "GET",
+          "operationId": "getLanguages",
+          "summary": "Get languages",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Languages received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/v1/languages/translations",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/v1/languages/translations",
+          "method": "GET",
+          "operationId": "getTranslations",
+          "summary": "Get translations",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Translations received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/v1/languages/translations/{lang}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/v1/languages/translations/{lang}",
+          "method": "GET",
+          "operationId": "getTranslationsByLang",
+          "summary": "Get translations",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Translations received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "lang",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/openapi.json",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/openapi.json",
+          "method": "GET",
+          "operationId": "getOpenApiSchema",
+          "summary": "Get OpenAPI schema",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "OpenAPI schema retrieved",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/schema",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/schema",
+          "method": "GET",
+          "operationId": "getOpenApiSchema2",
+          "summary": "Get OpenAPI schema",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "OpenAPI schema retrieved",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/restore/list",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/restore/list",
+          "method": "GET",
+          "operationId": "getRestoreList",
+          "summary": "Get list of restoreDB endpoints",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "List of restoreDB endpoints",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/restoreDB",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/restoreDB",
+          "method": "GET",
+          "operationId": "restoreDB",
+          "summary": "Restore DB with predefined and default data",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "201",
+              "description": "Database with sample data restored",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/restoreEmptyDB",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/restoreEmptyDB",
+          "method": "GET",
+          "operationId": "restoreEmptyDB",
+          "summary": "Restore Empty DB",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "201",
+              "description": "Empty database restored",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/restoreBigDB",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/restoreBigDB",
+          "method": "GET",
+          "operationId": "restoreBigDB",
+          "summary": "Restore Big DB",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "201",
+              "description": "Big database restored",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/diagnostic/toggle-metrics",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/diagnostic/toggle-metrics",
+          "method": "GET",
+          "operationId": "toggleMetrics",
+          "summary": "Toggle metrics on/off",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Metrics toggled",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/diagnostic/toggle-diagnostics",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/diagnostic/toggle-diagnostics",
+          "method": "GET",
+          "operationId": "toggleDiagnostics",
+          "summary": "Toggle diagnostics on/off",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Diagnostics toggled",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/diagnostic/toggle-logs",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/diagnostic/toggle-logs",
+          "method": "GET",
+          "operationId": "toggleLogs",
+          "summary": "Toggle logs on/off",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Logs toggled",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/diagnostic/log-level",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/diagnostic/log-level",
+          "method": "POST",
+          "operationId": "setLogLevel",
+          "summary": "Set the log level. Default is 4 (debug).",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Logs toggled",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/logs",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/logs",
+          "method": "GET",
+          "operationId": "getLogs",
+          "summary": "Get logs from server (diagnostics must be on - use toggleDiagnostics or toggleLogs)",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Diagnostics toggled",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/diagnostic/request/histogram",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/diagnostic/request/histogram",
+          "method": "GET",
+          "operationId": "getRequestHistogram",
+          "summary": "Get request histogram",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Request histogram retrieved",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/stats/users",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/stats/users",
+          "method": "GET",
+          "operationId": "getUserstats",
+          "summary": "Get user stats",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "User stats received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "chartType",
+              "in": "query",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/stats/articles",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/stats/articles",
+          "method": "GET",
+          "operationId": "getArticleStats",
+          "summary": "Get article stats",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Article stats received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "chartType",
+              "in": "query",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/stats/publications/articles",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/stats/publications/articles",
+          "method": "GET",
+          "operationId": "getArticlePublishStats",
+          "summary": "Get article publish stats",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Article publish stats received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/stats/publications/comments",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/stats/publications/comments",
+          "method": "GET",
+          "operationId": "getCommentsPublishStats",
+          "summary": "Get comments publish stats",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Comments publish stats received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/stats/activity/user",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/stats/activity/user",
+          "method": "GET",
+          "operationId": "getUserActivityStats",
+          "summary": "Get user activity stats",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "User activity stats received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/stats/activity/user/{id}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/stats/activity/user/{id}",
+          "method": "GET",
+          "operationId": "getSingleUserActivityStats",
+          "summary": "Get single user activity stats",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Single user activity stats received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/stats/api",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/stats/api",
+          "method": "GET",
+          "operationId": "getApiCalls",
+          "summary": "Get api calls",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Calls received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/stats/api/details",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/stats/api/details",
+          "method": "GET",
+          "operationId": "getApiDetailedCalls",
+          "summary": "Get api detailed calls",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Calls received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/stats/nonapi",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/stats/nonapi",
+          "method": "GET",
+          "operationId": "getNonApiCalls",
+          "summary": "Get non api calls",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Calls received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/stats/nonapi/details",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/stats/nonapi/details",
+          "method": "GET",
+          "operationId": "getNonApiDetailedCalls",
+          "summary": "Get non api detailed calls",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Calls received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/random/article",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/random/article",
+          "method": "GET",
+          "operationId": "getRandomArticle",
+          "summary": "Get random article",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Article received",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/quiz/start",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/quiz/start",
+          "method": "GET",
+          "operationId": "startQuiz",
+          "summary": "Start quiz",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Quiz started",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/quiz/stop",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/quiz/stop",
+          "method": "GET",
+          "operationId": "stopQuiz",
+          "summary": "Stop quiz",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Quiz stopped",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "201",
+              "description": "Quiz stopped with new high score",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/quiz/highscores",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/quiz/highscores",
+          "method": "GET",
+          "operationId": "getQuizhighscores",
+          "summary": "Get quiz high scores",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Quiz high scores",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/quiz/questions",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/quiz/questions",
+          "method": "GET",
+          "operationId": "getQuizQuestions",
+          "summary": "Get quiz questions",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Quiz questions received",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/quiz/questions/count",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/quiz/questions/count",
+          "method": "GET",
+          "operationId": "getQuestionCount",
+          "summary": "Get number of questions",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Number of questions received",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/quiz/questions/check",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/quiz/questions/check",
+          "method": "POST",
+          "operationId": "checkQuizAnswer",
+          "summary": "Check quiz answer for question",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Validation of quiz answer",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/hangman/random",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/hangman/random",
+          "method": "GET",
+          "operationId": "getRandomWord",
+          "summary": "Get random word",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Random word",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/hangman/highscores",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/hangman/highscores",
+          "method": "GET",
+          "operationId": "getHangmanHighscores",
+          "summary": "Get hangman highscores",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "hangman highscores",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/hangman/score",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/hangman/score",
+          "method": "POST",
+          "operationId": "setHangmanScore",
+          "summary": "Set Hangman Score",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Score recorded",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Invalid score data",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/minesweeper/highscores",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/minesweeper/highscores",
+          "method": "GET",
+          "operationId": "getMinesweeperHighscores",
+          "summary": "Get minesweeper highscores",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "minesweeper highscores",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/minesweeper/score",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/minesweeper/score",
+          "method": "POST",
+          "operationId": "setMinesweeperScore",
+          "summary": "Set minesweeper Score",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Score recorded",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Invalid score data",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/tic-tac-toe/highscores",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/tic-tac-toe/highscores",
+          "method": "GET",
+          "operationId": "getTicTacToeHighscores",
+          "summary": "Get tic-tac-toe highscores",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "TicTacToe highscores",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/tic-tac-toe/start",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/tic-tac-toe/start",
+          "method": "POST",
+          "operationId": "startTicTacToe",
+          "summary": "start TicTacToe",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "201",
+              "description": "Started",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/tic-tac-toe/join",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/tic-tac-toe/join",
+          "method": "POST",
+          "operationId": "joinTicTacToeSession",
+          "summary": "join TicTacToe session",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Joined",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "403",
+              "description": "Session code not provided",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "409",
+              "description": "Game already full",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Invalid session code",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/tic-tac-toe/status/{code}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/tic-tac-toe/status/{code}",
+          "method": "GET",
+          "operationId": "getTicTacToeStatus",
+          "summary": "Get tic-tac-toe status",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "TicTacToe status",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "code",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/tic-tac-toe/status",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/tic-tac-toe/status",
+          "method": "POST",
+          "operationId": "moveTicTacToe",
+          "summary": "make a move in TicTacToe",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Stopped",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "403",
+              "description": "Session code not provided",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "User cannot make a move",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/tic-tac-toe/stop",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/tic-tac-toe/stop",
+          "method": "POST",
+          "operationId": "stopTicTacToeSession",
+          "summary": "stop TicTacToe session",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Stopped",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "403",
+              "description": "Session code not provided",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/games",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/games",
+          "method": "GET",
+          "operationId": "getGames",
+          "summary": "Get games",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Get games",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/scores",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/scores",
+          "method": "GET",
+          "operationId": "getScores",
+          "summary": "Get scores",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Get scores",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/scores/{id}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/scores/{id}",
+          "method": "GET",
+          "operationId": "getGameScores",
+          "summary": "Get game scores",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Get game scores",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/v1/data/weather",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/v1/data/weather",
+          "method": "GET",
+          "operationId": null,
+          "summary": "Get weather data",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Information about weather received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "days",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/v1/data/costs",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/v1/data/costs",
+          "method": "GET",
+          "operationId": null,
+          "summary": "Get costs data",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Information about costs received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "days",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/about",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/about",
+          "method": "GET",
+          "operationId": null,
+          "summary": "Get information about application",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Information about application received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/ping",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/ping",
+          "method": "GET",
+          "operationId": null,
+          "summary": "Get ping",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Ping received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/health",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/health",
+          "method": "GET",
+          "operationId": null,
+          "summary": "Get healthcheck",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Healthcheck received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/health/memory",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/health/memory",
+          "method": "GET",
+          "operationId": null,
+          "summary": "Get memory usage",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Memory usage received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/health/uptime",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/health/uptime",
+          "method": "GET",
+          "operationId": null,
+          "summary": "Get uptime",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Uptime received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/health/configcheck",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/health/configcheck",
+          "method": "GET",
+          "operationId": null,
+          "summary": "Get config check result",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "config result received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/health/dbcheck",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/health/dbcheck",
+          "method": "GET",
+          "operationId": null,
+          "summary": "Get dbcheck result",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "dbcheck result received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/health/db",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/health/db",
+          "method": "GET",
+          "operationId": null,
+          "summary": "Get db status",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "db status received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/visits/articles",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/visits/articles",
+          "method": "GET",
+          "operationId": "getArticlesVisitsStats",
+          "summary": "Get articles visits stats",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Visits received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "ids",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/visits/top/articles",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/visits/top/articles",
+          "method": "GET",
+          "operationId": "getTopArticlesVisitsStats",
+          "summary": "Get top articles visits stats",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Visits received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/visits/users",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/visits/users",
+          "method": "GET",
+          "operationId": "getUsersVisitsStats",
+          "summary": "Get users visits stats",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Visits received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "ids",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/visits/top/users",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/visits/top/users",
+          "method": "GET",
+          "operationId": "getTopUsersVisitsStats",
+          "summary": "Get top users visits stats",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Visits received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/visits/comments",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/visits/comments",
+          "method": "GET",
+          "operationId": "getCommentsVisitsStats",
+          "summary": "Get comments visits stats",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Visits received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "ids",
+              "in": "query",
+              "required": false,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/visits/top/comments",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/visits/top/comments",
+          "method": "GET",
+          "operationId": "getTopCommentsVisitsStats",
+          "summary": "Get top comments visits stats",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Visits received",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/surveys/statistics/{type}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/surveys/statistics/{type}",
+          "method": "GET",
+          "operationId": "getSurveysStatistics",
+          "summary": "Get surveys statistics",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "type",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/surveys/{surveyType}/description",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/surveys/{surveyType}/description",
+          "method": "GET",
+          "operationId": "getSurveysDescription",
+          "summary": "Get surveys description",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "surveyType",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/surveys/{surveyType}/questions/{id}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/surveys/{surveyType}/questions/{id}",
+          "method": "GET",
+          "operationId": "getSurveysQuestions",
+          "summary": "Get surveys questions",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Not found",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "surveyType",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            },
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/surveys/responses",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/surveys/responses",
+          "method": "GET",
+          "operationId": "getUserSurveyResponses",
+          "summary": "Get user survey responses",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        },
+        {
+          "path": "/surveys/responses",
+          "method": "POST",
+          "operationId": "createSurvey",
+          "summary": "Create a new survey response",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "201",
+              "description": "Survey created successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "400",
+              "description": "Bad request",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "422",
+              "description": "Invalid score data",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/surveys/responses/{id}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/surveys/responses/{id}",
+          "method": "GET",
+          "operationId": "getUserSurveyResponse",
+          "summary": "Get user survey response",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/bookmarks/articles",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/bookmarks/articles",
+          "method": "GET",
+          "operationId": "getUserArticlesBookmarks",
+          "summary": "Get user articles bookmarks",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "successful operation",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        },
+        {
+          "path": "/bookmarks/articles",
+          "method": "POST",
+          "operationId": "addUserArticlesBookmarks",
+          "summary": "Add user articles bookmarks",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Bookmark added or removed",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "201",
+              "description": "First bookmark created",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-accounts/files",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-accounts/files",
+          "method": "POST",
+          "operationId": null,
+          "summary": "Upload account files",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Files uploaded successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/book-shop-manage/team",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/book-shop-manage/team",
+          "method": "GET",
+          "operationId": null,
+          "summary": "Get team members",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Team members retrieved successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "path": "/api/books/{id}",
+      "covered": false,
+      "coverage": "none",
+      "operations": [
+        {
+          "path": "/api/books/{id}",
+          "method": "PATCH",
+          "operationId": null,
+          "summary": "Update a book",
+          "covered": false,
+          "requestCount": 0,
+          "statusCodes": [
+            {
+              "code": "200",
+              "description": "Book updated successfully",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "401",
+              "description": "Unauthorized",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "404",
+              "description": "Book not found",
+              "covered": false,
+              "observedCount": 0
+            },
+            {
+              "code": "500",
+              "description": "Internal server error",
+              "covered": false,
+              "observedCount": 0
+            }
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "covered": false,
+              "observedValues": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "unmatchedRequests": []
+}

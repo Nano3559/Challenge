@@ -20,6 +20,9 @@ const schema = z.object({
   // true = Playwright arranca la app bajo prueba por sí mismo.
   START_APP: z.enum(['true', 'false']).default('false'),
   APP_START_COMMAND: z.string().default('npm --prefix gad-gui-api-demo start'),
+  // true = los clientes de API graban solicitudes para el análisis de cobertura.
+  COVERAGE_REQUESTS: z.enum(['true', 'false']).default('false'),
+  COVERAGE_REQUESTS_DIR: z.string().default('reports/coverage/requests'),
 });
 
 const parsed = schema.safeParse(process.env);
@@ -38,4 +41,8 @@ export const env = {
   startApp: raw.START_APP === 'true',
   /** Comando de arranque de la app cuando startApp es true. */
   appStartCommand: raw.APP_START_COMMAND,
+  /** true si los clientes de API deben grabar solicitudes para cobertura. */
+  coverageEnabled: raw.COVERAGE_REQUESTS === 'true',
+  /** Directorio donde el recorder escribe los JSONL. */
+  coverageRequestsDir: raw.COVERAGE_REQUESTS_DIR,
 };

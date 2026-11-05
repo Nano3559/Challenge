@@ -1,0 +1,28 @@
+{
+  "generatedAt": "2026-11-05T10:05:00.000Z",
+  "method": "Datos sintéticos solo para pruebas unitarias; no es una estimación real.",
+  "estimates": [
+    {
+      "id": 1,
+      "provider": "fixture",
+      "model": "fixture-model",
+      "independence": "fixture de test",
+      "estimatedCoverage": 70,
+      "criteria": ["Criterio sintético de prueba"],
+      "gaps": [
+        { "category": "uncovered_endpoint", "endpoint": "/ping", "method": "GET", "description": "Sin prueba." }
+      ]
+    },
+    {
+      "id": 2,
+      "provider": "fixture",
+      "model": "fixture-model",
+      "independence": "fixture de test",
+      "estimatedCoverage": 75,
+      "criteria": ["Criterio sintético de prueba"],
+      "gaps": [
+        { "category": "unexecuted_status_code", "endpoint": "/items", "method": "POST", "description": "Falta 400." }
+      ]
+    }
+  ]
+}

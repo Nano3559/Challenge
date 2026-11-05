@@ -1,0 +1,5 @@
+{"timestamp":"2026-11-05T10:00:00.000Z","method":"GET","url":"http://localhost:3000/api/items?limit=10","path":"/api/items","query":{"limit":"10"},"headers":{"X-Trace":"trace-1","accept":"application/json"},"cookies":{},"status":200,"durationMs":12}
+{"timestamp":"2026-11-05T10:00:01.000Z","method":"GET","url":"http://localhost:3000/api/items/42?expand=true","path":"/api/items/42","query":{"expand":"true"},"headers":{"accept":"application/json"},"cookies":{},"status":200,"durationMs":15}
+{"timestamp":"2026-11-05T10:00:02.000Z","method":"POST","url":"http://localhost:3000/api/items","path":"/api/items","query":{},"headers":{"content-type":"application/json"},"cookies":{},"status":201,"durationMs":18}
+{"timestamp":"2026-11-05T10:00:03.000Z","method":"GET","url":"http://localhost:3000/api/cookies","path":"/api/cookies","query":{},"headers":{"cookie":"session=abc123"},"cookies":{"session":"***"},"status":200,"durationMs":8}
+{"timestamp":"2026-11-05T10:00:04.000Z","method":"GET","url":"http://localhost:3000/api/not-documented","path":"/api/not-documented","query":{},"headers":{},"cookies":{},"status":404,"durationMs":5}

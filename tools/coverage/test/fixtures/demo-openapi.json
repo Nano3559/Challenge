@@ -1,0 +1,82 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Coverage Demo API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    { "url": "/api" }
+  ],
+  "components": {
+    "parameters": {
+      "Limit": {
+        "name": "limit",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "integer" }
+      },
+      "TraceHeader": {
+        "name": "X-Trace",
+        "in": "header",
+        "required": false,
+        "schema": { "type": "string" }
+      }
+    }
+  },
+  "paths": {
+    "/ping": {
+      "get": {
+        "operationId": "ping",
+        "responses": {
+          "200": { "description": "pong" }
+        }
+      }
+    },
+    "/items": {
+      "get": {
+        "operationId": "listItems",
+        "parameters": [
+          { "$ref": "#/components/parameters/Limit" },
+          { "$ref": "#/components/parameters/TraceHeader" }
+        ],
+        "responses": {
+          "200": { "description": "ok" }
+        }
+      },
+      "post": {
+        "operationId": "createItem",
+        "responses": {
+          "201": { "description": "created" },
+          "400": { "description": "bad request" }
+        }
+      }
+    },
+    "/items/{id}": {
+      "parameters": [
+        { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } },
+        { "name": "X-Tenant", "in": "header", "schema": { "type": "string" } }
+      ],
+      "get": {
+        "operationId": "getItem",
+        "parameters": [
+          { "name": "expand", "in": "query", "schema": { "type": "boolean" } }
+        ],
+        "responses": {
+          "200": { "description": "ok" },
+          "404": { "description": "not found" }
+        }
+      }
+    },
+    "/cookies": {
+      "get": {
+        "operationId": "readCookie",
+        "parameters": [
+          { "name": "session", "in": "cookie", "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "ok" }
+        }
+      }
+    }
+  }
+}

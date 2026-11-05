@@ -1,0 +1,105 @@
+name: API Coverage
+
+on:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      min-coverage:
+        description: 'Cobertura global mínima (%)'
+        required: false
+        default: '1.0'
+      fail-on-critical-gaps:
+        description: 'Fallar si hay brechas críticas (uncovered_endpoint/untested_method)'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+        default: 'false'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  api-coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CI: true
+      START_APP: 'true'
+      MIN_COVERAGE: ${{ inputs.min-coverage || '1.0' }}
+      FAIL_ON_CRITICAL_GAPS: ${{ inputs.fail-on-critical-gaps || 'false' }}
+      SPEC_PATH: gad-gui-api-demo/public/tools/schema/openapi_rest_demo.json
+      REQUESTS_DIR: reports/coverage/requests
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Clonar GAD (app bajo prueba)
+        run: git clone --depth 1 https://github.com/jaktestowac/gad-gui-api-demo.git gad-gui-api-demo
+
+      - name: Instalar dependencias de GAD
+        run: npm --prefix gad-gui-api-demo ci
+
+      - run: npm run ci:check # lint + typecheck del framework
+
+      - name: Pruebas unitarias de la herramienta de cobertura
+        run: npm run test:coverage:unit
+
+      - name: Ejecutar pruebas API grabando solicitudes
+        run: npm run coverage:record -- --project=api --reporter=list
+
+      - name: Analizar cobertura y aplicar el gate
+        run: |
+          FLAGS=""
+          if [ "$FAIL_ON_CRITICAL_GAPS" = "true" ]; then
+            FLAGS="--fail-on-critical-gaps"
+          fi
+          node coverage-cli.js \
+            --spec "$SPEC_PATH" \
+            --requests "$REQUESTS_DIR" \
+            --out . \
+            --min-coverage "$MIN_COVERAGE" \
+            --ai-estimates tools/coverage/ai-estimates.json \
+            --console-limit 15 \
+            $FLAGS
+
+      - name: Publicar baseline en la pestaña Summary
+        if: always()
+        run: cat day-1-baseline.md >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Publicar resumen de brechas en la pestaña Summary
+        if: always()
+        run: |
+          if [ -f coverage-gaps.json ]; then
+            node -e "
+              const gaps = require('./coverage-gaps.json');
+              const s = gaps.summary;
+              console.log('### Brechas de cobertura');
+              console.log('');
+              console.log('| Severidad | Cantidad |');
+              console.log('|---|---:|');
+              for (const [sev, count] of Object.entries(s.bySeverity)) console.log('| ' + sev + ' | ' + count + ' |');
+              console.log('');
+              console.log('Total: **' + s.total + '** (críticas: **' + s.critical + '**)');
+            " >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: api-coverage
+          path: |
+            coverage-report.json
+            coverage-gaps.json
+            day-1-baseline.md
+            reports/coverage/
+            reports/junit.xml
+            test-results/
+          retention-days: 14

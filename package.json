@@ -2,7 +2,7 @@
   "name": "qa-playwright-framework",
   "version": "1.0.0",
   "private": true,
-  "description": "Framework de automatizaci\u00f3n con Playwright (API + UI) para GAD (GUI + API)",
+  "description": "Framework de automatización con Playwright (API + UI) para GAD (GUI + API)",
   "scripts": {
     "app": "npm --prefix gad-gui-api-demo start",
     "app:sandbox": "node app/server.js",
@@ -13,6 +13,12 @@
     "test:ui": "playwright test --project=ui",
     "test:failed": "playwright test --last-failed",
     "test:debug": "playwright test --debug",
+    "coverage:record": "node tools/coverage/bin/record-tests.js",
+    "coverage:cli": "node coverage-cli.js",
+    "coverage:analyze": "node coverage-cli.js --spec gad-gui-api-demo/public/tools/schema/openapi_rest_demo.json --requests reports/coverage/requests --out reports/coverage --min-coverage 0",
+    "coverage:baseline": "node coverage-cli.js --spec gad-gui-api-demo/public/tools/schema/openapi_rest_demo.json --requests reports/coverage/requests --out . --ai-estimates tools/coverage/ai-estimates.json",
+    "coverage:all": "npm run coverage:record -- --project=api && npm run coverage:analyze",
+    "test:coverage:unit": "node --test \"tools/coverage/test/*.test.js\"",
     "report": "playwright show-report",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
@@ -28,5 +34,8 @@
     "typescript": "^5.6.0",
     "typescript-eslint": "^8.72.1",
     "zod": "^4.6.7"
+  },
+  "dependencies": {
+    "yaml": "^2.9.1"
   }
 }

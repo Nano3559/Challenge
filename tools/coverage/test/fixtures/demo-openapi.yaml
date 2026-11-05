@@ -1,0 +1,19 @@
+openapi: 3.0.3
+info:
+  title: YAML Demo API
+  version: 1.0.0
+servers:
+  - url: https://example.test/api
+paths:
+  /status:
+    get:
+      parameters:
+        - name: verbose
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: ok
+        default:
+          description: error

@@ -6,7 +6,7 @@ Fuente de verdad. Todo test nuevo debe seguirlo al pie de la letra.
 
 ```
 src/core/            CORE agnóstico de la app. No conoce ninguna página
-  api/               BaseApiClient (headers, Bearer token, logging)
+  api/               BaseApiClient (headers, Bearer token, logging, grabación de solicitudes)
   pages/             BasePage (navegación, byTestId, byId, byRole)
   config/env.ts      Ambientes (ENV=local|qa|stage) validados con zod
   utils/             logger, expectSchema (contratos)
@@ -19,9 +19,11 @@ src/sut/             Todo lo específico de GAD (sistema bajo prueba)
   fixtures/index.ts  Único punto de entrada de `test` y `expect`
 tests/api/           <recurso>.api.spec.ts
 tests/ui/            <flujo>.ui.spec.ts
+tools/coverage/      Herramienta de cobertura OpenAPI (parser, analyzer, reportes, baseline)
+coverage-cli.js      Entrada estable de la CLI de cobertura
 gad-gui-api-demo/    App bajo prueba (GAD). SOLO lectura: nunca se modifica
 app/                 App sandbox legacy; ya no se usa
-.github/workflows/   pr-smoke.yml (cada PR) y nightly.yml (regresión con shards)
+.github/workflows/   pr-smoke.yml, nightly.yml y api-coverage.yml
 .claude/             skills y agentes de IA; .mcp.json (Playwright MCP)
 ```
 
@@ -64,7 +66,20 @@ API (orden fijo: estado -> cuerpo):
 
 UI: aserciones web-first sobre locators (`toBeVisible`, `toHaveText`, `toHaveCount`, `toHaveURL`).
 
-## 6. Procedimiento para añadir una prueba
+## 6. Cobertura OpenAPI
+
+Herramienta: `coverage-cli.js` + `tools/coverage/` (Node CommonJS, sin build). Mide operaciones, status codes y parámetros; una solicitud ejecutada **no** cubre automáticamente todos los parámetros ni todos los status documentados.
+
+- Grabar solicitudes: `npm run coverage:record -- --project=api` (activa `COVERAGE_REQUESTS=true` y escribe JSONL en `reports/coverage/requests`).
+- Analizar: `npm run coverage:analyze` (reportes en `reports/coverage/`).
+- Entregables de la raíz: `npm run coverage:baseline` → `coverage-report.json`, `coverage-gaps.json`, `day-1-baseline.md`.
+- Pruebas de la herramienta: `npm run test:coverage:unit` (obligatorio si se toca `tools/coverage/`).
+- Gate: `--min-coverage <0-100>` y/o `--fail-on-critical-gaps`. Códigos de salida: `0` OK, `1` gate, `2` uso/configuración, `3` inesperado.
+- Estimaciones de IA: solo se registran las realmente ejecutadas (`--ai-estimates`). Prohibido inventar porcentajes o editar los JSON de estimaciones para "cuadrar" con la herramienta.
+- Limitaciones conocidas: no se graba el tráfico de la UI, no se validan cuerpos de respuesta, `requestBody` no cuenta como parámetro, no se resuelven `$ref` remotos.
+- CI: `.github/workflows/api-coverage.yml` clona GAD, graba solicitudes, corre la CLI y publica artefactos. No debe quedar en rojo por brechas críticas históricas: `fail-on-critical-gaps` está desactivado por defecto.
+
+## 7. Procedimiento para añadir una prueba
 
 1. Revisar `gad-gui-api-demo/routes/`, `gad-gui-api-demo/endpoints/` o `gad-gui-api-demo/public/tools/schema/openapi_*.json` y los specs existentes del recurso para no duplicar casos.
 2. Si falta el método en el cliente o el locator en el page object, agregarlo ahí (sin aserciones).
@@ -72,12 +87,13 @@ UI: aserciones web-first sobre locators (`toBeVisible`, `toHaveText`, `toHaveCou
 4. Agregar el test dentro del `describe` del endpoint (o crear `tests/api/<recurso>.api.spec.ts`).
 5. Cubrir como mínimo: caso feliz + caso de error principal (404/400/401 según aplique), con tags.
 6. Ejecutar `npm run ci:check` y `npm run test:api` (o `test:ui`). Todo debe pasar.
-7. No modificar `gad-gui-api-demo/` (es la app bajo prueba) ni los tests existentes.
+7. Si la prueba cubre un endpoint nuevo, regenerar cobertura: `npm run coverage:all` y `npm run coverage:baseline`; revisar que las brechas del endpoint bajen.
+8. No modificar `gad-gui-api-demo/` (es la app bajo prueba) ni los tests existentes.
 
-## 7. Seguimiento de fallos
+## 8. Seguimiento de fallos
 
 Cada ejecución genera `reports/failure-summary.md` (+ `.json`) con fallos, tests flaky (pasaron tras reintentar) y los 5 más lentos, y `playwright-report/` (HTML). Con fallos, usar la skill `triage-failure` o el agente `failure-triager`. Un test flaky es un defecto: se arregla o se pone en cuarentena con un issue, nunca se ignora.
 
-## 8. Ejemplos de referencia
+## 9. Ejemplos de referencia
 
 `tests/api/articles.api.spec.ts` (API), `tests/api/auth.api.spec.ts` (login) y `tests/ui/login.ui.spec.ts` (UI).
