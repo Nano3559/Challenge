@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T14:41:54.812Z",
+  "generatedAt": "2026-11-05T20:42:38.549Z",
   "spec": {
     "source": "gad-gui-api-demo/public/tools/schema/openapi_rest_demo.json",
     "openapi": "3.0.1",
@@ -7,23 +7,23 @@
     "version": "1.3.3"
   },
   "summary": {
-    "total": 777,
-    "critical": 300,
+    "total": 637,
+    "critical": 257,
     "criticalCategories": [
       "uncovered_endpoint",
       "untested_method"
     ],
     "byCategory": {
-      "uncovered_endpoint": 133,
-      "untested_method": 167,
-      "unexecuted_status_code": 382,
-      "untested_parameter": 95
+      "uncovered_endpoint": 118,
+      "untested_method": 139,
+      "unexecuted_status_code": 301,
+      "untested_parameter": 79
     },
     "bySeverity": {
-      "critical": 300,
-      "high": 0,
+      "critical": 257,
+      "high": 11,
       "medium": 0,
-      "low": 477
+      "low": 369
     }
   },
   "gaps": [
@@ -37,17 +37,6 @@
       ],
       "description": "El endpoint /about no recibió ninguna solicitud que coincida con la especificación.",
       "id": "uncovered_endpoint|*|/about|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/api/books/{id}",
-      "method": "*",
-      "methods": [
-        "PATCH"
-      ],
-      "description": "El endpoint /api/books/{id} no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/api/books/{id}|"
     },
     {
       "severity": "critical",
@@ -71,28 +60,6 @@
       ],
       "description": "El endpoint /articles/search no recibió ninguna solicitud que coincida con la especificación.",
       "id": "uncovered_endpoint|*|/articles/search|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/book-authors",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /book-authors no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/book-authors|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/book-genres",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /book-genres no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/book-genres|"
     },
     {
       "severity": "critical",
@@ -121,30 +88,6 @@
     {
       "severity": "critical",
       "category": "uncovered_endpoint",
-      "endpoint": "/book-shop-accounts",
-      "method": "*",
-      "methods": [
-        "GET",
-        "POST"
-      ],
-      "description": "El endpoint /book-shop-accounts no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/book-shop-accounts|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/book-shop-accounts/{id}",
-      "method": "*",
-      "methods": [
-        "GET",
-        "PATCH"
-      ],
-      "description": "El endpoint /book-shop-accounts/{id} no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/book-shop-accounts/{id}|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
       "endpoint": "/book-shop-accounts/files",
       "method": "*",
       "methods": [
@@ -152,28 +95,6 @@
       ],
       "description": "El endpoint /book-shop-accounts/files no recibió ninguna solicitud que coincida con la especificación.",
       "id": "uncovered_endpoint|*|/book-shop-accounts/files|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/book-shop-accounts/my-books",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /book-shop-accounts/my-books no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/book-shop-accounts/my-books|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/book-shop-authorize",
-      "method": "*",
-      "methods": [
-        "POST"
-      ],
-      "description": "El endpoint /book-shop-authorize no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/book-shop-authorize|"
     },
     {
       "severity": "critical",
@@ -196,17 +117,6 @@
       ],
       "description": "El endpoint /book-shop-items no recibió ninguna solicitud que coincida con la especificación.",
       "id": "uncovered_endpoint|*|/book-shop-items|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/book-shop-manage/books-without-items",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /book-shop-manage/books-without-items no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/book-shop-manage/books-without-items|"
     },
     {
       "severity": "critical",
@@ -411,61 +321,6 @@
       ],
       "description": "El endpoint /bookmarks/articles no recibió ninguna solicitud que coincida con la especificación.",
       "id": "uncovered_endpoint|*|/bookmarks/articles|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/books",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /books no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/books|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/books/favorites/{id}",
-      "method": "*",
-      "methods": [
-        "POST"
-      ],
-      "description": "El endpoint /books/favorites/{id} no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/books/favorites/{id}|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/books/owned/{id}",
-      "method": "*",
-      "methods": [
-        "POST"
-      ],
-      "description": "El endpoint /books/owned/{id} no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/books/owned/{id}|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/books/read/{id}",
-      "method": "*",
-      "methods": [
-        "POST"
-      ],
-      "description": "El endpoint /books/read/{id} no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/books/read/{id}|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/books/wishlist/{id}",
-      "method": "*",
-      "methods": [
-        "POST"
-      ],
-      "description": "El endpoint /books/wishlist/{id} no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/books/wishlist/{id}|"
     },
     {
       "severity": "critical",
@@ -1362,33 +1217,6 @@
     {
       "severity": "critical",
       "category": "uncovered_endpoint",
-      "endpoint": "/users",
-      "method": "*",
-      "methods": [
-        "GET",
-        "POST"
-      ],
-      "description": "El endpoint /users no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/users|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/users/{id}",
-      "method": "*",
-      "methods": [
-        "GET",
-        "PUT",
-        "PATCH",
-        "DELETE",
-        "HEAD"
-      ],
-      "description": "El endpoint /users/{id} no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/users/{id}|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
       "endpoint": "/users/search",
       "method": "*",
       "methods": [
@@ -1529,14 +1357,6 @@
     {
       "severity": "critical",
       "category": "untested_method",
-      "endpoint": "/api/books/{id}",
-      "method": "PATCH",
-      "description": "La operación PATCH /api/books/{id} está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|PATCH|/api/books/{id}|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
       "endpoint": "/article-labels/articles/{id}",
       "method": "GET",
       "description": "La operación GET /article-labels/articles/{id} está documentada pero no fue ejecutada por ninguna prueba.",
@@ -1553,66 +1373,10 @@
     {
       "severity": "critical",
       "category": "untested_method",
-      "endpoint": "/articles",
-      "method": "POST",
-      "description": "La operación POST /articles está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|POST|/articles|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/articles/{id}",
-      "method": "DELETE",
-      "description": "La operación DELETE /articles/{id} está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|DELETE|/articles/{id}|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/articles/{id}",
-      "method": "HEAD",
-      "description": "La operación HEAD /articles/{id} está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|HEAD|/articles/{id}|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/articles/{id}",
-      "method": "PATCH",
-      "description": "La operación PATCH /articles/{id} está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|PATCH|/articles/{id}|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/articles/{id}",
-      "method": "PUT",
-      "description": "La operación PUT /articles/{id} está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|PUT|/articles/{id}|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
       "endpoint": "/articles/search",
       "method": "GET",
       "description": "La operación GET /articles/search está documentada pero no fue ejecutada por ninguna prueba.",
       "id": "untested_method|GET|/articles/search|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/book-authors",
-      "method": "GET",
-      "description": "La operación GET /book-authors está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/book-authors|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/book-genres",
-      "method": "GET",
-      "description": "La operación GET /book-genres está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/book-genres|"
     },
     {
       "severity": "critical",
@@ -1649,58 +1413,10 @@
     {
       "severity": "critical",
       "category": "untested_method",
-      "endpoint": "/book-shop-accounts",
-      "method": "GET",
-      "description": "La operación GET /book-shop-accounts está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/book-shop-accounts|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/book-shop-accounts",
-      "method": "POST",
-      "description": "La operación POST /book-shop-accounts está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|POST|/book-shop-accounts|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/book-shop-accounts/{id}",
-      "method": "GET",
-      "description": "La operación GET /book-shop-accounts/{id} está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/book-shop-accounts/{id}|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/book-shop-accounts/{id}",
-      "method": "PATCH",
-      "description": "La operación PATCH /book-shop-accounts/{id} está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|PATCH|/book-shop-accounts/{id}|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
       "endpoint": "/book-shop-accounts/files",
       "method": "POST",
       "description": "La operación POST /book-shop-accounts/files está documentada pero no fue ejecutada por ninguna prueba.",
       "id": "untested_method|POST|/book-shop-accounts/files|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/book-shop-accounts/my-books",
-      "method": "GET",
-      "description": "La operación GET /book-shop-accounts/my-books está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/book-shop-accounts/my-books|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/book-shop-authorize",
-      "method": "POST",
-      "description": "La operación POST /book-shop-authorize está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|POST|/book-shop-authorize|"
     },
     {
       "severity": "critical",
@@ -1717,14 +1433,6 @@
       "method": "GET",
       "description": "La operación GET /book-shop-items está documentada pero no fue ejecutada por ninguna prueba.",
       "id": "untested_method|GET|/book-shop-items|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/book-shop-manage/books-without-items",
-      "method": "GET",
-      "description": "La operación GET /book-shop-manage/books-without-items está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/book-shop-manage/books-without-items|"
     },
     {
       "severity": "critical",
@@ -1917,46 +1625,6 @@
       "method": "POST",
       "description": "La operación POST /bookmarks/articles está documentada pero no fue ejecutada por ninguna prueba.",
       "id": "untested_method|POST|/bookmarks/articles|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/books",
-      "method": "GET",
-      "description": "La operación GET /books está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/books|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/books/favorites/{id}",
-      "method": "POST",
-      "description": "La operación POST /books/favorites/{id} está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|POST|/books/favorites/{id}|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/books/owned/{id}",
-      "method": "POST",
-      "description": "La operación POST /books/owned/{id} está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|POST|/books/owned/{id}|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/books/read/{id}",
-      "method": "POST",
-      "description": "La operación POST /books/read/{id} está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|POST|/books/read/{id}|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/books/wishlist/{id}",
-      "method": "POST",
-      "description": "La operación POST /books/wishlist/{id} está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|POST|/books/wishlist/{id}|"
     },
     {
       "severity": "critical",
@@ -2329,14 +1997,6 @@
     {
       "severity": "critical",
       "category": "untested_method",
-      "endpoint": "/login",
-      "method": "GET",
-      "description": "La operación GET /login está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/login|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
       "endpoint": "/logs",
       "method": "GET",
       "description": "La operación GET /logs está documentada pero no fue ejecutada por ninguna prueba.",
@@ -2705,62 +2365,6 @@
     {
       "severity": "critical",
       "category": "untested_method",
-      "endpoint": "/users",
-      "method": "GET",
-      "description": "La operación GET /users está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/users|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/users",
-      "method": "POST",
-      "description": "La operación POST /users está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|POST|/users|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/users/{id}",
-      "method": "DELETE",
-      "description": "La operación DELETE /users/{id} está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|DELETE|/users/{id}|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/users/{id}",
-      "method": "GET",
-      "description": "La operación GET /users/{id} está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/users/{id}|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/users/{id}",
-      "method": "HEAD",
-      "description": "La operación HEAD /users/{id} está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|HEAD|/users/{id}|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/users/{id}",
-      "method": "PATCH",
-      "description": "La operación PATCH /users/{id} está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|PATCH|/users/{id}|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/users/{id}",
-      "method": "PUT",
-      "description": "La operación PUT /users/{id} está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|PUT|/users/{id}|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
       "endpoint": "/users/search",
       "method": "GET",
       "description": "La operación GET /users/search está documentada pero no fue ejecutada por ninguna prueba.",
@@ -2855,6 +2459,105 @@
       "id": "untested_method|GET|/visits/users|"
     },
     {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/api/books/{id}",
+      "method": "PATCH",
+      "statusCode": "500",
+      "description": "La operación PATCH /api/books/{id} fue ejecutada, pero nunca devolvió el status 500 documentado.",
+      "id": "unexecuted_status_code|PATCH|/api/books/{id}|500"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/articles/{id}",
+      "method": "HEAD",
+      "statusCode": "400",
+      "description": "La operación HEAD /articles/{id} fue ejecutada, pero nunca devolvió el status 400 documentado.",
+      "id": "unexecuted_status_code|HEAD|/articles/{id}|400"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/articles/{id}",
+      "method": "PUT",
+      "statusCode": "404",
+      "description": "La operación PUT /articles/{id} fue ejecutada, pero nunca devolvió el status 404 documentado.",
+      "id": "unexecuted_status_code|PUT|/articles/{id}|404"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/book-authors",
+      "method": "GET",
+      "statusCode": "404",
+      "description": "La operación GET /book-authors fue ejecutada, pero nunca devolvió el status 404 documentado.",
+      "id": "unexecuted_status_code|GET|/book-authors|404"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/book-genres",
+      "method": "GET",
+      "statusCode": "404",
+      "description": "La operación GET /book-genres fue ejecutada, pero nunca devolvió el status 404 documentado.",
+      "id": "unexecuted_status_code|GET|/book-genres|404"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/book-shop-accounts",
+      "method": "GET",
+      "statusCode": "401",
+      "description": "La operación GET /book-shop-accounts fue ejecutada, pero nunca devolvió el status 401 documentado.",
+      "id": "unexecuted_status_code|GET|/book-shop-accounts|401"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/books",
+      "method": "GET",
+      "statusCode": "404",
+      "description": "La operación GET /books fue ejecutada, pero nunca devolvió el status 404 documentado.",
+      "id": "unexecuted_status_code|GET|/books|404"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/users/{id}",
+      "method": "GET",
+      "statusCode": "400",
+      "description": "La operación GET /users/{id} fue ejecutada, pero nunca devolvió el status 400 documentado.",
+      "id": "unexecuted_status_code|GET|/users/{id}|400"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/users/{id}",
+      "method": "HEAD",
+      "statusCode": "400",
+      "description": "La operación HEAD /users/{id} fue ejecutada, pero nunca devolvió el status 400 documentado.",
+      "id": "unexecuted_status_code|HEAD|/users/{id}|400"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/users/{id}",
+      "method": "PUT",
+      "statusCode": "201",
+      "description": "La operación PUT /users/{id} fue ejecutada, pero nunca devolvió el status 201 documentado.",
+      "id": "unexecuted_status_code|PUT|/users/{id}|201"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/users/{id}",
+      "method": "PUT",
+      "statusCode": "404",
+      "description": "La operación PUT /users/{id} fue ejecutada, pero nunca devolvió el status 404 documentado.",
+      "id": "unexecuted_status_code|PUT|/users/{id}|404"
+    },
+    {
       "severity": "low",
       "category": "unexecuted_status_code",
       "endpoint": "/about",
@@ -2862,42 +2565,6 @@
       "statusCode": "200",
       "description": "La operación GET /about no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
       "id": "unexecuted_status_code|GET|/about|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/api/books/{id}",
-      "method": "PATCH",
-      "statusCode": "200",
-      "description": "La operación PATCH /api/books/{id} no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PATCH|/api/books/{id}|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/api/books/{id}",
-      "method": "PATCH",
-      "statusCode": "401",
-      "description": "La operación PATCH /api/books/{id} no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PATCH|/api/books/{id}|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/api/books/{id}",
-      "method": "PATCH",
-      "statusCode": "404",
-      "description": "La operación PATCH /api/books/{id} no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PATCH|/api/books/{id}|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/api/books/{id}",
-      "method": "PATCH",
-      "statusCode": "500",
-      "description": "La operación PATCH /api/books/{id} no fue ejecutada; por lo tanto el status 500 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PATCH|/api/books/{id}|500"
     },
     {
       "severity": "low",
@@ -2965,236 +2632,11 @@
     {
       "severity": "low",
       "category": "unexecuted_status_code",
-      "endpoint": "/articles",
-      "method": "POST",
-      "statusCode": "201",
-      "description": "La operación POST /articles no fue ejecutada; por lo tanto el status 201 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/articles|201"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles",
-      "method": "POST",
-      "statusCode": "400",
-      "description": "La operación POST /articles no fue ejecutada; por lo tanto el status 400 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/articles|400"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles",
-      "method": "POST",
-      "statusCode": "401",
-      "description": "La operación POST /articles no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/articles|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles",
-      "method": "POST",
-      "statusCode": "422",
-      "description": "La operación POST /articles no fue ejecutada; por lo tanto el status 422 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/articles|422"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles/{id}",
-      "method": "DELETE",
-      "statusCode": "200",
-      "description": "La operación DELETE /articles/{id} no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|DELETE|/articles/{id}|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles/{id}",
-      "method": "DELETE",
-      "statusCode": "400",
-      "description": "La operación DELETE /articles/{id} no fue ejecutada; por lo tanto el status 400 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|DELETE|/articles/{id}|400"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles/{id}",
-      "method": "DELETE",
-      "statusCode": "401",
-      "description": "La operación DELETE /articles/{id} no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|DELETE|/articles/{id}|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles/{id}",
-      "method": "HEAD",
-      "statusCode": "200",
-      "description": "La operación HEAD /articles/{id} no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|HEAD|/articles/{id}|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles/{id}",
-      "method": "HEAD",
-      "statusCode": "400",
-      "description": "La operación HEAD /articles/{id} no fue ejecutada; por lo tanto el status 400 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|HEAD|/articles/{id}|400"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles/{id}",
-      "method": "HEAD",
-      "statusCode": "404",
-      "description": "La operación HEAD /articles/{id} no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|HEAD|/articles/{id}|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles/{id}",
-      "method": "PATCH",
-      "statusCode": "200",
-      "description": "La operación PATCH /articles/{id} no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PATCH|/articles/{id}|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles/{id}",
-      "method": "PATCH",
-      "statusCode": "400",
-      "description": "La operación PATCH /articles/{id} no fue ejecutada; por lo tanto el status 400 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PATCH|/articles/{id}|400"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles/{id}",
-      "method": "PATCH",
-      "statusCode": "401",
-      "description": "La operación PATCH /articles/{id} no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PATCH|/articles/{id}|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles/{id}",
-      "method": "PATCH",
-      "statusCode": "404",
-      "description": "La operación PATCH /articles/{id} no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PATCH|/articles/{id}|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles/{id}",
-      "method": "PATCH",
-      "statusCode": "422",
-      "description": "La operación PATCH /articles/{id} no fue ejecutada; por lo tanto el status 422 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PATCH|/articles/{id}|422"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles/{id}",
-      "method": "PUT",
-      "statusCode": "200",
-      "description": "La operación PUT /articles/{id} no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PUT|/articles/{id}|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles/{id}",
-      "method": "PUT",
-      "statusCode": "201",
-      "description": "La operación PUT /articles/{id} no fue ejecutada; por lo tanto el status 201 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PUT|/articles/{id}|201"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles/{id}",
-      "method": "PUT",
-      "statusCode": "400",
-      "description": "La operación PUT /articles/{id} no fue ejecutada; por lo tanto el status 400 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PUT|/articles/{id}|400"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles/{id}",
-      "method": "PUT",
-      "statusCode": "401",
-      "description": "La operación PUT /articles/{id} no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PUT|/articles/{id}|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles/{id}",
-      "method": "PUT",
-      "statusCode": "404",
-      "description": "La operación PUT /articles/{id} no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PUT|/articles/{id}|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles/{id}",
-      "method": "PUT",
-      "statusCode": "422",
-      "description": "La operación PUT /articles/{id} no fue ejecutada; por lo tanto el status 422 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PUT|/articles/{id}|422"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
       "endpoint": "/articles/search",
       "method": "GET",
       "statusCode": "200",
       "description": "La operación GET /articles/search no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
       "id": "unexecuted_status_code|GET|/articles/search|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-authors",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /book-authors no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/book-authors|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-authors",
-      "method": "GET",
-      "statusCode": "404",
-      "description": "La operación GET /book-authors no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/book-authors|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-genres",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /book-genres no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/book-genres|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-genres",
-      "method": "GET",
-      "statusCode": "404",
-      "description": "La operación GET /book-genres no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/book-genres|404"
     },
     {
       "severity": "low",
@@ -3307,123 +2749,6 @@
     {
       "severity": "low",
       "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-accounts",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /book-shop-accounts no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/book-shop-accounts|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-accounts",
-      "method": "GET",
-      "statusCode": "401",
-      "description": "La operación GET /book-shop-accounts no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/book-shop-accounts|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-accounts",
-      "method": "GET",
-      "statusCode": "404",
-      "description": "La operación GET /book-shop-accounts no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/book-shop-accounts|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-accounts",
-      "method": "POST",
-      "statusCode": "201",
-      "description": "La operación POST /book-shop-accounts no fue ejecutada; por lo tanto el status 201 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/book-shop-accounts|201"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-accounts",
-      "method": "POST",
-      "statusCode": "401",
-      "description": "La operación POST /book-shop-accounts no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/book-shop-accounts|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-accounts",
-      "method": "POST",
-      "statusCode": "409",
-      "description": "La operación POST /book-shop-accounts no fue ejecutada; por lo tanto el status 409 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/book-shop-accounts|409"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-accounts/{id}",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /book-shop-accounts/{id} no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/book-shop-accounts/{id}|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-accounts/{id}",
-      "method": "GET",
-      "statusCode": "401",
-      "description": "La operación GET /book-shop-accounts/{id} no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/book-shop-accounts/{id}|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-accounts/{id}",
-      "method": "GET",
-      "statusCode": "404",
-      "description": "La operación GET /book-shop-accounts/{id} no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/book-shop-accounts/{id}|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-accounts/{id}",
-      "method": "PATCH",
-      "statusCode": "200",
-      "description": "La operación PATCH /book-shop-accounts/{id} no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PATCH|/book-shop-accounts/{id}|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-accounts/{id}",
-      "method": "PATCH",
-      "statusCode": "401",
-      "description": "La operación PATCH /book-shop-accounts/{id} no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PATCH|/book-shop-accounts/{id}|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-accounts/{id}",
-      "method": "PATCH",
-      "statusCode": "403",
-      "description": "La operación PATCH /book-shop-accounts/{id} no fue ejecutada; por lo tanto el status 403 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PATCH|/book-shop-accounts/{id}|403"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-accounts/{id}",
-      "method": "PATCH",
-      "statusCode": "404",
-      "description": "La operación PATCH /book-shop-accounts/{id} no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PATCH|/book-shop-accounts/{id}|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
       "endpoint": "/book-shop-accounts/files",
       "method": "POST",
       "statusCode": "200",
@@ -3438,69 +2763,6 @@
       "statusCode": "401",
       "description": "La operación POST /book-shop-accounts/files no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
       "id": "unexecuted_status_code|POST|/book-shop-accounts/files|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-accounts/my-books",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /book-shop-accounts/my-books no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/book-shop-accounts/my-books|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-accounts/my-books",
-      "method": "GET",
-      "statusCode": "401",
-      "description": "La operación GET /book-shop-accounts/my-books no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/book-shop-accounts/my-books|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-accounts/my-books",
-      "method": "GET",
-      "statusCode": "404",
-      "description": "La operación GET /book-shop-accounts/my-books no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/book-shop-accounts/my-books|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-authorize",
-      "method": "POST",
-      "statusCode": "200",
-      "description": "La operación POST /book-shop-authorize no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/book-shop-authorize|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-authorize",
-      "method": "POST",
-      "statusCode": "401",
-      "description": "La operación POST /book-shop-authorize no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/book-shop-authorize|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-authorize",
-      "method": "POST",
-      "statusCode": "403",
-      "description": "La operación POST /book-shop-authorize no fue ejecutada; por lo tanto el status 403 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/book-shop-authorize|403"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-authorize",
-      "method": "POST",
-      "statusCode": "404",
-      "description": "La operación POST /book-shop-authorize no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/book-shop-authorize|404"
     },
     {
       "severity": "low",
@@ -3537,24 +2799,6 @@
       "statusCode": "404",
       "description": "La operación GET /book-shop-items no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
       "id": "unexecuted_status_code|GET|/book-shop-items|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-manage/books-without-items",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /book-shop-manage/books-without-items no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/book-shop-manage/books-without-items|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-manage/books-without-items",
-      "method": "GET",
-      "statusCode": "401",
-      "description": "La operación GET /book-shop-manage/books-without-items no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/book-shop-manage/books-without-items|401"
     },
     {
       "severity": "low",
@@ -4221,132 +3465,6 @@
       "statusCode": "401",
       "description": "La operación POST /bookmarks/articles no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
       "id": "unexecuted_status_code|POST|/bookmarks/articles|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/books",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /books no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/books|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/books",
-      "method": "GET",
-      "statusCode": "404",
-      "description": "La operación GET /books no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/books|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/books/favorites/{id}",
-      "method": "POST",
-      "statusCode": "200",
-      "description": "La operación POST /books/favorites/{id} no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/books/favorites/{id}|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/books/favorites/{id}",
-      "method": "POST",
-      "statusCode": "401",
-      "description": "La operación POST /books/favorites/{id} no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/books/favorites/{id}|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/books/favorites/{id}",
-      "method": "POST",
-      "statusCode": "404",
-      "description": "La operación POST /books/favorites/{id} no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/books/favorites/{id}|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/books/owned/{id}",
-      "method": "POST",
-      "statusCode": "200",
-      "description": "La operación POST /books/owned/{id} no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/books/owned/{id}|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/books/owned/{id}",
-      "method": "POST",
-      "statusCode": "401",
-      "description": "La operación POST /books/owned/{id} no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/books/owned/{id}|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/books/owned/{id}",
-      "method": "POST",
-      "statusCode": "404",
-      "description": "La operación POST /books/owned/{id} no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/books/owned/{id}|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/books/read/{id}",
-      "method": "POST",
-      "statusCode": "200",
-      "description": "La operación POST /books/read/{id} no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/books/read/{id}|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/books/read/{id}",
-      "method": "POST",
-      "statusCode": "401",
-      "description": "La operación POST /books/read/{id} no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/books/read/{id}|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/books/read/{id}",
-      "method": "POST",
-      "statusCode": "404",
-      "description": "La operación POST /books/read/{id} no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/books/read/{id}|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/books/wishlist/{id}",
-      "method": "POST",
-      "statusCode": "200",
-      "description": "La operación POST /books/wishlist/{id} no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/books/wishlist/{id}|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/books/wishlist/{id}",
-      "method": "POST",
-      "statusCode": "401",
-      "description": "La operación POST /books/wishlist/{id} no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/books/wishlist/{id}|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/books/wishlist/{id}",
-      "method": "POST",
-      "statusCode": "404",
-      "description": "La operación POST /books/wishlist/{id} no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/books/wishlist/{id}|404"
     },
     {
       "severity": "low",
@@ -5233,24 +4351,6 @@
     {
       "severity": "low",
       "category": "unexecuted_status_code",
-      "endpoint": "/login",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /login no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/login|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/login",
-      "method": "GET",
-      "statusCode": "401",
-      "description": "La operación GET /login no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/login|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
       "endpoint": "/logs",
       "method": "GET",
       "statusCode": "200",
@@ -5962,231 +5062,6 @@
     {
       "severity": "low",
       "category": "unexecuted_status_code",
-      "endpoint": "/users",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /users no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/users|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users",
-      "method": "POST",
-      "statusCode": "201",
-      "description": "La operación POST /users no fue ejecutada; por lo tanto el status 201 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/users|201"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users",
-      "method": "POST",
-      "statusCode": "400",
-      "description": "La operación POST /users no fue ejecutada; por lo tanto el status 400 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/users|400"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users",
-      "method": "POST",
-      "statusCode": "409",
-      "description": "La operación POST /users no fue ejecutada; por lo tanto el status 409 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/users|409"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users",
-      "method": "POST",
-      "statusCode": "422",
-      "description": "La operación POST /users no fue ejecutada; por lo tanto el status 422 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/users|422"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users/{id}",
-      "method": "DELETE",
-      "statusCode": "200",
-      "description": "La operación DELETE /users/{id} no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|DELETE|/users/{id}|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users/{id}",
-      "method": "DELETE",
-      "statusCode": "401",
-      "description": "La operación DELETE /users/{id} no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|DELETE|/users/{id}|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users/{id}",
-      "method": "DELETE",
-      "statusCode": "404",
-      "description": "La operación DELETE /users/{id} no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|DELETE|/users/{id}|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users/{id}",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /users/{id} no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/users/{id}|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users/{id}",
-      "method": "GET",
-      "statusCode": "400",
-      "description": "La operación GET /users/{id} no fue ejecutada; por lo tanto el status 400 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/users/{id}|400"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users/{id}",
-      "method": "GET",
-      "statusCode": "404",
-      "description": "La operación GET /users/{id} no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/users/{id}|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users/{id}",
-      "method": "HEAD",
-      "statusCode": "200",
-      "description": "La operación HEAD /users/{id} no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|HEAD|/users/{id}|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users/{id}",
-      "method": "HEAD",
-      "statusCode": "400",
-      "description": "La operación HEAD /users/{id} no fue ejecutada; por lo tanto el status 400 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|HEAD|/users/{id}|400"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users/{id}",
-      "method": "HEAD",
-      "statusCode": "404",
-      "description": "La operación HEAD /users/{id} no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|HEAD|/users/{id}|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users/{id}",
-      "method": "PATCH",
-      "statusCode": "200",
-      "description": "La operación PATCH /users/{id} no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PATCH|/users/{id}|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users/{id}",
-      "method": "PATCH",
-      "statusCode": "400",
-      "description": "La operación PATCH /users/{id} no fue ejecutada; por lo tanto el status 400 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PATCH|/users/{id}|400"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users/{id}",
-      "method": "PATCH",
-      "statusCode": "401",
-      "description": "La operación PATCH /users/{id} no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PATCH|/users/{id}|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users/{id}",
-      "method": "PATCH",
-      "statusCode": "404",
-      "description": "La operación PATCH /users/{id} no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PATCH|/users/{id}|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users/{id}",
-      "method": "PATCH",
-      "statusCode": "422",
-      "description": "La operación PATCH /users/{id} no fue ejecutada; por lo tanto el status 422 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PATCH|/users/{id}|422"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users/{id}",
-      "method": "PUT",
-      "statusCode": "200",
-      "description": "La operación PUT /users/{id} no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PUT|/users/{id}|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users/{id}",
-      "method": "PUT",
-      "statusCode": "201",
-      "description": "La operación PUT /users/{id} no fue ejecutada; por lo tanto el status 201 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PUT|/users/{id}|201"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users/{id}",
-      "method": "PUT",
-      "statusCode": "400",
-      "description": "La operación PUT /users/{id} no fue ejecutada; por lo tanto el status 400 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PUT|/users/{id}|400"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users/{id}",
-      "method": "PUT",
-      "statusCode": "401",
-      "description": "La operación PUT /users/{id} no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PUT|/users/{id}|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users/{id}",
-      "method": "PUT",
-      "statusCode": "404",
-      "description": "La operación PUT /users/{id} no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PUT|/users/{id}|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/users/{id}",
-      "method": "PUT",
-      "statusCode": "422",
-      "description": "La operación PUT /users/{id} no fue ejecutada; por lo tanto el status 422 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|PUT|/users/{id}|422"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
       "endpoint": "/users/search",
       "method": "GET",
       "statusCode": "200",
@@ -6295,16 +5170,6 @@
     {
       "severity": "low",
       "category": "untested_parameter",
-      "endpoint": "/api/books/{id}",
-      "method": "PATCH",
-      "parameter": "id",
-      "parameterIn": "path",
-      "description": "La operación PATCH /api/books/{id} no fue ejecutada; por lo tanto el parámetro path:id tampoco se ejercitó.",
-      "id": "untested_parameter|PATCH|/api/books/{id}|id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
       "endpoint": "/article-labels/articles/{id}",
       "method": "GET",
       "parameter": "id",
@@ -6321,46 +5186,6 @@
       "parameterIn": "path",
       "description": "La operación PUT /article-labels/articles/{id} no fue ejecutada; por lo tanto el parámetro path:id tampoco se ejercitó.",
       "id": "untested_parameter|PUT|/article-labels/articles/{id}|id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/articles/{id}",
-      "method": "DELETE",
-      "parameter": "id",
-      "parameterIn": "path",
-      "description": "La operación DELETE /articles/{id} no fue ejecutada; por lo tanto el parámetro path:id tampoco se ejercitó.",
-      "id": "untested_parameter|DELETE|/articles/{id}|id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/articles/{id}",
-      "method": "HEAD",
-      "parameter": "id",
-      "parameterIn": "path",
-      "description": "La operación HEAD /articles/{id} no fue ejecutada; por lo tanto el parámetro path:id tampoco se ejercitó.",
-      "id": "untested_parameter|HEAD|/articles/{id}|id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/articles/{id}",
-      "method": "PATCH",
-      "parameter": "id",
-      "parameterIn": "path",
-      "description": "La operación PATCH /articles/{id} no fue ejecutada; por lo tanto el parámetro path:id tampoco se ejercitó.",
-      "id": "untested_parameter|PATCH|/articles/{id}|id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/articles/{id}",
-      "method": "PUT",
-      "parameter": "id",
-      "parameterIn": "path",
-      "description": "La operación PUT /articles/{id} no fue ejecutada; por lo tanto el parámetro path:id tampoco se ejercitó.",
-      "id": "untested_parameter|PUT|/articles/{id}|id"
     },
     {
       "severity": "low",
@@ -6485,26 +5310,6 @@
     {
       "severity": "low",
       "category": "untested_parameter",
-      "endpoint": "/book-shop-accounts/{id}",
-      "method": "GET",
-      "parameter": "id",
-      "parameterIn": "path",
-      "description": "La operación GET /book-shop-accounts/{id} no fue ejecutada; por lo tanto el parámetro path:id tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/book-shop-accounts/{id}|id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/book-shop-accounts/{id}",
-      "method": "PATCH",
-      "parameter": "id",
-      "parameterIn": "path",
-      "description": "La operación PATCH /book-shop-accounts/{id} no fue ejecutada; por lo tanto el parámetro path:id tampoco se ejercitó.",
-      "id": "untested_parameter|PATCH|/book-shop-accounts/{id}|id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
       "endpoint": "/book-shop-book-reviews",
       "method": "GET",
       "parameter": "book_id",
@@ -6591,46 +5396,6 @@
       "parameterIn": "path",
       "description": "La operación PATCH /book-shop-orders/{id} no fue ejecutada; por lo tanto el parámetro path:id tampoco se ejercitó.",
       "id": "untested_parameter|PATCH|/book-shop-orders/{id}|id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/books/favorites/{id}",
-      "method": "POST",
-      "parameter": "id",
-      "parameterIn": "path",
-      "description": "La operación POST /books/favorites/{id} no fue ejecutada; por lo tanto el parámetro path:id tampoco se ejercitó.",
-      "id": "untested_parameter|POST|/books/favorites/{id}|id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/books/owned/{id}",
-      "method": "POST",
-      "parameter": "id",
-      "parameterIn": "path",
-      "description": "La operación POST /books/owned/{id} no fue ejecutada; por lo tanto el parámetro path:id tampoco se ejercitó.",
-      "id": "untested_parameter|POST|/books/owned/{id}|id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/books/read/{id}",
-      "method": "POST",
-      "parameter": "id",
-      "parameterIn": "path",
-      "description": "La operación POST /books/read/{id} no fue ejecutada; por lo tanto el parámetro path:id tampoco se ejercitó.",
-      "id": "untested_parameter|POST|/books/read/{id}|id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/books/wishlist/{id}",
-      "method": "POST",
-      "parameter": "id",
-      "parameterIn": "path",
-      "description": "La operación POST /books/wishlist/{id} no fue ejecutada; por lo tanto el parámetro path:id tampoco se ejercitó.",
-      "id": "untested_parameter|POST|/books/wishlist/{id}|id"
     },
     {
       "severity": "low",
@@ -7011,56 +5776,6 @@
       "parameterIn": "path",
       "description": "La operación GET /tic-tac-toe/status/{code} no fue ejecutada; por lo tanto el parámetro path:code tampoco se ejercitó.",
       "id": "untested_parameter|GET|/tic-tac-toe/status/{code}|code"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/users/{id}",
-      "method": "DELETE",
-      "parameter": "id",
-      "parameterIn": "path",
-      "description": "La operación DELETE /users/{id} no fue ejecutada; por lo tanto el parámetro path:id tampoco se ejercitó.",
-      "id": "untested_parameter|DELETE|/users/{id}|id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/users/{id}",
-      "method": "GET",
-      "parameter": "id",
-      "parameterIn": "path",
-      "description": "La operación GET /users/{id} no fue ejecutada; por lo tanto el parámetro path:id tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/users/{id}|id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/users/{id}",
-      "method": "HEAD",
-      "parameter": "id",
-      "parameterIn": "path",
-      "description": "La operación HEAD /users/{id} no fue ejecutada; por lo tanto el parámetro path:id tampoco se ejercitó.",
-      "id": "untested_parameter|HEAD|/users/{id}|id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/users/{id}",
-      "method": "PATCH",
-      "parameter": "id",
-      "parameterIn": "path",
-      "description": "La operación PATCH /users/{id} no fue ejecutada; por lo tanto el parámetro path:id tampoco se ejercitó.",
-      "id": "untested_parameter|PATCH|/users/{id}|id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/users/{id}",
-      "method": "PUT",
-      "parameter": "id",
-      "parameterIn": "path",
-      "description": "La operación PUT /users/{id} no fue ejecutada; por lo tanto el parámetro path:id tampoco se ejercitó.",
-      "id": "untested_parameter|PUT|/users/{id}|id"
     },
     {
       "severity": "low",

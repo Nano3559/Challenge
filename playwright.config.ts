@@ -36,7 +36,8 @@ export default defineConfig({
       }
     : undefined,
   projects: [
-    { name: 'api', testMatch: /.*\.api\.spec\.ts/ },
+    // GAD valida contra el archivo de datos compartido; evitar escrituras concurrentes entre specs.
+    { name: 'api', testMatch: /.*\.api\.spec\.ts/, workers: 1 },
     { name: 'ui', testMatch: /.*\.ui\.spec\.ts/, use: { ...devices['Desktop Chrome'] } },
   ],
 });

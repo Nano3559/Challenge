@@ -2,7 +2,7 @@ import { APIRequestContext, APIResponse } from '@playwright/test';
 import { logger } from '../utils/logger';
 import { getRequestRecorder, parseCookieNames, redactHeaders } from './request-recorder';
 
-type Method = 'GET' | 'POST' | 'PUT' | 'DELETE';
+type Method = 'GET' | 'HEAD' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
 /**
  * Cliente base de API (agnóstico de la app).
@@ -21,24 +21,24 @@ export abstract class BaseApiClient {
   private async send(
     method: Method,
     path: string,
-    options: { params?: Record<string, string | number>; data?: unknown } = {},
+    options: { params?: Record<string, string | number>; data?: unknown; headers?: Record<string, string> } = {},
   ): Promise<APIResponse> {
     const started = Date.now();
-    const response = await this.request.fetch(path, { method, headers: this.headers, ...options });
+    const headers = { ...this.headers, ...options.headers };
+    const response = await this.request.fetch(path, { ...options, method, headers });
     logger.debug(`${method} ${path} -> ${response.status()} (${Date.now() - started}ms)`);
-    this.record(method, response, Date.now() - started);
+    this.record(method, response, Date.now() - started, headers);
     return response;
   }
 
   /** Registra la solicitud si COVERAGE_REQUESTS=true. Un fallo aquí no debe romper el test. */
-  private record(method: Method, response: APIResponse, durationMs: number): void {
+  private record(method: Method, response: APIResponse, durationMs: number, requestHeaders: Record<string, string>): void {
     const recorder = getRequestRecorder();
     if (!recorder) return;
     try {
       // Solo se registran headers enviados explícitamente por el cliente.
       // Playwright puede añadir otros (accept, content-type, cookies del contexto);
       // no se inventan aquí. Ver limitaciones en el reporte.
-      const requestHeaders: Record<string, string> = { ...(this.headers ?? {}) };
       const url = new URL(response.url());
       const query: Record<string, string | string[]> = {};
       for (const key of new Set(url.searchParams.keys())) {
@@ -64,11 +64,25 @@ export abstract class BaseApiClient {
   protected get(path: string, params?: Record<string, string | number>) {
     return this.send('GET', path, { params });
   }
+
+  protected head(path: string) {
+    return this.send('HEAD', path);
+  }
   protected post(path: string, data?: unknown) {
     return this.send('POST', path, { data });
   }
+
+  protected postRawJson(path: string, data: string) {
+    return this.send('POST', path, { data: Buffer.from(data), headers: { 'content-type': 'application/json' } });
+  }
   protected put(path: string, data?: unknown) {
     return this.send('PUT', path, { data });
+  }
+  protected patch(path: string, data?: unknown) {
+    return this.send('PATCH', path, { data });
+  }
+  protected sendRawJson(method: 'PUT' | 'PATCH' | 'DELETE', path: string, data: string) {
+    return this.send(method, path, { data: Buffer.from(data), headers: { 'content-type': 'application/json' } });
   }
   protected delete(path: string) {
     return this.send('DELETE', path);

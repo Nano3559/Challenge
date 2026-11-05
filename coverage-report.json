@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T14:41:54.812Z",
+  "generatedAt": "2026-11-05T20:42:38.549Z",
   "spec": {
     "source": "gad-gui-api-demo/public/tools/schema/openapi_rest_demo.json",
     "openapi": "3.0.1",
@@ -22,53 +22,50 @@
   "requests": {
     "source": "reports/coverage/requests",
     "files": [
-      "reports/coverage/requests/requests-16520.jsonl",
-      "reports/coverage/requests/requests-20796.jsonl",
-      "reports/coverage/requests/requests-6708.jsonl",
-      "reports/coverage/requests/requests-9380.jsonl"
+      "reports/coverage/requests/requests-9464.jsonl"
     ],
-    "total": 5,
-    "matched": 5,
-    "unmatched": 0
+    "total": 476,
+    "matched": 412,
+    "unmatched": 64
   },
   "summary": {
     "endpoints": {
       "total": 136,
-      "covered": 3,
-      "uncovered": 133,
-      "fullyCovered": 0,
-      "partiallyCovered": 3,
-      "percentage": 2.21
+      "covered": 18,
+      "uncovered": 118,
+      "fullyCovered": 11,
+      "partiallyCovered": 7,
+      "percentage": 13.24
     },
     "operations": {
       "total": 170,
-      "covered": 3,
-      "uncovered": 167,
-      "percentage": 1.76
+      "covered": 31,
+      "uncovered": 139,
+      "percentage": 18.24
     },
     "statusCodes": {
       "total": 387,
-      "covered": 5,
-      "uncovered": 382,
-      "percentage": 1.29
+      "covered": 86,
+      "uncovered": 301,
+      "percentage": 22.22
     },
     "parameters": {
       "total": 96,
-      "covered": 1,
-      "uncovered": 95,
-      "percentage": 1.04
+      "covered": 17,
+      "uncovered": 79,
+      "percentage": 17.71
     },
     "global": {
       "totalUnits": 653,
-      "coveredUnits": 9,
-      "percentage": 1.38,
+      "coveredUnits": 134,
+      "percentage": 20.52,
       "formula": "coveredUnits / totalUnits"
     },
     "requests": {
-      "total": 5,
-      "matched": 5,
-      "unmatched": 0,
-      "files": 4
+      "total": 476,
+      "matched": 412,
+      "unmatched": 64,
+      "files": 1
     },
     "spec": {
       "paths": 136,
@@ -104,27 +101,27 @@
     {
       "path": "/login",
       "covered": true,
-      "coverage": "partial",
+      "coverage": "full",
       "operations": [
         {
           "path": "/login",
           "method": "GET",
           "operationId": "userValidation",
           "summary": "Validate if token is correct and user is logged in",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
               "description": "successful operation",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -135,7 +132,7 @@
           "operationId": "userLogin",
           "summary": "Login as user to receive token",
           "covered": true,
-          "requestCount": 2,
+          "requestCount": 102,
           "statusCodes": [
             {
               "code": "200",
@@ -205,7 +202,7 @@
     {
       "path": "/articles",
       "covered": true,
-      "coverage": "partial",
+      "coverage": "full",
       "operations": [
         {
           "path": "/articles",
@@ -229,32 +226,32 @@
           "method": "POST",
           "operationId": "postArticle",
           "summary": "Add article",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 14,
           "statusCodes": [
             {
               "code": "201",
               "description": "Article created",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "400",
               "description": "Bad request - malformed JSON",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "422",
               "description": "Invalid article supplied",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -272,7 +269,7 @@
           "operationId": "getArticleById",
           "summary": "Find article by ID",
           "covered": true,
-          "requestCount": 2,
+          "requestCount": 26,
           "statusCodes": [
             {
               "code": "200",
@@ -294,8 +291,11 @@
               "required": true,
               "covered": true,
               "observedValues": [
-                "1",
-                "999999"
+                "187",
+                "999999",
+                "188",
+                "189",
+                "190"
               ]
             }
           ]
@@ -305,32 +305,32 @@
           "method": "PUT",
           "operationId": "putArticle",
           "summary": "Updates an article",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 5,
           "statusCodes": [
             {
               "code": "200",
               "description": "Article updated",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "201",
               "description": "Article created",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "400",
               "description": "Bad request - malformed JSON",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "404",
@@ -341,8 +341,8 @@
             {
               "code": "422",
               "description": "Invalid article supplied",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": [
@@ -350,8 +350,14 @@
               "name": "id",
               "in": "path",
               "required": true,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "999999",
+                "189",
+                "190",
+                "191",
+                "193"
+              ]
             }
           ]
         },
@@ -360,38 +366,38 @@
           "method": "PATCH",
           "operationId": "patchArticle",
           "summary": "Updates an article",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 5,
           "statusCodes": [
             {
               "code": "200",
               "description": "Article updated",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "400",
               "description": "Bad request - malformed JSON",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "404",
               "description": "Article not found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "422",
               "description": "Invalid article supplied",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": [
@@ -399,8 +405,14 @@
               "name": "id",
               "in": "path",
               "required": true,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "194",
+                "196",
+                "197",
+                "198",
+                "999999"
+              ]
             }
           ]
         },
@@ -409,26 +421,26 @@
           "method": "DELETE",
           "operationId": "deleteArticle",
           "summary": "Deletes an article",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 14,
           "statusCodes": [
             {
               "code": "200",
               "description": "Article deleted",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "400",
               "description": "Bad Request",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": [
@@ -436,8 +448,14 @@
               "name": "id",
               "in": "path",
               "required": true,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "187",
+                "188",
+                "189",
+                "190",
+                "191"
+              ]
             }
           ]
         },
@@ -446,14 +464,14 @@
           "method": "HEAD",
           "operationId": "headArticle",
           "summary": "Info about article",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
               "description": "Article exists",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "400",
@@ -464,8 +482,8 @@
             {
               "code": "404",
               "description": "Article not found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": [
@@ -473,8 +491,11 @@
               "name": "id",
               "in": "path",
               "required": true,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "1",
+                "999999"
+              ]
             }
           ]
         }
@@ -482,22 +503,22 @@
     },
     {
       "path": "/users",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/users",
           "method": "GET",
           "operationId": "getUsers",
           "summary": "Get users",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 1,
           "statusCodes": [
             {
               "code": "200",
               "description": "successful operation",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -507,32 +528,32 @@
           "method": "POST",
           "operationId": "postUser",
           "summary": "Create user",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 38,
           "statusCodes": [
             {
               "code": "201",
               "description": "User created",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "400",
               "description": "Bad request - malformed JSON",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "409",
               "description": "Conflict - Invalid user email",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "422",
               "description": "Invalid user supplied",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -541,22 +562,22 @@
     },
     {
       "path": "/users/{id}",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "partial",
       "operations": [
         {
           "path": "/users/{id}",
           "method": "GET",
           "operationId": "getUserById",
           "summary": "Find user by ID",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 50,
           "statusCodes": [
             {
               "code": "200",
               "description": "Successful operation",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "400",
@@ -567,8 +588,8 @@
             {
               "code": "404",
               "description": "User not found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": [
@@ -576,8 +597,12 @@
               "name": "id",
               "in": "path",
               "required": true,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "16",
+                "999999",
+                "17"
+              ]
             }
           ]
         },
@@ -586,14 +611,14 @@
           "method": "PUT",
           "operationId": "putUser",
           "summary": "Updates user",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 6,
           "statusCodes": [
             {
               "code": "200",
               "description": "User updated",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "201",
@@ -604,14 +629,14 @@
             {
               "code": "400",
               "description": "Bad request - malformed JSON",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "404",
@@ -622,8 +647,8 @@
             {
               "code": "422",
               "description": "Invalid user supplied",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": [
@@ -631,8 +656,10 @@
               "name": "id",
               "in": "path",
               "required": true,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "16"
+              ]
             }
           ]
         },
@@ -641,38 +668,38 @@
           "method": "PATCH",
           "operationId": "patchUser",
           "summary": "Updates user",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 7,
           "statusCodes": [
             {
               "code": "200",
               "description": "User updated",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "400",
               "description": "Bad request - malformed JSON",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "404",
               "description": "User not found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "422",
               "description": "Invalid user supplied",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": [
@@ -680,8 +707,11 @@
               "name": "id",
               "in": "path",
               "required": true,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "16",
+                "999999"
+              ]
             }
           ]
         },
@@ -690,26 +720,26 @@
           "method": "DELETE",
           "operationId": "deleteUser",
           "summary": "Deletes a user",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 32,
           "statusCodes": [
             {
               "code": "200",
               "description": "User deleted",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "404",
               "description": "User not found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": [
@@ -717,8 +747,12 @@
               "name": "id",
               "in": "path",
               "required": true,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "16",
+                "17",
+                "999999"
+              ]
             }
           ]
         },
@@ -727,14 +761,14 @@
           "method": "HEAD",
           "operationId": "headUser",
           "summary": "Info about user",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
               "description": "User exists",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "400",
@@ -745,8 +779,8 @@
             {
               "code": "404",
               "description": "User not found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": [
@@ -754,8 +788,11 @@
               "name": "id",
               "in": "path",
               "required": true,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "16",
+                "999999"
+              ]
             }
           ]
         }
@@ -1552,22 +1589,22 @@
     },
     {
       "path": "/book-authors",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "partial",
       "operations": [
         {
           "path": "/book-authors",
           "method": "GET",
           "operationId": "getBookAuthors",
           "summary": "Get book authors",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
               "description": "successful operation",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "404",
@@ -1582,22 +1619,22 @@
     },
     {
       "path": "/book-genres",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "partial",
       "operations": [
         {
           "path": "/book-genres",
           "method": "GET",
           "operationId": "getBookGenres",
           "summary": "Get book genres",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
               "description": "successful operation",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "404",
@@ -2095,22 +2132,22 @@
     },
     {
       "path": "/books",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "partial",
       "operations": [
         {
           "path": "/books",
           "method": "GET",
           "operationId": "getBooks",
           "summary": "Get books",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 1,
           "statusCodes": [
             {
               "code": "200",
               "description": "successful operation",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "404",
@@ -2125,34 +2162,34 @@
     },
     {
       "path": "/books/owned/{id}",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/books/owned/{id}",
           "method": "POST",
           "operationId": "updateOwnedBooks",
           "summary": "Add or remove book from owned list",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 5,
           "statusCodes": [
             {
               "code": "200",
               "description": "Book updated",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "404",
               "description": "Not found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": [
@@ -2160,8 +2197,11 @@
               "name": "id",
               "in": "path",
               "required": true,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "148",
+                "999999"
+              ]
             }
           ]
         }
@@ -2169,34 +2209,34 @@
     },
     {
       "path": "/books/wishlist/{id}",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/books/wishlist/{id}",
           "method": "POST",
           "operationId": "updateWishlistBooks",
           "summary": "Add or remove book from wishlist",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 5,
           "statusCodes": [
             {
               "code": "200",
               "description": "Book updated",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "404",
               "description": "Not found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": [
@@ -2204,8 +2244,11 @@
               "name": "id",
               "in": "path",
               "required": true,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "149",
+                "999999"
+              ]
             }
           ]
         }
@@ -2213,34 +2256,34 @@
     },
     {
       "path": "/books/read/{id}",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/books/read/{id}",
           "method": "POST",
           "operationId": "updateReadBooks",
           "summary": "Add or remove book from read list",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 5,
           "statusCodes": [
             {
               "code": "200",
               "description": "Book updated",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "404",
               "description": "Not found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": [
@@ -2248,8 +2291,11 @@
               "name": "id",
               "in": "path",
               "required": true,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "150",
+                "999999"
+              ]
             }
           ]
         }
@@ -2257,34 +2303,34 @@
     },
     {
       "path": "/books/favorites/{id}",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/books/favorites/{id}",
           "method": "POST",
           "operationId": "updateFavoriteBooks",
           "summary": "Add or remove book from favorites",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 5,
           "statusCodes": [
             {
               "code": "200",
               "description": "Book updated",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "404",
               "description": "Not found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": [
@@ -2292,8 +2338,11 @@
               "name": "id",
               "in": "path",
               "required": true,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "151",
+                "999999"
+              ]
             }
           ]
         }
@@ -2301,22 +2350,22 @@
     },
     {
       "path": "/book-shop-accounts",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "partial",
       "operations": [
         {
           "path": "/book-shop-accounts",
           "method": "GET",
           "operationId": "getBookShopAccount",
           "summary": "Get book shop account",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 47,
           "statusCodes": [
             {
               "code": "200",
               "description": "Book shop account found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
@@ -2327,8 +2376,8 @@
             {
               "code": "404",
               "description": "Not Found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -2338,26 +2387,26 @@
           "method": "POST",
           "operationId": "createBookShopAccount",
           "summary": "Create book shop account",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 3,
           "statusCodes": [
             {
               "code": "201",
               "description": "Book shop account created",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "409",
               "description": "Conflict - User already has a book shop account",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -2366,34 +2415,34 @@
     },
     {
       "path": "/book-shop-accounts/my-books",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/book-shop-accounts/my-books",
           "method": "GET",
           "operationId": "getUserBooks",
           "summary": "Get user's books",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 3,
           "statusCodes": [
             {
               "code": "200",
               "description": "User's books retrieved",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "404",
               "description": "User does not have a book shop account",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -2402,34 +2451,34 @@
     },
     {
       "path": "/book-shop-accounts/{id}",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/book-shop-accounts/{id}",
           "method": "GET",
           "operationId": "getBookShopAccountById",
           "summary": "Get book shop account by ID",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 5,
           "statusCodes": [
             {
               "code": "200",
               "description": "Book shop account found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "404",
               "description": "Not Found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": [
@@ -2437,8 +2486,12 @@
               "name": "id",
               "in": "path",
               "required": true,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "1",
+                "999999",
+                "5"
+              ]
             }
           ]
         },
@@ -2447,32 +2500,32 @@
           "method": "PATCH",
           "operationId": "updateBookShopAccount",
           "summary": "Update book shop account",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 8,
           "statusCodes": [
             {
               "code": "200",
               "description": "Book shop account updated",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "403",
               "description": "Forbidden - No fields to update or invalid fields",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "404",
               "description": "Not Found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": [
@@ -2480,8 +2533,12 @@
               "name": "id",
               "in": "path",
               "required": true,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "1",
+                "999999",
+                "5"
+              ]
             }
           ]
         }
@@ -2489,40 +2546,40 @@
     },
     {
       "path": "/book-shop-authorize",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/book-shop-authorize",
           "method": "POST",
           "operationId": "authorizeBookShopAccount",
           "summary": "Check if user has a book shop account with the required roles",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 5,
           "statusCodes": [
             {
               "code": "200",
               "description": "User authorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "403",
               "description": "Forbidden - User does not have the required role",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "404",
               "description": "User does not have a book shop account",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -3009,28 +3066,28 @@
     },
     {
       "path": "/book-shop-manage/books-without-items",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/book-shop-manage/books-without-items",
           "method": "GET",
           "operationId": "getBooksWithoutItems",
           "summary": "Get books without items",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
               "description": "Books retrieved successfully",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -5930,34 +5987,34 @@
     },
     {
       "path": "/api/books/{id}",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "partial",
       "operations": [
         {
           "path": "/api/books/{id}",
           "method": "PATCH",
           "operationId": null,
           "summary": "Update a book",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 7,
           "statusCodes": [
             {
               "code": "200",
               "description": "Book updated successfully",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "404",
               "description": "Book not found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "500",
@@ -5971,13 +6028,532 @@
               "name": "id",
               "in": "path",
               "required": true,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "142",
+                "143",
+                "144",
+                "999999",
+                "145"
+              ]
             }
           ]
         }
       ]
     }
   ],
-  "unmatchedRequests": []
+  "unmatchedRequests": [
+    {
+      "method": "GET",
+      "path": "/api/book-authors/1",
+      "url": "http://localhost:3000/api/book-authors/1",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:48.358Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/book-authors/999999",
+      "url": "http://localhost:3000/api/book-authors/999999",
+      "status": 404,
+      "timestamp": "2026-11-05T20:41:48.436Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/book-genres/1",
+      "url": "http://localhost:3000/api/book-genres/1",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:48.546Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/book-genres/999999",
+      "url": "http://localhost:3000/api/book-genres/999999",
+      "status": 404,
+      "timestamp": "2026-11-05T20:41:48.623Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 201,
+      "timestamp": "2026-11-05T20:41:56.138Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/140",
+      "url": "http://localhost:3000/api/books/140",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:56.166Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/books/140",
+      "url": "http://localhost:3000/api/books/140",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:56.215Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/140",
+      "url": "http://localhost:3000/api/books/140",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:56.242Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 422,
+      "timestamp": "2026-11-05T20:41:56.285Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 422,
+      "timestamp": "2026-11-05T20:41:56.328Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 422,
+      "timestamp": "2026-11-05T20:41:56.373Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 422,
+      "timestamp": "2026-11-05T20:41:56.415Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 422,
+      "timestamp": "2026-11-05T20:41:56.456Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 422,
+      "timestamp": "2026-11-05T20:41:56.498Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 422,
+      "timestamp": "2026-11-05T20:41:56.540Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 422,
+      "timestamp": "2026-11-05T20:41:56.582Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 401,
+      "timestamp": "2026-11-05T20:41:56.622Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 401,
+      "timestamp": "2026-11-05T20:41:56.665Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 400,
+      "timestamp": "2026-11-05T20:41:56.696Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 201,
+      "timestamp": "2026-11-05T20:41:56.760Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/books/141",
+      "url": "http://localhost:3000/api/books/141",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:56.835Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/141",
+      "url": "http://localhost:3000/api/books/141",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:56.864Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 201,
+      "timestamp": "2026-11-05T20:41:56.960Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/142",
+      "url": "http://localhost:3000/api/books/142",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:57.036Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/books/142",
+      "url": "http://localhost:3000/api/books/142",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:57.085Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/142",
+      "url": "http://localhost:3000/api/books/142",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:57.114Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 201,
+      "timestamp": "2026-11-05T20:41:57.162Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/143",
+      "url": "http://localhost:3000/api/books/143",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:57.207Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/books/143",
+      "url": "http://localhost:3000/api/books/143",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:57.257Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/143",
+      "url": "http://localhost:3000/api/books/143",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:57.283Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 201,
+      "timestamp": "2026-11-05T20:41:57.365Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/144",
+      "url": "http://localhost:3000/api/books/144",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:57.409Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/books/144",
+      "url": "http://localhost:3000/api/books/144",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:57.441Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/144",
+      "url": "http://localhost:3000/api/books/144",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:57.470Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 201,
+      "timestamp": "2026-11-05T20:41:57.582Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/145",
+      "url": "http://localhost:3000/api/books/145",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:57.641Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/books/145",
+      "url": "http://localhost:3000/api/books/145",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:57.691Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/145",
+      "url": "http://localhost:3000/api/books/145",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:57.703Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 201,
+      "timestamp": "2026-11-05T20:41:57.754Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/146",
+      "url": "http://localhost:3000/api/books/146",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:57.798Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/books/146",
+      "url": "http://localhost:3000/api/books/146",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:57.833Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/146",
+      "url": "http://localhost:3000/api/books/146",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:57.861Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 201,
+      "timestamp": "2026-11-05T20:41:57.925Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/147",
+      "url": "http://localhost:3000/api/books/147",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:57.984Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/books/147",
+      "url": "http://localhost:3000/api/books/147",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:58.033Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/147",
+      "url": "http://localhost:3000/api/books/147",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:58.062Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 201,
+      "timestamp": "2026-11-05T20:41:58.142Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/books/148",
+      "url": "http://localhost:3000/api/books/148",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:58.435Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/148",
+      "url": "http://localhost:3000/api/books/148",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:58.464Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 201,
+      "timestamp": "2026-11-05T20:41:58.918Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/books/149",
+      "url": "http://localhost:3000/api/books/149",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:59.199Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/149",
+      "url": "http://localhost:3000/api/books/149",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:59.227Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 201,
+      "timestamp": "2026-11-05T20:41:59.697Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/books/150",
+      "url": "http://localhost:3000/api/books/150",
+      "status": 200,
+      "timestamp": "2026-11-05T20:41:59.993Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/150",
+      "url": "http://localhost:3000/api/books/150",
+      "status": 200,
+      "timestamp": "2026-11-05T20:42:00.021Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 201,
+      "timestamp": "2026-11-05T20:42:00.487Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/books/151",
+      "url": "http://localhost:3000/api/books/151",
+      "status": 200,
+      "timestamp": "2026-11-05T20:42:00.795Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/151",
+      "url": "http://localhost:3000/api/books/151",
+      "status": 200,
+      "timestamp": "2026-11-05T20:42:00.838Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://localhost:3000/api/books",
+      "status": 201,
+      "timestamp": "2026-11-05T20:42:01.311Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/books/152",
+      "url": "http://localhost:3000/api/books/152",
+      "status": 401,
+      "timestamp": "2026-11-05T20:42:01.320Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/152",
+      "url": "http://localhost:3000/api/books/152",
+      "status": 200,
+      "timestamp": "2026-11-05T20:42:01.353Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/books/152",
+      "url": "http://localhost:3000/api/books/152",
+      "status": 200,
+      "timestamp": "2026-11-05T20:42:01.404Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/books/152",
+      "url": "http://localhost:3000/api/books/152",
+      "status": 200,
+      "timestamp": "2026-11-05T20:42:01.431Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/books/999999",
+      "url": "http://localhost:3000/api/books/999999",
+      "status": 404,
+      "timestamp": "2026-11-05T20:42:01.477Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    }
+  ]
 }
