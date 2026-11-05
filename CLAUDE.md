@@ -22,7 +22,6 @@ tests/ui/            <flujo>.ui.spec.ts
 tools/coverage/      Herramienta de cobertura OpenAPI (parser, analyzer, reportes, baseline)
 coverage-cli.js      Entrada estable de la CLI de cobertura
 gad-gui-api-demo/    App bajo prueba (GAD). SOLO lectura: nunca se modifica
-app/                 App sandbox legacy; ya no se usa
 .github/workflows/   pr-smoke.yml, nightly.yml y api-coverage.yml
 .claude/             skills y agentes de IA; .mcp.json (Playwright MCP)
 ```

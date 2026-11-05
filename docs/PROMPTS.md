@@ -1,7 +1,7 @@
 # Prompts para el experimento del Día 1 (adaptado a GAD)
 
 Endpoint sin prueba: **`GET /api/articles/:id`** (200 con el artículo, 404 si no existe).
-En GAD el equivalente al `products` del sandbox es `articles`; el cliente `ArticlesClient` ya existe pero **no** tiene `getById`.
+El recurso de GAD es `articles`; el cliente `ArticlesClient` ya existe pero **no** tiene `getById`.
 
 ## Preparación
 1. Haz un commit limpio del framework adaptado (`git init && git add . && git commit -m "framework base GAD"`).
