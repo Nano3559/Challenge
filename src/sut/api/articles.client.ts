@@ -5,4 +5,8 @@ export class ArticlesClient extends BaseApiClient {
   list(params?: { userId?: number; q?: string; _limit?: number }) {
     return this.get('/api/articles', params);
   }
+
+  getById(id: number) {
+    return this.get(`/api/articles/${id}`);
+  }
 }
