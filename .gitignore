@@ -1,0 +1,10 @@
+node_modules
+test-results
+playwright-report
+blob-report
+reports
+.env
+.env.*
+!.env.example
+# App bajo prueba (repo propio, solo lectura)
+gad-gui-api-demo

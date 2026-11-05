@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Login - Tienda QA</title>
+<style>body{font-family:sans-serif;max-width:360px;margin:60px auto}input,button{display:block;width:100%;margin:8px 0;padding:8px}.error{color:#b00020}</style></head>
+<body>
+  <h1>Iniciar sesión</h1>
+  <label for="username">Usuario</label><input id="username" data-testid="username">
+  <label for="password">Contraseña</label><input id="password" type="password" data-testid="password">
+  <button data-testid="login-submit">Ingresar</button>
+  <p class="error" data-testid="login-error" hidden></p>
+  <script>
+    document.querySelector('[data-testid=login-submit]').addEventListener('click', async () => {
+      const r = await fetch('/api/login', { method: 'POST', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ username: username.value, password: password.value }) });
+      const data = await r.json();
+      const err = document.querySelector('[data-testid=login-error]');
+      if (r.ok) { localStorage.setItem('token', data.token); location.href = '/shop.html'; }
+      else { err.textContent = data.error; err.hidden = false; }
+    });
+  </script>
+</body></html>

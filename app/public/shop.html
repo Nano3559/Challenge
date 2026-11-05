@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Tienda QA</title>
+<style>body{font-family:sans-serif;max-width:640px;margin:40px auto}li{margin:8px 0}</style></head>
+<body>
+  <h1>Tienda QA</h1>
+  <ul data-testid="product-list"></ul>
+  <h2>Carrito (<span data-testid="cart-count">0</span>)</h2>
+  <p>Total: $<span data-testid="cart-total">0</span></p>
+  <ul data-testid="cart-items"></ul>
+  <script>
+    const token = localStorage.getItem('token');
+    if (!token) location.href = '/login.html';
+    const auth = { Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' };
+    async function renderCart() {
+      const cart = await (await fetch('/api/cart', { headers: auth })).json();
+      document.querySelector('[data-testid=cart-count]').textContent = cart.items.reduce((s,i)=>s+i.quantity,0);
+      document.querySelector('[data-testid=cart-total]').textContent = cart.total;
+      document.querySelector('[data-testid=cart-items]').innerHTML =
+        cart.items.map(i => `<li data-testid="cart-item">${i.name} x${i.quantity}</li>`).join('');
+    }
+    (async () => {
+      const list = await (await fetch('/api/products')).json();
+      const ul = document.querySelector('[data-testid=product-list]');
+      list.forEach(p => {
+        const li = document.createElement('li');
+        li.dataset.testid = 'product-item';
+        li.innerHTML = `<span>${p.name}</span> - $${p.price} <button data-testid="add-to-cart-${p.id}">Agregar</button>`;
+        li.querySelector('button').addEventListener('click', async () => {
+          await fetch('/api/cart', { method: 'POST', headers: auth, body: JSON.stringify({ productId: p.id, quantity: 1 }) });
+          renderCart();
+        });
+        ul.appendChild(li);
+      });
+      renderCart();
+    })();
+  </script>
+</body></html>

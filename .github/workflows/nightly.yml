@@ -1,0 +1,74 @@
+name: Nightly Regression
+
+on:
+  schedule:
+    - cron: '0 6 * * 1-5' # 06:00 UTC = 02:00 en Bolivia, lunes a viernes
+  workflow_dispatch:
+    inputs:
+      grep:
+        description: 'Filtro por tag o nombre (vacío = todo). Ej: @regression'
+        required: false
+        default: ''
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false # que un shard roto no cancele a los demás
+      matrix:
+        shard: ['1/2', '2/2'] # sube a ['1/4','2/4','3/4','4/4'] cuando crezca la suite
+    env:
+      CI: true
+      PW_SHARD: 1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test --shard=${{ matrix.shard }} ${{ inputs.grep && format('--grep "{0}"', inputs.grep) || '' }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: blob-report-${{ strategy.job-index }}
+          path: blob-report
+          retention-days: 3
+
+  report:
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+    env:
+      PLAYWRIGHT_JUNIT_OUTPUT_FILE: reports/junit.xml
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          path: all-blob-reports
+          pattern: blob-report-*
+          merge-multiple: true
+      - name: Unir shards en un solo reporte
+        run: npx playwright merge-reports --reporter=html,junit,./src/core/reporters/failure-summary.reporter.ts ./all-blob-reports
+      - name: Resumen de fallos en la pestaña Summary
+        if: always()
+        run: cat reports/failure-summary.md >> "$GITHUB_STEP_SUMMARY" || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: full-report
+          path: |
+            playwright-report/
+            reports/
+          retention-days: 30
