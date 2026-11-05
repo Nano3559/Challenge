@@ -14,6 +14,7 @@ jobs:
     timeout-minutes: 15
     env:
       CI: true
+      START_APP: 'true'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -21,6 +22,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Clonar GAD (app bajo prueba)
+        run: git clone --depth 1 https://github.com/jaktestowac/gad-gui-api-demo.git gad-gui-api-demo
+      - name: Instalar dependencias de GAD
+        run: npm --prefix gad-gui-api-demo ci
       - run: npm run ci:check # lint + typecheck: falla rápido antes de abrir un navegador
       - uses: actions/cache@v4
         with:

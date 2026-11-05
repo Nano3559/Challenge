@@ -12,5 +12,5 @@ description: Analiza fallos de una ejecución (reports/failure-summary.md, traza
    - **Bug del test:** locator roto, dato obsoleto, aserción incorrecta, dependencia entre tests.
    - **Flaky:** pasa en reintento; busca esperas, orden o estado compartido.
    - **Ambiente:** URL, credenciales, servicio caído.
-4. Responde por cada fallo: causa probable, evidencia, y fix propuesto (diff mínimo). No modifiques `app/`. Si es bug de la app, redacta el reporte del bug (pasos, esperado, real).
+4. Responde por cada fallo: causa probable, evidencia, y fix propuesto (diff mínimo). No modifiques `gad-gui-api-demo/`. Si es bug de la app, redacta el reporte del bug (pasos, esperado, real).
 5. Si el fix es del test, aplícalo, corre `npm run ci:check` y el test; informa el resultado.
