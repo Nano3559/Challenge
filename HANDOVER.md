@@ -1,3 +1,36 @@
+## Day 3 — comparación de cobertura y generación asistida por IA (2026-11-06)
+
+### Estado guardado
+
+La implementación está en el worktree aislado `.worktrees/day3-ai-test-generation`, rama local `day3-ai-test-generation`, commit `8dc0155` (`ci: add PR coverage comparison and AI test generation`). No se modificó `gad-gui-api-demo/`.
+
+Incluye comparación OpenAPI y c8/V8 entre base y PR, reporte HTML con métricas/gaps/regresiones, resumen del job, comentario actualizable en PR, y workflow manual para generación acotada de pruebas con Claude. Se documentaron el alcance y la configuración externa en `docs/AI-TEST-GENERATION.md`.
+
+### Validación realizada
+
+- `npm run ci:check`: pasó.
+- `npm run test:coverage:unit`: 27/27 pasó.
+- `node --test tools/coverage/test/comparison.test.js`: 2/2 pasó.
+- Prueba local c8: generó `coverage-summary.json` y `lcov.info` con líneas, ramas, funciones y statements.
+- Prueba de datos faltantes: generó Markdown/HTML, informó que faltaba medición y terminó con código 1; nunca sustituyó los datos faltantes por 0%.
+- La rama local está limpia después del commit.
+
+### Bloqueos y límites confirmados
+
+- No se ejecutó una comparación base/PR completa dentro de GitHub Actions; todavía no hay métricas reales de esas dos ejecuciones ni artefacto de CI publicado.
+- El remoto `origin` es `https://github.com/FerHinojosa/ChallengeFer.git`. GitHub respondió 403 al intentar publicar: la sesión está autenticada como `Nano3559`, que no tiene permiso de escritura. La rama sigue solo local, no hay PR.
+- La generación de pruebas con el proveedor no se ejecutó: el workflow requiere el secret `ANTHROPIC_API_KEY` o `CLAUDE_CODE_OAUTH_TOKEN`. No se deben presentar los tests del comparador como tests generados por el agente.
+- No está instalado `gh`; se necesitará acceso autenticado para crear el PR una vez que la rama se publique.
+- c8 cubre código Node incluido durante pruebas API. JavaScript que solo se ejecuta en navegador está fuera de alcance y así se documenta.
+
+### Próximo paso para la siguiente sesión
+
+Continuar localmente sin tocar GitHub ni el GAD: agregar pruebas unitarias del comparador para archivos agregados/eliminados y variaciones de funciones/ramas; correr una simulación completa con reportes sintéticos base/PR para inspeccionar JSON, Markdown y HTML; validar workflows con `actionlint` si está disponible. Después de dejar esa validación documentada, se puede retomar la publicación cuando se autentique una cuenta con permiso de escritura.
+
+> Esta sección de Day 3 es la actualización más reciente y prevalece sobre instrucciones de continuación anteriores que describen cobertura OpenAPI del framework como próxima tarea.
+
+---
+
 ## Alcance confirmado: GAD inmutable; brechas contractuales (2026-11-06)
 
 El usuario confirmó que **no se modifica GAD**. Continuar solo en pruebas, fixtures de QA, recorder y documentación. Objetivo: intentar cubrir las 49 respuestas pendientes de forma real, y documentar cada inconsistencia/bug confirmado. Si GAD no emite el estado de OpenAPI, mantener la brecha en cobertura; no falsear el status, alterar el contrato, provocar carreras artificiales ni tocar datos compartidos.
