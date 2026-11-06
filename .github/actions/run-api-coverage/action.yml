@@ -1,0 +1,131 @@
+name: Run API and Node coverage
+description: Run equivalent checks and coverage collection for one checked-out ref
+inputs:
+  target:
+    description: Coverage side (base or pr)
+    required: true
+  gad-ref:
+    description: Resolved immutable GAD commit used on both sides
+    required: true
+  repo-dir:
+    description: Checked-out branch directory
+    required: true
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 22
+        cache: npm
+        cache-dependency-path: ${{ inputs.repo-dir }}/package-lock.json
+
+    - name: Install framework dependencies
+      shell: bash
+      working-directory: ${{ inputs.repo-dir }}
+      run: npm ci
+
+    - name: Checkout pinned GAD application
+      shell: bash
+      working-directory: ${{ inputs.repo-dir }}
+      env:
+        GAD_REF: ${{ inputs.gad-ref }}
+      run: |
+        git init gad-gui-api-demo
+        git -C gad-gui-api-demo remote add origin https://github.com/jaktestowac/gad-gui-api-demo.git
+        git -C gad-gui-api-demo fetch --depth 1 origin "$GAD_REF"
+        git -C gad-gui-api-demo checkout --detach FETCH_HEAD
+
+    - name: Install GAD dependencies
+      shell: bash
+      working-directory: ${{ inputs.repo-dir }}
+      run: npm --prefix gad-gui-api-demo ci
+
+    - name: Lint and typecheck
+      id: checks
+      shell: bash
+      working-directory: ${{ inputs.repo-dir }}
+      continue-on-error: true
+      run: npm run ci:check
+
+    - name: Coverage tool unit tests
+      id: coverage-unit
+      shell: bash
+      working-directory: ${{ inputs.repo-dir }}
+      continue-on-error: true
+      run: npm run test:coverage:unit
+
+    - name: Run API tests with V8 coverage and request recorder
+      id: api-tests
+      shell: bash
+      working-directory: ${{ inputs.repo-dir }}
+      continue-on-error: true
+      env:
+        CI: 'true'
+        START_APP: 'true'
+        NODE_V8_COVERAGE: ${{ runner.temp }}/v8-coverage-${{ inputs.target }}
+      run: |
+        rm -rf "$NODE_V8_COVERAGE"
+        mkdir -p "$NODE_V8_COVERAGE"
+        npm run coverage:record -- --project=api --reporter=list
+
+    - name: Generate Node code coverage
+      id: code-coverage
+      if: always()
+      shell: bash
+      working-directory: ${{ inputs.repo-dir }}
+      continue-on-error: true
+      env:
+        NODE_V8_COVERAGE: ${{ runner.temp }}/v8-coverage-${{ inputs.target }}
+      run: |
+        RAW_FILE="$(find "$NODE_V8_COVERAGE" -type f -name '*.json' -print -quit 2>/dev/null || true)"
+        if [ -z "$RAW_FILE" ]; then
+          echo 'No V8 coverage files were produced; code metrics will remain unavailable.'
+          exit 0
+        fi
+        npx --yes c8@10.1.3 report \
+          --temp-directory "$NODE_V8_COVERAGE" \
+          --reports-dir coverage-code \
+          --reporter=json-summary \
+          --reporter=lcov \
+          --reporter=text-summary \
+          --all \
+          --include='gad-gui-api-demo/**/*.js' \
+          --exclude='gad-gui-api-demo/node_modules/**' \
+          --exclude='gad-gui-api-demo/public/**'
+
+    - name: Generate OpenAPI coverage
+      id: api-coverage
+      if: always()
+      shell: bash
+      working-directory: ${{ inputs.repo-dir }}
+      continue-on-error: true
+      run: |
+        if [ -d reports/coverage/requests ] && find reports/coverage/requests -type f \( -name '*.jsonl' -o -name '*.ndjson' \) -print -quit | grep -q .; then
+          node coverage-cli.js \
+            --spec gad-gui-api-demo/public/tools/schema/openapi_rest_demo.json \
+            --requests reports/coverage/requests \
+            --out coverage-run \
+            --min-coverage 0 \
+            --console-limit 0 \
+            --quiet
+        else
+          echo 'No recorded API requests; OpenAPI metrics will remain unavailable.'
+        fi
+
+    - name: Assemble branch coverage artifact
+      if: always()
+      shell: bash
+      working-directory: ${{ inputs.repo-dir }}
+      env:
+        TARGET: ${{ inputs.target }}
+        CHECKS_STATUS: ${{ steps.checks.outcome }}
+        UNIT_STATUS: ${{ steps.coverage-unit.outcome }}
+        TEST_STATUS: ${{ steps.api-tests.outcome }}
+        CODE_STATUS: ${{ steps.code-coverage.outcome }}
+        API_STATUS: ${{ steps.api-coverage.outcome }}
+      run: |
+        mkdir -p coverage-run-artifact
+        for file in coverage-run/coverage-report.json coverage-run/coverage-gaps.json coverage-code/coverage-summary.json coverage-code/lcov.info; do
+          if [ -f "$file" ]; then cp "$file" coverage-run-artifact/; fi
+        done
+        node -e 'const fs=require("node:fs"); const status={target:process.env.TARGET,checks:process.env.CHECKS_STATUS,coverageUnit:process.env.UNIT_STATUS,tests:process.env.TEST_STATUS,codeCoverage:process.env.CODE_STATUS,apiCoverage:process.env.API_STATUS}; status.status=Object.values(status).slice(1).every((value)=>value==="success")?"passed":"failed"; fs.writeFileSync("coverage-run-artifact/run-status.json",JSON.stringify(status,null,2)+"\n")'
