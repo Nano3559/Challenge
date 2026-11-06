@@ -22,7 +22,7 @@ async function stop(child: ChildProcess) {
   });
 }
 
-export async function startAccountSandbox() {
+export async function startAccountSandbox(options: { socialFeatures?: boolean } = {}) {
   const root = process.cwd();
   const reports = path.resolve(root, 'reports');
   await mkdir(reports, { recursive: true });
@@ -49,7 +49,7 @@ export async function startAccountSandbox() {
     await new Promise<void>((resolve) => wsProbe.close(() => resolve()));
     child = fork(path.join(root, 'tools/gad/accounts-sandbox.js'), [db], {
       cwd: root,
-      env: { ...process.env, PORT: String(port), DB: '', READ_ONLY: '0', SSL_ENABLED: '0' },
+      env: { ...process.env, PORT: String(port), DB: '', READ_ONLY: '0', SSL_ENABLED: '0', GAD_SANDBOX_SOCIAL_FEATURES: options.socialFeatures ? '1' : '0' },
       stdio: ['ignore', 'ignore', 'ignore', 'ipc'],
     });
     const running = child;

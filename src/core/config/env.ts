@@ -23,6 +23,8 @@ const schema = z.object({
   QA_BOOK_MANAGER_PASS: z.string().min(1).default('1234'),
   QA_BOOK_READER_USER: z.string().email().default('Danial.Dicki@dicki.test'),
   QA_BOOK_READER_PASS: z.string().min(1).default('test2'),
+  QA_BOOK_STAFF_USER: z.string().email().default('Henry.Spencer@test.test'),
+  QA_BOOK_STAFF_PASS: z.string().min(1).default('1234'),
   // true = Playwright arranca la app bajo prueba por sí mismo.
   START_APP: z.enum(['true', 'false']).default('false'),
   APP_START_COMMAND: z.string().default('npm --prefix gad-gui-api-demo start'),
@@ -46,6 +48,7 @@ export const env = {
   registeredCredentials: { email: raw.QA_REGISTERED_USER, password: raw.QA_REGISTERED_PASS },
   bookManagerCredentials: { email: raw.QA_BOOK_MANAGER_USER, password: raw.QA_BOOK_MANAGER_PASS },
   bookReaderCredentials: { email: raw.QA_BOOK_READER_USER, password: raw.QA_BOOK_READER_PASS },
+  bookStaffCredentials: { email: raw.QA_BOOK_STAFF_USER, password: raw.QA_BOOK_STAFF_PASS },
   /** true si Playwright debe levantar la app (START_APP=true). */
   startApp: raw.START_APP === 'true',
   /** Comando de arranque de la app cuando startApp es true. */

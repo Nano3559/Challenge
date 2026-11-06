@@ -1,3 +1,198 @@
+## Continuación por módulos — coverage agregada (2026-11-06)
+
+Se completó lo pendiente de recorder para quiz y hangman: ejecución conjunta 5/5 aprobada con `--keep`, 34 solicitudes nuevas registradas. `npm run coverage:baseline` regeneró los reportes raíz. Acumulado: 2509 solicitudes, 2193 reconocidas, 316 sin match; coverage 488/653 = 74.73%; 107/136 endpoints, 140/170 operaciones, 293/387 estados, 55/96 parámetros; 29 rutas sin cobertura, 194 brechas (59 críticas). IA histórica intacta. La regresión de los 399 tests API no se ejecutó.
+
+El siguiente trabajo es minesweeper. Cambios acumulados listos para el commit solicitado por el usuario; GAD sigue sin cambios.
+
+---
+
+## Continuación por módulos — hangman (2026-11-06)
+
+Completado hangman con `HangmanClient`, esquemas Zod, fixture `hangmanSandbox` y 2 pruebas en `tests/api/hangman.api.spec.ts`. Instancia y DB son desechables: el alta del score no altera datos de la ejecución compartida.
+
+Validación: 2/2 pruebas pasan con `npx playwright test tests/api/hangman.api.spec.ts --project=api`; `npm run ci:check` sin errores ni advertencias. Cubre palabra aleatoria pública en minúsculas, highscores públicos, 401 de score anónimo, 422 de score omitido/no numérico, score válido 201 y presencia del resultado en highscores. Ahora hay 399 tests API definidos (397 antes + 2). El recorder y los reportes raíz se actualizaron posteriormente; cifras vigentes están en la sección superior. No se ejecutó regresión completa.
+
+Discrepancia: `/hangman/highscores` devuelve `{ highScore: [...] }`, aunque OpenAPI referencia `Scores` con forma distinta. El contrato de score no incluye requestBody aunque el handler valida `{score:number}`. No se cubrieron rutas v2 internas porque no forman parte de la API documentada en esta tarea.
+
+Siguiente: minesweeper (`/minesweeper/highscores`, `/minesweeper/score`); luego tic-tac-toe. Mantener el aislamiento. Sin commit.
+
+---
+
+## Continuación por módulos — quiz (2026-11-06)
+
+Se continúa el módulo de juegos desde quiz, según el cierre anterior. Implementado `QuizClient`, esquemas Zod y `tests/api/quiz.api.spec.ts` (3 pruebas). Fixture `quizSandbox` arranca una instancia GAD independiente con copia desechable de la base; start/stop y su escritura de score no tocan la instancia compartida ni los datos semilla originales. GAD permanece sin cambios.
+
+Validado: 3/3 pruebas del módulo aprobadas con `npx playwright test tests/api/quiz.api.spec.ts --project=api` (1 worker). Cubre 401 para acciones privadas, lecturas públicas de count/highscores, preguntas autenticadas sin exponer respuestas, respuesta correcta/incorrecta, límite de 10 comprobaciones (11.ª devuelve 409), stop y score visible en highscores. Quedan 397 tests API definidos (394 del cierre previo + 3 quiz). No se ejecutó regresión completa, ni se regeneraron en este paso los reportes de coverage/recorder; por tanto el agregado 465/653 del cierre previo aún no incluye quiz.
+
+Discrepancias: el banco contiene 96 preguntas, `/quiz/questions/count` devuelve 96, pero `/quiz/questions` limita a 10. Highscores responde `{ highScore: [...] }`, aunque el esquema OpenAPI modela incorrectamente un objeto con `items`. Stop puede devolver 200 si conserva score previo o 201 cuando persiste uno nuevo. No se probó body inválido ni se legitimaron respuestas no documentadas.
+
+Hangman se completó en la continuación siguiente. Seguir por minesweeper y después tic-tac-toe. Mantener cada juego en copia aislada. Sin commit nuevo.
+
+---
+
+## Cierre de sesión — API pendiente por módulos (2026-11-06)
+
+Esta sección prevalece sobre todos los puntos de continuación inferiores.
+
+- ALCANCE CONFIRMADO: toda la API pendiente. La aclaración anterior ya está resuelta. El usuario solicitó después cerrar hasta este punto y documentarlo porque la memoria se está llenando; continuar por módulos en la próxima sesión. NO iniciar otro módulo durante este cierre.
+- COMPLETADOS tres bloques: salud/catálogos (13 tests), estadísticas/visitas/datos/calculadoras (23), flashposts/mensajería/encuestas (6). Son 42 tests nuevos; 394 API definidos en total (352 anteriores + 42). Clientes OperationsClient/CommunityClient, datos operations/community, esquemas y fixtures específicos añadidos. Detalle exhaustivo: docs/PUBLIC-API-MODULES-COVERAGE.md. Hoja de continuidad global: docs/API-COMPLETION.md.
+- VALIDACIÓN EXACTA: los 42 nuevos se ejecutaron conjuntamente y aprobaron 42/42. Última regresión COMPLETA anterior: 352/352. NO se ejecutó una regresión completa de los 394 en este cierre. ci:check sin advertencias y git diff --check correctos. UI no reejecutada (última ejecución anterior 2/2). No mezclar estas cifras ni afirmar 394/394 completos.
+- GRABACIÓN AGREGADA: --keep con solo los tres módulos nuevos añade 149 solicitudes a las 2326 previas. Total 2475, reconocidas 2159, sin match 316, tres archivos. Las ejecuciones puntuales fallidas de desarrollo no forman parte del baseline. coverage:baseline regenerado; IA histórica intacta.
+- COBERTURA ACTUAL: 465/653 = 71.21% (antes 319/653 = 48.85%). Endpoints 98/136, operaciones 131/170, estados 279/387, parámetros 55/96. Brechas 226, críticas 77; 38 rutas todavía sin cobertura. Es cobertura agregada de métodos/estados/parámetros, no conformidad total ni ausencia de defectos.
+- AISLAMIENTO: comunidad usa commentSandbox y su copia social; pruebas con usuarios/mensajes/encuestas propios y ficticios. Lecturas operativas usan operationsClient; random/article positivo usa freshOperationsClient con una copia fresca por caso para evitar inactivos creados por otras pruebas. Todo reutiliza startAccountSandbox; cero carpetas de sandbox al cerrar. GAD y analyzer sin cambios, datos/roles semilla habituales sin mutaciones.
+- INCIDENCIAS/LÍMITES: nuevo cliente CommunityClient tenía método send que colisionaba con el privado del cliente base; corregido a sendMessage. Enviar desde usuario sin colección de contactos dio 500: defecto GAD documentado, no legitimado; 403 se prueba con colección existente y destinatario aún no agregado. POST flashposts/mensajes devuelve 201 frente a 200 documentado; primer PUT contactos 201. GET flashposts público devuelve 200 sin token. Handler de privado envía contenido en 401 (no se acredita protección del body). Descripciones de encuesta desconocida pueden envolver objeto vacío con 200; answers real objeto frente a array documentado. Ver documento antes de intentar cubrir estados faltantes.
+- ESTADÍSTICAS/DATOS: rankings de visitas son mapas con claves enteras; se verifica selección de mayores valores, no orden de propiedades JSON. Handler de filtros ids para users/comments usa mapa de artículos (pendiente correcto, no fake). ROI simple tiene iteración adicional con <= y costos firmados; no se acredita validez financiera completa. Estadísticas pueden incluir inactivos; random/article elige colección sin filtrar (positivo aislado). Scores/idioma inexistentes dan 200 vacío, no 404.
+- SIN COMMIT NUEVO: cambios acumulados sobre 8ac975d, no commitear sin solicitud nueva. No reanalizar repositorio ni repetir recursos cerrados.
+
+### Próximo módulo: juegos
+
+Revisar únicamente contrato y handlers de quiz, hangman, minesweeper y tic-tac-toe. Empezar por quiz (questions/count/start/check/stop/highscores), usando datos propios en copia desechable. Este módulo todavía NO está implementado; solo games/scores de catálogo se completaron y no deben repetirse.
+
+Después: archivos/captcha; diagnósticos y restauraciones, siempre en procesos independientes desechables para no detener ni resetear instancias compartidas. Searches ausentes y otros defectos previos siguen abiertos y documentados. No modificar código de GAD sin ampliar expresamente el alcance actual de solo lectura. Mantener arquitectura, datos/roles semilla y API workers 1.
+
+---
+## Última continuación — comentarios y funciones sociales (2026-11-06)
+
+Esta sección prevalece sobre todos los puntos de continuación inferiores.
+
+- SOLICITUD GLOBAL AÚN PENDIENTE: el usuario pidió todos los siguientes. Se preguntó si significa toda API pendiente o solo área de artículos; no llegó respuesta durante esta ejecución. Se avanzó el bloque común de artículos, sin declarar terminado el proyecto. Quedan 87 rutas sin cobertura además de métodos/estados/parámetros.
+- COMPLETADO: 14 pruebas nuevas (7 comentarios y 7 funciones sociales/configuración). Comentarios: esquema/listado, CRUD persistente propio, permisos de propietario/otro/anónimo, JSON malformado, valores inválidos POST/PUT/PATCH, inexistentes, PUT upsert201 y limpieza. Sociales: etiquetas públicas/asignación inicial201/validaciones; likes artículo/comentario con alternancia y contadores/mylikes/query; marcadores de usuario nuevo con alternancia e aislamiento; 404 de flags desactivadas.
+- Las flags labels/likes/bookmarks están desactivadas por defecto. Se extendió startAccountSandbox con opción socialFeatures y bootstrap propio que las activa SOLO en memoria de una copia independiente. commentSandbox usa isolatedSocialDatabase; tienda/cuentas mantienen copia/configuración anterior. No se cambió configuración ni código fuente de GAD. Cliente base añade GET/POST con headers explícitos para registrar userid sin modificar métodos existentes.
+- DEFECTOS/LIMITACIONES: HEAD de comentario inactivo devuelve200 mientras GET404; PUT inexistente crea201 (404 no acreditado); PATCH null sobre inexistente alcanzó404 sin validación422, no se legitimó. Actualizar etiquetas por ruta documentada después del alta devuelve404 y conserva asociación: diagnóstico aislado fuera del recorder, 200 sigue pendiente. articles/search ya estaba documentado como404: no se repitió ni se atribuyeron filtros del listado a esa ruta. comments/search sin handler específico identificado sigue pendiente.
+- Validación: regresión 352/352 API aprobadas; luego comprobación adicional PUT422 y siete tests de comentarios repetidos 7/7 correctos. Grabación agregada --keep: 2267 solicitudes completas +59 puntuales=2326, reconocidas2010, sin match316; no incluye ejecuciones fallidas. ci:check sin advertencias y git diff --check correcto. UI no reejecutada (última validación anterior2/2). Cero carpetas sandbox, sin escrituras a base habitual.
+- Cobertura actual319/653=48.85% (antes248/653=37.98%). Endpoints49/136, operaciones76/170, estados206/387, parámetros37/96; brechas421, críticas181. Reportes agregan modo social habilitado/deshabilitado; no equivalen a funcionamiento por defecto ni ausencia de defectos. IA histórica intacta. Detalle docs/ARTICLE-RELATED-COVERAGE.md. Cambios acumulados SIN commit sobre8ac975d; no commitear sin solicitud nueva.
+
+### Próximo punto de continuación
+
+Aclarar alcance pendiente con usuario (toda API frente a área de artículos) y continuar sin repetir este bloque. Si es toda API: siguiente bloque candidato health/about/ping y catálogos públicos; solo se consultaron sus contratos/handlers puntualmente, todavía SIN implementación. Siguen abiertos búsquedas ausentes, actualización de etiquetas y defectos documentados de tarjetas/pedidos/equipo. Corregir GAD requiere ampliar expresamente alcance de código en solo lectura. Mantener arquitectura, roles/datos semilla, aislamiento y API workers1.
+
+---
+## Última continuación — tarjetas y recargas locales (2026-11-06)
+
+Esta sección prevalece sobre todos los puntos de continuación inferiores.
+
+- COMPLETADO: 26 pruebas nuevas de book-shop-account-payment-cards GET/PUT/DELETE y POST /topup: permisos, ausencia de cuenta/tarjeta, alta/reemplazo/persistencia enmascarada, campos inválidos, duplicado propio, campos de propietario/saldo ignorados, baja e aislamiento, CVV/importes/rango/saldo insuficiente y recargas exitosas de 100/50000 con historial/saldos y otro comprador intacto. Cliente/datos/esquemas/fixture añadidos; solo tarjetas ficticias de 20 dígitos y fondos locales en copia desechable, sin cobros externos.
+- TRES DEFECTOS CONFIRMADOS mediante diagnósticos aislados fuera del recorder: mismo número registrado en dos cuentas devuelve 200; card_number null en PUT da 500; topup 100.75 responde 200 pero registra/acredita 100 por parseInt. No se legitimaron como expectativas positivas. Siguen abiertos también los defectos previos de pedidos/equipo y la ruta order-items ausente; GAD sigue en solo lectura de código.
+- Discrepancias: expiration_date real frente a expiry_date de OpenAPI; GET solo devuelve número enmascarado y saldo, PUT datos completos sin ID y topup tarjeta completa con ID. Topup exige CVV, ignora card_number y acredita cuenta/historial tras 7–15 s. Se usa polling condicionado de 20 s y margen de test de 45 s en positivos. Historial topup con order_id null usa esquema propio, sin cambiar esquema existente de compras. Tarjeta nueva tiene saldo 50000; no se simuló éxito de 100000 alterando la base.
+- Validación: 26/26 nuevos puntuales; regresión final 338/338 API aprobadas, sin fallos/flaky. ci:check sin advertencias y git diff --check correcto. Primer puntual interrumpido por expectativa inicial incorrecta de GET completo; renderer verificado, esquemas separados y repetición correcta antes de grabación final. UI no reejecutada en entrega solo API; última validación previa 2/2. Cero carpetas sandbox tras finalizar, incluida limpieza verificada de copias abandonadas.
+- Cobertura: 248/653 = 37.98% (antes 232/653 = 35.53%). Endpoints 39/136, operaciones 59/170, estados 163/387, parámetros 26/96. Solicitudes 2154, reconocidas 1836, sin match 318. Brechas 502, críticas 208. Reportes raíz regenerados, IA histórica intacta. Ambas rutas full por métrica; no equivale a conformidad de cuerpos ni ausencia de defectos.
+- Cuentas/tarjetas/historial habituales intactos: SHA-256 antes/después 187e098818f862968037b9f67470608015c9afe21ba0679e7b9ea95e650358f1. Detalle en docs/BOOK-SHOP-PAYMENT-CARDS-COVERAGE.md. GAD/analyzer sin cambios; cambios acumulados SIN commit sobre 8ac975d, no commitear sin solicitud nueva.
+
+### Próximo punto de continuación
+
+No repetir tarjetas/recargas ni recursos cerrados. Siguiente candidato de cobertura: articles/search, revisar puntualmente contrato/handler y filtros, sin reabrir CRUD de artículos completado. Prioridad de producto: defectos documentados de tarjetas, pedidos y equipo y ruta order-items ausente; corregir GAD requiere ampliar expresamente alcance de código en solo lectura. Mantener arquitectura, datos/roles semilla, aislamiento y API workers 1.
+
+---
+## Última continuación — gestión administrativa de cuentas (2026-11-06)
+
+Esta sección prevalece sobre todos los puntos de continuación inferiores.
+
+- COMPLETADO: 23 pruebas nuevas de GET book-shop-manage/accounts y PATCH book-shop-manage/accounts/{id}: listado con proyección usuario/rol, permisos de anónimo/token inválido/lector/coordinador/sin cuenta, cinco roles válidos con persistencia y restauración, ocho cuerpos inválidos, IDs inexistente/textual/ausente, campos adicionales ignorados, rechazo de autoascenso y concesión/revocación efectiva con mismo token. Cliente reporting extendido, datos/esquema específicos; aislamiento y helper de compradores existentes reutilizados.
+- Estas rutas existen en GAD pero no en OpenAPI: no se atribuyeron al recurso book-shop-accounts por su rewrite interno. PATCH solo aplica role_id existente; no edita fondos/dueño/colecciones. manage-accounts está reservado a rol 1. Mutaciones solo sobre cuentas nuevas en copia desechable; roles restaurados en finally y semillas intactas.
+- Validación: 23/23 nuevos puntuales y regresión final 312/312 API aprobadas; ci:check sin advertencias, git diff --check correcto. UI no reejecutada en esta entrega exclusivamente API; última ejecución anterior 2/2 aprobadas. Copias descartadas, cero carpetas sandbox.
+- Cobertura OpenAPI sin cambios: 232/653 = 35.53%. Endpoints 37/136, operaciones 55/170, estados 151/387, parámetros 26/96; brechas 520, críticas 214. Solicitudes 1838, reconocidas 1554, sin match 284. Reportes raíz regenerados, estimaciones IA intactas.
+- Huella original pedidos/inventario/cuentas/historial/roles sin cambios: b779f3b60071f5dfe3235aabb664748e222729838f68e596427c2c7b5ee4b3cc. Detalle en docs/BOOK-SHOP-MANAGE-ACCOUNTS-COVERAGE.md. GAD/analyzer sin cambios de código; cambios acumulados SIN commit sobre 8ac975d. No commitear sin solicitud nueva.
+
+### Próximo punto de continuación
+
+No repetir gestión de cuentas. Siguiente candidato: book-shop-account-payment-cards y /topup; revisar primero contrato, handler y alcance local de fondos/tarjetas, usando solo datos ficticios propios en aislamiento existente. Siguen pendientes acceso público a team, ruta order-items ausente y tres defectos de pedidos; corregir GAD requiere ampliar expresamente el alcance de código en solo lectura. Mantener arquitectura, roles semilla y API workers 1.
+
+---
+## Última continuación — historial, estadísticas y gestión de personas (2026-11-06)
+
+Esta sección prevalece sobre todos los puntos de continuación inferiores.
+
+- COMPLETADO: 42 pruebas nuevas: 5 de book-shop-payment-history (401/404/vacío, compra con saldos/importe/pedido y aislamiento entre cuentas), 27 de estadísticas orders/users/items/all (esquemas, permisos, proyecciones, reconciliación con pedidos y deltas de datos propios), 10 de manage/users y team (consultas simples/múltiples/repetidas/mixtas, permisos, falta de query, catálogo de personal). Cliente/datos/esquemas/fixture y helper de preparación añadidos; no repetir recursos completados.
+- DEFECTO CONFIRMADO: GET manage/team devuelve 200 con datos de personal sin token y con token inválido, pese a bearerAuth y 401 declarados. Diagnóstico aislado fuera del recorder; no se convirtió la exposición en expectativa positiva. El 401 sigue pendiente. Código GAD en solo lectura.
+- Discrepancias: historial no aparece en OpenAPI, account_id query se ignora y cuenta se obtiene del token; /payment-history/mock queda capturado por rama normal. Estadísticas /items tampoco documentadas. manage/users devuelve mapa id->{name}, no Users; ID inexistente da 200 vacío y sin query da 404. Team usa user_name/avatar/role_name/created_at, no user_id/role_id/joined_at. Devoluciones completas siguen limitadas por defecto previo que aplica efectos a cuenta del personal. Detalle: docs/BOOK-SHOP-REPORTING-COVERAGE.md.
+- Validación: 42/42 nuevos puntuales; regresión final 289/289 API y 2/2 UI aprobadas; ci:check sin advertencias y git diff --check correcto. Toda preparación/mutación en copia desechable existente, API workers 1. Sin tarjetas ni cobros externos.
+- Cobertura: 232/653 = 35.53% (antes 213/653 = 32.62%). Endpoints 37/136, operaciones 55/170, estados 151/387, parámetros 26/96. Solicitudes 1590, reconocidas 1350, sin match 240; brechas 520, críticas 214. Reportes raíz regenerados, IA histórica intacta. Stats documentadas y manage/users full por métrica; no equivale a conformidad de cuerpos. Team parcial; historial/stats items sin match no se atribuyen a otras rutas.
+- Pedidos/inventario/cuentas/historial/roles habituales intactos, SHA-256 b779f3b60071f5dfe3235aabb664748e222729838f68e596427c2c7b5ee4b3cc. GAD/analyzer sin cambios; cambios acumulados SIN commit sobre 8ac975d. No commitear sin solicitud nueva.
+
+### Próximo punto de continuación
+
+No repetir los tres incrementos cerrados. Siguiente recurso candidato: book-shop-manage/accounts, revisar contrato/handler y cambios únicamente sobre cuentas propias aisladas; no cambiar roles semilla. Prioridad de producto abierta: acceso público a team, ruta order-items ausente y tres defectos de pedidos; corregir GAD requiere ampliación expresa del alcance de código en solo lectura. Mantener arquitectura, aislamiento y API workers 1.
+
+---
+## Última continuación — roles de tienda (2026-11-06)
+
+Esta sección prevalece sobre todos los puntos de continuación inferiores.
+
+- COMPLETADO: 16 pruebas nuevas de book-shop-roles: catálogo público con sesión anónima/admin/lector/coordinador/usuario sin cuenta/token inválido, consulta de los cinco IDs, ID inexistente 404 y ocho rechazos de POST/PUT/PATCH/DELETE para anónimo y administrador con catálogo intacto. Cliente, datos, esquemas y fixture aislada añadidos. No existe CRUD administrativo de roles; handler solo acepta GET. No repetir permisos ya cubiertos en sus recursos.
+- Contrato: solo GET del listado está documentado. GET por ID y escrituras rechazadas son rutas/comportamientos reales adicionales; el 404 por ID no acredita el 404 documentado del listado. Ese estado de listado no se reproduce con dataset base y sigue pendiente; recurso parcial en el medidor. Roles solo exponen ID/nombre, sin lista de permisos.
+- Validación: 16/16 nuevos en ejecución puntual; regresión final 247/247 API y 2/2 UI aprobadas; ci:check sin advertencias y git diff --check correcto. Primer intento aislado interrumpido por ECONNREFUSED, grabación descartada; repetición fuera del entorno restringido correcta. Copias desechables descartadas, incluida la abandonada tras verificar procesos activos.
+- Cobertura actual: 213/653 = 32.62% (antes 211/653 = 32.31%). Endpoints 32/136, operaciones 50/170, estados 138/387, parámetros 25/96. Solicitudes 1327, reconocidas 1105, sin match 222. Brechas 544, críticas 224. Reportes raíz regenerados, IA histórica intacta.
+- Roles habituales intactos: SHA-256 1b83e5d1c1bc5feac87eed5fe67c3f4eafcb653a5b0fe00c3a6b84f15f97dbcb antes/después. GAD y analyzer sin cambios. Detalle en docs/BOOK-SHOP-ROLES-COVERAGE.md. Cambios acumulados SIN commit sobre 8ac975d; no commitear sin solicitud nueva.
+
+### Próximo punto de continuación
+
+No repetir recursos cerrados. Para continuar cobertura: revisar puntualmente contrato y handler de book-shop-payment-history, con datos de historial locales propios en el aislamiento existente. No ampliar a tarjetas/topups sin revisar su flujo. Prioridad de producto aún abierta: ruta book-shop-order-items ausente y tres defectos de pedidos documentados; corregir código GAD requiere ampliación expresa del alcance actual de solo lectura. Conservar arquitectura, roles semilla y API workers 1.
+
+---
+## Última continuación — estados de pedidos y ruta de ítems (2026-11-06)
+
+Esta sección prevalece sobre todos los puntos de continuación inferiores.
+
+- COMPLETADO: incremento puntual de siete pruebas. Estados: listado público 200 con siete estados/transiciones, consulta de cada ID 200 y ID inexistente 404. Esquemas, datos, cliente y fixture añadidos. El 404 por ID no acredita el 404 del listado; este último sigue pendiente con el dataset existente. OpenAPI requiere status sin definirlo y GAD no lo devuelve.
+- book-shop-order-items NO está implementado en GAD: sin handler ni colección. POST y DELETE devuelven 404 tanto anónimo como comprador válido con cuenta/libro/inventario/pedido activo. Cuatro pruebas de caracterización comprueban esos 404 y conservación del pedido; no acreditan altas/bajas funcionales. Los 201/409 de POST y 200 de DELETE documentados quedan pendientes. No confundir con /book-shop-orders/items, ya cubierto anteriormente.
+- Validación: 231/231 API aprobadas (siete nuevas y 224 anteriores), 2/2 UI aprobadas en copia aislada, ci:check y git diff --check correctos. Base aislada para regresión; datos habituales de pedidos/inventario/cuentas/historial conservan la huella anterior. Cero carpetas de sandbox al terminar API. PowerShell etiquetó el aviso de módulos nativos de Node como NativeCommandError al redirigir stderr; el reporte de Playwright confirma passed, failed=[] y flaky=[], y el recorder terminó con 1227 solicitudes.
+- Cobertura: 211/653 = 32.31% (antes 205/653 = 31.39%). Endpoints 31/136, operaciones 49/170, estados 137/387, parámetros 25/96. Solicitudes 1227, reconocidas 1019, sin match 208. Brechas 547, críticas 226. Reportes raíz regenerados, estimaciones IA intactas. La coincidencia numérica de 404 de una ruta inexistente no demuestra validación de permisos o búsqueda de ítems.
+- Detalle: docs/BOOK-SHOP-ORDER-CATALOGS-COVERAGE.md. GAD sin cambios de código, arquitectura conservada y tres defectos anteriores de pedidos aún abiertos. Cambios acumulados SIN commit sobre 8ac975d; no commitear sin solicitud nueva.
+
+### Próximo punto de continuación
+
+No repetir los casos cerrados. Prioridad de producto: resolver la ruta ausente y los tres defectos de pedidos documentados; requiere ampliar expresamente el alcance de código GAD en solo lectura. Si se continúa exclusivamente con cobertura, siguiente recurso recomendado: book-shop-roles (catálogo/permisos), consultando únicamente contrato y handler correspondiente. Conservar aislamiento, API workers 1 y datos/roles semilla.
+
+---
+## Última continuación — pedidos y gestión (2026-11-06)
+
+Esta sección prevalece sobre todos los puntos de continuación inferiores.
+
+- COMPLETADO: 41 pruebas nuevas de book-shop-orders y book-shop-manage/orders: listados, alta, ítems, cancelación/envío, fondos/stock, cupones, permisos y transiciones de personal rol 16. Cliente, datos, esquemas y fixture orderSandbox; DELETE con body añadido al cliente base sin alterar delete existente. Detalle en docs/BOOK-SHOP-ORDERS-COVERAGE.md.
+- Aislamiento: usuarios/cuentas/libros/ítems propios en copia desechable existente. Fondos e historial son datos locales, sin cobros externos. GAD y analyzer sin cambios. Cupones base válidos hasta 2026-12-31: revisar después de esa fecha.
+- TRES DEFECTOS CONFIRMADOS de GAD: GET por ID expone pedidos de otros compradores; PATCH de envío con ID inexistente responde 404 pero descuenta 3000 y deja el pedido real nuevo; entrega gestionada asigna libro al empleado en vez del comprador. Reproducción aislada y detalles en el documento; no se consolidaron como expectativas válidas ni se afirma validar el ciclo completo de entrega/devolución.
+- Primera regresión interrumpida por EPERM de Windows al renombrar la base habitual; grabación descartada. Regresión final en copia fresca como BASE_URL, START_APP=false y API workers 1: 224/224 API y 2/2 UI correctas; ci:check y git diff --check correctos.
+- Cobertura actual: 205/653 = 31.39% (antes 165/653 = 25.27%). Endpoints 29/136, operaciones 46/170, estados 134/387, parámetros 25/96. Solicitudes 1188, reconocidas 992, sin match 196; brechas 555, críticas 231. Reportes raíz regenerados, IA histórica intacta.
+- Pedidos/inventario/cuentas/historial de la base habitual conservan SHA-256 63f19fdee819c7f4afb75e245cbde350a59b816fbb75158512f495dcaeeae2d4. Cambios de inventario, reseñas y pedidos SIN commit sobre 8ac975d; no commitear sin solicitud nueva.
+
+### Próximo punto de continuación
+
+No repetir cobertura completada. Prioridad de producto: corregir los tres defectos documentados de pedidos; requiere ampliar expresamente el alcance actual de GAD con código en solo lectura. Para continuar únicamente con cobertura, siguiente incremento recomendado: catálogos book-shop-order-statuses y consulta book-shop-order-items, verificando de forma puntual contrato/handlers y permisos. Mantener arquitectura, aislamiento y decisiones existentes. Los defectos siguen abiertos aunque el medidor marque operaciones cubiertas.
+
+---
+## Última continuación — reseñas de libros (2026-11-06)
+
+Esta sección prevalece sobre todos los puntos de continuación inferiores.
+
+- COMPLETADO: 11 tests nuevos de GET /book-shop-book-reviews: reseñas anónimas filtradas, cantidad y media redondeada por libro, consultas múltiples, orden/repeticiones, listas vacías y estadísticas cero. Casos reales 404 sin filtros o con book_ids sin mean. Cliente, datos, fixture y esquemas específicos añadidos. El handler solo admite lectura; no se inventaron CRUD ni permisos de escritura.
+- Los tres parámetros documentados book_id/mean/book_ids y el 200 están ejercitados; el endpoint figura full bajo el modelo de medición existente. No equivale a validar cuerpos contra OpenAPI.
+- Discrepancias: BookReviews.items se referencia a sí mismo; estadísticas individuales son objeto, múltiples array; book_id de estadísticas es string. Probes puntuales: mean=false aún calcula estadísticas; mean como primer parámetro provoca 404; book_ids vacío devuelve un ID vacío. Sin filtros/book_ids sin mean -> 404 no documentado. Detalle en docs/BOOK-REVIEWS-COVERAGE.md. No se consolidaron bugs como éxito del contrato.
+- Sin escrituras: 21 reseñas intactas, verificadas contra db-base. GAD y analyzer sin modificaciones.
+- Validación final: 183/183 API (11 nuevos + 172 previos), 2/2 UI, ci:check y git diff --check OK. coverage:record 848 solicitudes, 688 reconocidas y 160 sin match; coverage:baseline OK.
+- Cobertura actual: 165/653 = 25.27% (antes 160/653 = 24.50%). Endpoints 23/136, operaciones 38/170, status 104/387, parámetros 23/96. Brechas 601 (antes 607), críticas 245 (antes 247). Reportes raíz regenerados; IA histórica intacta. Cambios de inventario y reseñas SIN commit, sobre 8ac975d.
+
+### Próximo punto de continuación
+
+Reseñas reproducibles completadas; no repetir. Siguiente recurso recomendado: book-shop-orders y su gestión, verificando contrato, flujos de estado y datos necesarios antes de implementar. Usar la instancia aislada existente para pedidos que modifiquen inventario/fondos; no afectar cuentas base ni tratar cobros externos como simples datos de prueba. Mantener GAD sin cambios de código, API workers 1 y las discrepancias documentadas. No commitear sin solicitud nueva.
+
+---
+## Última continuación — inventario book-shop-items (2026-11-06)
+
+Esta sección prevalece sobre todos los puntos de continuación inferiores.
+
+- Punto de partida: commit 8ac975d, árbol limpio, 127 tests API y 20.52% de cobertura. Se continuó únicamente con inventario.
+- COMPLETADO: 45 tests nuevos de consulta pública/gestión, alta, duplicados, actualización persistente, permisos de anónimo/lector/gestor, baja lógica y validaciones de precio/cantidad (ausentes, negativos, decimales, no numéricos, longitud y límites válidos). Clientes y datos específicos, esquema y fixture inventorySandbox añadidos. Reutiliza la instancia aislada existente; no se cambió código de GAD, el analizador ni las decisiones arquitectónicas.
+- Limpieza: ítems propios y libros UUID en base desechable. Ítem dado de baja -> búsqueda efectiva 404 y ausente en ambos listados; libro -> _inactive true. El positivo de DELETE exige 200; finally admite 200/404 si ya se borró en el caso. Copia descartada al finalizar. Cero directorios de sandbox; hash de inventario base idéntico al inicial (ver docs/BOOK-SHOP-ITEMS-COVERAGE.md).
+- El turno se interrumpió durante la validación. Se retomó puntualmente: primer intento esperaba 200 al consultar el ítem eliminado; el siguiente pasó 44/45 y falló por el segundo DELETE en finally. Ambas expectativas de limpieza se corrigieron; validación final completa sin fallos.
+- Discrepancia verificada: /book-shop-manage/items/by-book/{bookId} devuelve listado completo con 200 incluso para libro inexistente; el handler realmente filtra con /book-shop-manage/items?book_id=... (objeto/404). La ruta documentada tiene tests de permisos 401; 200/404 esperados siguen pendientes. POST tiene 404 adicional no documentado. Precio number documentado se restringe a enteros en GAD. Detalle en docs/BOOK-SHOP-ITEMS-COVERAGE.md.
+- Validación final: 172/172 API, 2/2 UI, ci:check y git diff --check OK. coverage:record 837 solicitudes, 677 reconocidas y 160 sin match; coverage:baseline OK.
+- Cobertura actual: 160/653 = 24.50% (antes 134/653 = 20.52%). Endpoints 22/136, operaciones 37/170, status 103/387, parámetros 20/96. Brechas 607 (antes 637), críticas 247 (antes 257). Reportes raíz regenerados; IA histórica intacta. Cambios de esta continuación SIN commit; la autorización anterior correspondía a la entrega 8ac975d.
+
+### Próximo punto de continuación
+
+Inventario reproducible implementado; no repetir. La consulta documentada por libro requiere aclarar GAD/OpenAPI. Recurso siguiente recomendado: book-shop-book-reviews, verificando contrato y limpieza antes de añadir casos, o pedidos si el usuario elige esa prioridad. Mantener GAD sin cambios de código, base/roles intactos, API workers 1 y aislamiento para escrituras. No commitear sin solicitud nueva.
+
+---
 ## Punto de pausa y entrega — cuentas de librería (2026-11-05)
 
 Esta sección prevalece sobre todos los puntos de continuación inferiores. El usuario solicitó hacer commit de la entrega y continuar trabajando después; esa solicitud autoriza el commit de estos cambios.

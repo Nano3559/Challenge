@@ -64,6 +64,12 @@ export abstract class BaseApiClient {
   protected get(path: string, params?: Record<string, string | number>) {
     return this.send('GET', path, { params });
   }
+  protected getWithHeaders(path: string, params: Record<string, string | number>, headers: Record<string, string>) {
+    return this.send('GET', path, { params, headers });
+  }
+  protected postWithHeaders(path: string, data: unknown, headers: Record<string, string>) {
+    return this.send('POST', path, { data, headers });
+  }
 
   protected head(path: string) {
     return this.send('HEAD', path);
@@ -86,5 +92,8 @@ export abstract class BaseApiClient {
   }
   protected delete(path: string) {
     return this.send('DELETE', path);
+  }
+  protected deleteWithBody(path: string, data: unknown) {
+    return this.send('DELETE', path, { data });
   }
 }

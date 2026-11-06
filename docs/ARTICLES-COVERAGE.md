@@ -1,5 +1,7 @@
 # Cobertura de articles
 
+Continuación 2026-11-06: comentarios y funciones sociales se documentan en ARTICLE-RELATED-COVERAGE.md. La búsqueda ausente indicada aquí sigue pendiente y no debe volver a recomendarse como incremento implementable sin resolver GAD/contrato. Las cifras inferiores son históricas.
+
 Verificación local: 2026-11-05. Fuente: OpenAPI de GAD y ejecución real de la suite API.
 
 | Operación | Estados observados por la suite | Pendiente del contrato |
