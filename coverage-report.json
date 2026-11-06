@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-06T14:57:44.304Z",
+  "generatedAt": "2026-11-06T17:17:02.572Z",
   "spec": {
     "source": "gad-gui-api-demo/public/tools/schema/openapi_rest_demo.json",
     "openapi": "3.0.1",
@@ -24,51 +24,69 @@
     "files": [
       "reports/coverage/requests/requests-10020.jsonl",
       "reports/coverage/requests/requests-10316.jsonl",
+      "reports/coverage/requests/requests-10956.jsonl",
       "reports/coverage/requests/requests-11384.jsonl",
-      "reports/coverage/requests/requests-5060.jsonl"
+      "reports/coverage/requests/requests-11620.jsonl",
+      "reports/coverage/requests/requests-12920.jsonl",
+      "reports/coverage/requests/requests-13464.jsonl",
+      "reports/coverage/requests/requests-17308.jsonl",
+      "reports/coverage/requests/requests-17616.jsonl",
+      "reports/coverage/requests/requests-17660.jsonl",
+      "reports/coverage/requests/requests-17928.jsonl",
+      "reports/coverage/requests/requests-18420.jsonl",
+      "reports/coverage/requests/requests-18428.jsonl",
+      "reports/coverage/requests/requests-18568.jsonl",
+      "reports/coverage/requests/requests-18628.jsonl",
+      "reports/coverage/requests/requests-20916.jsonl",
+      "reports/coverage/requests/requests-3364.jsonl",
+      "reports/coverage/requests/requests-4908.jsonl",
+      "reports/coverage/requests/requests-5060.jsonl",
+      "reports/coverage/requests/requests-7652.jsonl",
+      "reports/coverage/requests/requests-7900.jsonl",
+      "reports/coverage/requests/requests-8440.jsonl"
     ],
-    "total": 2509,
-    "matched": 2193,
-    "unmatched": 316
+    "total": 2875,
+    "matched": 2550,
+    "unmatched": 325
   },
   "summary": {
     "endpoints": {
       "total": 136,
-      "covered": 107,
-      "uncovered": 29,
-      "fullyCovered": 79,
-      "partiallyCovered": 28,
-      "percentage": 78.68
+      "covered": 136,
+      "uncovered": 0,
+      "fullyCovered": 102,
+      "partiallyCovered": 34,
+      "percentage": 100
     },
     "operations": {
       "total": 170,
-      "covered": 140,
-      "uncovered": 30,
-      "percentage": 82.35
+      "covered": 170,
+      "uncovered": 0,
+      "percentage": 100
     },
     "statusCodes": {
       "total": 387,
-      "covered": 293,
-      "uncovered": 94,
-      "percentage": 75.71
+      "covered": 338,
+      "uncovered": 49,
+      "percentage": 87.34
     },
     "parameters": {
       "total": 96,
-      "covered": 55,
-      "uncovered": 41,
-      "percentage": 57.29
+      "covered": 96,
+      "uncovered": 0,
+      "percentage": 100
     },
     "global": {
       "totalUnits": 653,
-      "coveredUnits": 488,
-      "percentage": 74.73,
+      "coveredUnits": 604,
+      "percentage": 92.5,
       "formula": "coveredUnits / totalUnits"
     },
     "requests": {
-      "total": 2509,
-      "matched": 2193,
-      "unmatched": 316,
-      "files": 4
+      "total": 2875,
+      "matched": 2550,
+      "unmatched": 325,
+      "files": 22
     },
     "spec": {
       "paths": 136,
@@ -135,7 +153,7 @@
           "operationId": "userLogin",
           "summary": "Login as user to receive token",
           "covered": true,
-          "requestCount": 929,
+          "requestCount": 994,
           "statusCodes": [
             {
               "code": "200",
@@ -156,22 +174,22 @@
     },
     {
       "path": "/debug/exit",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/debug/exit",
           "method": "GET",
           "operationId": "exitApplication",
           "summary": "Exit the application",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 1,
           "statusCodes": [
             {
               "code": "200",
               "description": "Application exited successfully",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -180,22 +198,22 @@
     },
     {
       "path": "/debug/restart",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/debug/restart",
           "method": "GET",
           "operationId": "restartApplication",
           "summary": "Restart the application (process manager must be running)",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 1,
           "statusCodes": [
             {
               "code": "200",
               "description": "Application restarted successfully",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -230,7 +248,7 @@
           "operationId": "postArticle",
           "summary": "Add article",
           "covered": true,
-          "requestCount": 21,
+          "requestCount": 27,
           "statusCodes": [
             {
               "code": "201",
@@ -272,7 +290,7 @@
           "operationId": "getArticleById",
           "summary": "Find article by ID",
           "covered": true,
-          "requestCount": 27,
+          "requestCount": 28,
           "statusCodes": [
             {
               "code": "200",
@@ -425,7 +443,7 @@
           "operationId": "deleteArticle",
           "summary": "Deletes an article",
           "covered": true,
-          "requestCount": 21,
+          "requestCount": 27,
           "statusCodes": [
             {
               "code": "200",
@@ -532,7 +550,7 @@
           "operationId": "postUser",
           "summary": "Create user",
           "covered": true,
-          "requestCount": 116,
+          "requestCount": 120,
           "statusCodes": [
             {
               "code": "201",
@@ -829,7 +847,7 @@
           "operationId": "createComment",
           "summary": "Create comment",
           "covered": true,
-          "requestCount": 15,
+          "requestCount": 17,
           "statusCodes": [
             {
               "code": "201",
@@ -871,7 +889,7 @@
           "operationId": "getArticleLabels",
           "summary": "Get labels for article",
           "covered": true,
-          "requestCount": 3,
+          "requestCount": 9,
           "statusCodes": [
             {
               "code": "200",
@@ -905,7 +923,7 @@
           "operationId": "putArticleLabels",
           "summary": "Creates, updates or deletes labels for article",
           "covered": true,
-          "requestCount": 5,
+          "requestCount": 17,
           "statusCodes": [
             {
               "code": "200",
@@ -928,8 +946,8 @@
             {
               "code": "404",
               "description": "User not found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "422",
@@ -963,7 +981,7 @@
           "operationId": "getLabels",
           "summary": "Get labels",
           "covered": true,
-          "requestCount": 2,
+          "requestCount": 5,
           "statusCodes": [
             {
               "code": "200",
@@ -985,7 +1003,7 @@
     {
       "path": "/likes",
       "covered": true,
-      "coverage": "partial",
+      "coverage": "full",
       "operations": [
         {
           "path": "/likes",
@@ -993,7 +1011,7 @@
           "operationId": "createLike",
           "summary": "Like or dislike element on page",
           "covered": true,
-          "requestCount": 8,
+          "requestCount": 25,
           "statusCodes": [
             {
               "code": "200",
@@ -1016,8 +1034,8 @@
             {
               "code": "404",
               "description": "Not found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "422",
@@ -1041,7 +1059,7 @@
           "operationId": "getLikesForArticleById",
           "summary": "Get likes for article",
           "covered": true,
-          "requestCount": 4,
+          "requestCount": 11,
           "statusCodes": [
             {
               "code": "200",
@@ -1082,7 +1100,7 @@
           "operationId": "getLikesForArticle",
           "summary": "Get likes for article",
           "covered": true,
-          "requestCount": 1,
+          "requestCount": 3,
           "statusCodes": [
             {
               "code": "200",
@@ -1112,7 +1130,7 @@
           "operationId": "getLikesForComment",
           "summary": "Get likes for comment",
           "covered": true,
-          "requestCount": 3,
+          "requestCount": 9,
           "statusCodes": [
             {
               "code": "200",
@@ -1152,7 +1170,7 @@
           "operationId": "getMyLikes",
           "summary": "Get myLikes",
           "covered": true,
-          "requestCount": 1,
+          "requestCount": 3,
           "statusCodes": [
             {
               "code": "200",
@@ -1198,22 +1216,22 @@
     },
     {
       "path": "/captcha",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/captcha",
           "method": "GET",
           "operationId": null,
           "summary": "Get a captcha equation",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
               "description": "Successful response",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -1223,32 +1241,32 @@
           "method": "POST",
           "operationId": null,
           "summary": "Verify a captcha solution",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 5,
           "statusCodes": [
             {
               "code": "200",
               "description": "Successful response",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "400",
               "description": "Invalid captcha",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "404",
               "description": "Captcha not found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "422",
               "description": "Missing fields",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -1257,16 +1275,16 @@
     },
     {
       "path": "/files/uploaded",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "partial",
       "operations": [
         {
           "path": "/files/uploaded",
           "method": "GET",
           "operationId": "getFiles",
           "summary": "Get files",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 1,
           "statusCodes": [
             {
               "code": "200",
@@ -1283,8 +1301,8 @@
             {
               "code": "404",
               "description": "Not found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -1293,16 +1311,16 @@
     },
     {
       "path": "/files/uploaded/{userId}",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "partial",
       "operations": [
         {
           "path": "/files/uploaded/{userId}",
           "method": "GET",
           "operationId": "getUserFiles",
           "summary": "Get user files",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 1,
           "statusCodes": [
             {
               "code": "200",
@@ -1319,8 +1337,8 @@
             {
               "code": "404",
               "description": "Not found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": [
@@ -1328,8 +1346,10 @@
               "name": "userId",
               "in": "path",
               "required": true,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "1"
+              ]
             }
           ]
         }
@@ -1337,16 +1357,16 @@
     },
     {
       "path": "/files/uploaded/public",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "partial",
       "operations": [
         {
           "path": "/files/uploaded/public",
           "method": "GET",
           "operationId": "getPublicFiles",
           "summary": "Get files",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 1,
           "statusCodes": [
             {
               "code": "200",
@@ -1357,8 +1377,8 @@
             {
               "code": "404",
               "description": "Not found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -1367,16 +1387,16 @@
     },
     {
       "path": "/files/uploaded/public/users/{userIds}",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "partial",
       "operations": [
         {
           "path": "/files/uploaded/public/users/{userIds}",
           "method": "GET",
           "operationId": "getUsersPublicFiles",
           "summary": "Get users public files",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 1,
           "statusCodes": [
             {
               "code": "200",
@@ -1387,8 +1407,8 @@
             {
               "code": "404",
               "description": "Comment not found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": [
@@ -1396,8 +1416,10 @@
               "name": "userIds",
               "in": "path",
               "required": true,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "1,2"
+              ]
             }
           ]
         }
@@ -2045,7 +2067,7 @@
           "operationId": "addItemToOrder",
           "summary": "Add item to order",
           "covered": true,
-          "requestCount": 23,
+          "requestCount": 25,
           "statusCodes": [
             {
               "code": "201",
@@ -2116,7 +2138,7 @@
           "operationId": null,
           "summary": "Add item to order",
           "covered": true,
-          "requestCount": 2,
+          "requestCount": 4,
           "statusCodes": [
             {
               "code": "201",
@@ -2145,7 +2167,7 @@
           "operationId": null,
           "summary": "Remove item from order",
           "covered": true,
-          "requestCount": 2,
+          "requestCount": 4,
           "statusCodes": [
             {
               "code": "200",
@@ -2422,7 +2444,7 @@
           "operationId": "createBookShopAccount",
           "summary": "Create book shop account",
           "covered": true,
-          "requestCount": 69,
+          "requestCount": 71,
           "statusCodes": [
             {
               "code": "201",
@@ -2952,7 +2974,7 @@
           "operationId": "createItem",
           "summary": "Create a new item",
           "covered": true,
-          "requestCount": 57,
+          "requestCount": 59,
           "statusCodes": [
             {
               "code": "201",
@@ -3093,13 +3115,13 @@
           "operationId": "getItemByBookId",
           "summary": "Get item by book ID",
           "covered": true,
-          "requestCount": 2,
+          "requestCount": 4,
           "statusCodes": [
             {
               "code": "200",
               "description": "Item retrieved successfully",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
@@ -3373,7 +3395,7 @@
           "operationId": "deleteComment",
           "summary": "Deletes a comment",
           "covered": true,
-          "requestCount": 15,
+          "requestCount": 17,
           "statusCodes": [
             {
               "code": "200",
@@ -3454,16 +3476,16 @@
     },
     {
       "path": "/articles/search",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "partial",
       "operations": [
         {
           "path": "/articles/search",
           "method": "GET",
           "operationId": "getArticlesQuery",
           "summary": "Get articles with query",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 13,
           "statusCodes": [
             {
               "code": "200",
@@ -3477,85 +3499,109 @@
               "name": "q",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "api"
+              ]
             },
             {
               "name": "id",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "1"
+              ]
             },
             {
               "name": "user_id",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "1"
+              ]
             },
             {
               "name": "date",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "2024-01-01"
+              ]
             },
             {
               "name": "_sort",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "id"
+              ]
             },
             {
               "name": "_order",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "asc"
+              ]
             },
             {
               "name": "_limit",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "10"
+              ]
             },
             {
               "name": "_page",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "1"
+              ]
             },
             {
               "name": "_start",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "0"
+              ]
             },
             {
               "name": "_end",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "10"
+              ]
             },
             {
               "name": "_embed",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "comments"
+              ]
             },
             {
               "name": "_expand",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "user"
+              ]
             }
           ]
         }
@@ -3563,16 +3609,16 @@
     },
     {
       "path": "/users/search",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "partial",
       "operations": [
         {
           "path": "/users/search",
           "method": "GET",
           "operationId": "getUsersQuery",
           "summary": "Get users with query",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 14,
           "statusCodes": [
             {
               "code": "200",
@@ -3586,85 +3632,109 @@
               "name": "q",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "api"
+              ]
             },
             {
               "name": "id",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "1"
+              ]
             },
             {
               "name": "firstname",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "Ana"
+              ]
             },
             {
               "name": "lastname",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "QA"
+              ]
             },
             {
               "name": "email",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "ana@example.test"
+              ]
             },
             {
               "name": "_sort",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "id"
+              ]
             },
             {
               "name": "_order",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "asc"
+              ]
             },
             {
               "name": "_limit",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "10"
+              ]
             },
             {
               "name": "_page",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "1"
+              ]
             },
             {
               "name": "_start",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "0"
+              ]
             },
             {
               "name": "_end",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "10"
+              ]
             },
             {
               "name": "_embed",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "articles"
+              ]
             }
           ]
         }
@@ -3672,16 +3742,16 @@
     },
     {
       "path": "/comments/search",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "partial",
       "operations": [
         {
           "path": "/comments/search",
           "method": "GET",
           "operationId": "getCommentsQuery",
           "summary": "Get comments with query",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 14,
           "statusCodes": [
             {
               "code": "200",
@@ -3695,85 +3765,109 @@
               "name": "q",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "api"
+              ]
             },
             {
               "name": "id",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "1"
+              ]
             },
             {
               "name": "user_id",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "1"
+              ]
             },
             {
               "name": "article_id",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "1"
+              ]
             },
             {
               "name": "date",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "2024-01-01"
+              ]
             },
             {
               "name": "_sort",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "id"
+              ]
             },
             {
               "name": "_order",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "asc"
+              ]
             },
             {
               "name": "_limit",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "10"
+              ]
             },
             {
               "name": "_page",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "1"
+              ]
             },
             {
               "name": "_start",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "0"
+              ]
             },
             {
               "name": "_end",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "10"
+              ]
             },
             {
               "name": "_expand",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "user"
+              ]
             }
           ]
         }
@@ -3982,7 +4076,7 @@
           "operationId": "calcSimpleRoi",
           "summary": "Calculate simple ROI",
           "covered": true,
-          "requestCount": 1,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
@@ -4006,7 +4100,7 @@
           "operationId": "calcAdvRoi",
           "summary": "Calculate advanced ROI",
           "covered": true,
-          "requestCount": 1,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
@@ -4155,16 +4249,16 @@
     },
     {
       "path": "/restore/list",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "partial",
       "operations": [
         {
           "path": "/restore/list",
           "method": "GET",
           "operationId": "getRestoreList",
           "summary": "Get list of restoreDB endpoints",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 1,
           "statusCodes": [
             {
               "code": "200",
@@ -4179,22 +4273,22 @@
     },
     {
       "path": "/restoreDB",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/restoreDB",
           "method": "GET",
           "operationId": "restoreDB",
           "summary": "Restore DB with predefined and default data",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 1,
           "statusCodes": [
             {
               "code": "201",
               "description": "Database with sample data restored",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -4203,22 +4297,22 @@
     },
     {
       "path": "/restoreEmptyDB",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/restoreEmptyDB",
           "method": "GET",
           "operationId": "restoreEmptyDB",
           "summary": "Restore Empty DB",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 1,
           "statusCodes": [
             {
               "code": "201",
               "description": "Empty database restored",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -4227,22 +4321,22 @@
     },
     {
       "path": "/restoreBigDB",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/restoreBigDB",
           "method": "GET",
           "operationId": "restoreBigDB",
           "summary": "Restore Big DB",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 1,
           "statusCodes": [
             {
               "code": "201",
               "description": "Big database restored",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -4251,22 +4345,22 @@
     },
     {
       "path": "/diagnostic/toggle-metrics",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/diagnostic/toggle-metrics",
           "method": "GET",
           "operationId": "toggleMetrics",
           "summary": "Toggle metrics on/off",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
               "description": "Metrics toggled",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -4275,22 +4369,22 @@
     },
     {
       "path": "/diagnostic/toggle-diagnostics",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/diagnostic/toggle-diagnostics",
           "method": "GET",
           "operationId": "toggleDiagnostics",
           "summary": "Toggle diagnostics on/off",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
               "description": "Diagnostics toggled",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -4299,22 +4393,22 @@
     },
     {
       "path": "/diagnostic/toggle-logs",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/diagnostic/toggle-logs",
           "method": "GET",
           "operationId": "toggleLogs",
           "summary": "Toggle logs on/off",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 1,
           "statusCodes": [
             {
               "code": "200",
               "description": "Logs toggled",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -4323,22 +4417,22 @@
     },
     {
       "path": "/diagnostic/log-level",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/diagnostic/log-level",
           "method": "POST",
           "operationId": "setLogLevel",
           "summary": "Set the log level. Default is 4 (debug).",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
               "description": "Logs toggled",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -4347,22 +4441,22 @@
     },
     {
       "path": "/logs",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/logs",
           "method": "GET",
           "operationId": "getLogs",
           "summary": "Get logs from server (diagnostics must be on - use toggleDiagnostics or toggleLogs)",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 3,
           "statusCodes": [
             {
               "code": "200",
               "description": "Diagnostics toggled",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -4371,22 +4465,22 @@
     },
     {
       "path": "/diagnostic/request/histogram",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/diagnostic/request/histogram",
           "method": "GET",
           "operationId": "getRequestHistogram",
           "summary": "Get request histogram",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 1,
           "statusCodes": [
             {
               "code": "200",
               "description": "Request histogram retrieved",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -4404,7 +4498,7 @@
           "operationId": "getUserstats",
           "summary": "Get user stats",
           "covered": true,
-          "requestCount": 3,
+          "requestCount": 6,
           "statusCodes": [
             {
               "code": "200",
@@ -4440,7 +4534,7 @@
           "operationId": "getArticleStats",
           "summary": "Get article stats",
           "covered": true,
-          "requestCount": 3,
+          "requestCount": 6,
           "statusCodes": [
             {
               "code": "200",
@@ -4476,7 +4570,7 @@
           "operationId": "getArticlePublishStats",
           "summary": "Get article publish stats",
           "covered": true,
-          "requestCount": 1,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
@@ -4500,7 +4594,7 @@
           "operationId": "getCommentsPublishStats",
           "summary": "Get comments publish stats",
           "covered": true,
-          "requestCount": 1,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
@@ -4524,7 +4618,7 @@
           "operationId": "getUserActivityStats",
           "summary": "Get user activity stats",
           "covered": true,
-          "requestCount": 1,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
@@ -4548,7 +4642,7 @@
           "operationId": "getSingleUserActivityStats",
           "summary": "Get single user activity stats",
           "covered": true,
-          "requestCount": 2,
+          "requestCount": 4,
           "statusCodes": [
             {
               "code": "200",
@@ -4583,7 +4677,7 @@
           "operationId": "getApiCalls",
           "summary": "Get api calls",
           "covered": true,
-          "requestCount": 1,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
@@ -4607,7 +4701,7 @@
           "operationId": "getApiDetailedCalls",
           "summary": "Get api detailed calls",
           "covered": true,
-          "requestCount": 1,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
@@ -4631,7 +4725,7 @@
           "operationId": "getNonApiCalls",
           "summary": "Get non api calls",
           "covered": true,
-          "requestCount": 1,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
@@ -4655,7 +4749,7 @@
           "operationId": "getNonApiDetailedCalls",
           "summary": "Get non api detailed calls",
           "covered": true,
-          "requestCount": 1,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
@@ -4679,7 +4773,7 @@
           "operationId": "getRandomArticle",
           "summary": "Get random article",
           "covered": true,
-          "requestCount": 1,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
@@ -4709,7 +4803,7 @@
           "operationId": "startQuiz",
           "summary": "Start quiz",
           "covered": true,
-          "requestCount": 2,
+          "requestCount": 5,
           "statusCodes": [
             {
               "code": "200",
@@ -4731,7 +4825,7 @@
     {
       "path": "/quiz/stop",
       "covered": true,
-      "coverage": "partial",
+      "coverage": "full",
       "operations": [
         {
           "path": "/quiz/stop",
@@ -4739,13 +4833,13 @@
           "operationId": "stopQuiz",
           "summary": "Stop quiz",
           "covered": true,
-          "requestCount": 2,
+          "requestCount": 5,
           "statusCodes": [
             {
               "code": "200",
               "description": "Quiz stopped",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "201",
@@ -4775,7 +4869,7 @@
           "operationId": "getQuizhighscores",
           "summary": "Get quiz high scores",
           "covered": true,
-          "requestCount": 2,
+          "requestCount": 4,
           "statusCodes": [
             {
               "code": "200",
@@ -4799,7 +4893,7 @@
           "operationId": "getQuizQuestions",
           "summary": "Get quiz questions",
           "covered": true,
-          "requestCount": 2,
+          "requestCount": 4,
           "statusCodes": [
             {
               "code": "200",
@@ -4829,7 +4923,7 @@
           "operationId": "getQuestionCount",
           "summary": "Get number of questions",
           "covered": true,
-          "requestCount": 2,
+          "requestCount": 4,
           "statusCodes": [
             {
               "code": "200",
@@ -4859,7 +4953,7 @@
           "operationId": "checkQuizAnswer",
           "summary": "Check quiz answer for question",
           "covered": true,
-          "requestCount": 12,
+          "requestCount": 24,
           "statusCodes": [
             {
               "code": "200",
@@ -4889,7 +4983,7 @@
           "operationId": "getRandomWord",
           "summary": "Get random word",
           "covered": true,
-          "requestCount": 1,
+          "requestCount": 3,
           "statusCodes": [
             {
               "code": "200",
@@ -4913,7 +5007,7 @@
           "operationId": "getHangmanHighscores",
           "summary": "Get hangman highscores",
           "covered": true,
-          "requestCount": 2,
+          "requestCount": 6,
           "statusCodes": [
             {
               "code": "200",
@@ -4929,7 +5023,7 @@
     {
       "path": "/hangman/score",
       "covered": true,
-      "coverage": "partial",
+      "coverage": "full",
       "operations": [
         {
           "path": "/hangman/score",
@@ -4937,13 +5031,13 @@
           "operationId": "setHangmanScore",
           "summary": "Set Hangman Score",
           "covered": true,
-          "requestCount": 4,
+          "requestCount": 14,
           "statusCodes": [
             {
               "code": "200",
               "description": "Score recorded",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
@@ -4964,22 +5058,22 @@
     },
     {
       "path": "/minesweeper/highscores",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/minesweeper/highscores",
           "method": "GET",
           "operationId": "getMinesweeperHighscores",
           "summary": "Get minesweeper highscores",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 4,
           "statusCodes": [
             {
               "code": "200",
               "description": "minesweeper highscores",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -4988,34 +5082,34 @@
     },
     {
       "path": "/minesweeper/score",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/minesweeper/score",
           "method": "POST",
           "operationId": "setMinesweeperScore",
           "summary": "Set minesweeper Score",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 9,
           "statusCodes": [
             {
               "code": "200",
               "description": "Score recorded",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "422",
               "description": "Invalid score data",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -5024,22 +5118,22 @@
     },
     {
       "path": "/tic-tac-toe/highscores",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/tic-tac-toe/highscores",
           "method": "GET",
           "operationId": "getTicTacToeHighscores",
           "summary": "Get tic-tac-toe highscores",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 1,
           "statusCodes": [
             {
               "code": "200",
               "description": "TicTacToe highscores",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -5048,28 +5142,28 @@
     },
     {
       "path": "/tic-tac-toe/start",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/tic-tac-toe/start",
           "method": "POST",
           "operationId": "startTicTacToe",
           "summary": "start TicTacToe",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "201",
               "description": "Started",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -5078,34 +5172,34 @@
     },
     {
       "path": "/tic-tac-toe/join",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "partial",
       "operations": [
         {
           "path": "/tic-tac-toe/join",
           "method": "POST",
           "operationId": "joinTicTacToeSession",
           "summary": "join TicTacToe session",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 4,
           "statusCodes": [
             {
               "code": "200",
               "description": "Joined",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "403",
               "description": "Session code not provided",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "409",
@@ -5116,8 +5210,8 @@
             {
               "code": "422",
               "description": "Invalid session code",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -5126,34 +5220,34 @@
     },
     {
       "path": "/tic-tac-toe/status/{code}",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/tic-tac-toe/status/{code}",
           "method": "GET",
           "operationId": "getTicTacToeStatus",
           "summary": "Get tic-tac-toe status",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 4,
           "statusCodes": [
             {
               "code": "200",
               "description": "TicTacToe status",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "404",
               "description": "Not found",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": [
@@ -5161,8 +5255,12 @@
               "name": "code",
               "in": "path",
               "required": true,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "ABCD",
+                "7Z7J",
+                "NOPE"
+              ]
             }
           ]
         }
@@ -5170,28 +5268,28 @@
     },
     {
       "path": "/tic-tac-toe/status",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "partial",
       "operations": [
         {
           "path": "/tic-tac-toe/status",
           "method": "POST",
           "operationId": "moveTicTacToe",
           "summary": "make a move in TicTacToe",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 8,
           "statusCodes": [
             {
               "code": "200",
               "description": "Stopped",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "403",
@@ -5202,8 +5300,8 @@
             {
               "code": "422",
               "description": "User cannot make a move",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -5212,34 +5310,34 @@
     },
     {
       "path": "/tic-tac-toe/stop",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "full",
       "operations": [
         {
           "path": "/tic-tac-toe/stop",
           "method": "POST",
           "operationId": "stopTicTacToeSession",
           "summary": "stop TicTacToe session",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 3,
           "statusCodes": [
             {
               "code": "200",
               "description": "Stopped",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "401",
               "description": "Unauthorized",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             },
             {
               "code": "403",
               "description": "Session code not provided",
-              "covered": false,
-              "observedCount": 0
+              "covered": true,
+              "observedCount": 1
             }
           ],
           "parameters": []
@@ -5349,7 +5447,7 @@
           "operationId": null,
           "summary": "Get weather data",
           "covered": true,
-          "requestCount": 3,
+          "requestCount": 6,
           "statusCodes": [
             {
               "code": "200",
@@ -5385,7 +5483,7 @@
           "operationId": null,
           "summary": "Get costs data",
           "covered": true,
-          "requestCount": 3,
+          "requestCount": 6,
           "statusCodes": [
             {
               "code": "200",
@@ -5613,7 +5711,7 @@
           "operationId": "getArticlesVisitsStats",
           "summary": "Get articles visits stats",
           "covered": true,
-          "requestCount": 3,
+          "requestCount": 6,
           "statusCodes": [
             {
               "code": "200",
@@ -5647,7 +5745,7 @@
           "operationId": "getTopArticlesVisitsStats",
           "summary": "Get top articles visits stats",
           "covered": true,
-          "requestCount": 1,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
@@ -5663,7 +5761,7 @@
     {
       "path": "/visits/users",
       "covered": true,
-      "coverage": "partial",
+      "coverage": "full",
       "operations": [
         {
           "path": "/visits/users",
@@ -5671,7 +5769,7 @@
           "operationId": "getUsersVisitsStats",
           "summary": "Get users visits stats",
           "covered": true,
-          "requestCount": 1,
+          "requestCount": 6,
           "statusCodes": [
             {
               "code": "200",
@@ -5685,8 +5783,10 @@
               "name": "ids",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "1,2,999999"
+              ]
             }
           ]
         }
@@ -5703,7 +5803,7 @@
           "operationId": "getTopUsersVisitsStats",
           "summary": "Get top users visits stats",
           "covered": true,
-          "requestCount": 1,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
@@ -5719,7 +5819,7 @@
     {
       "path": "/visits/comments",
       "covered": true,
-      "coverage": "partial",
+      "coverage": "full",
       "operations": [
         {
           "path": "/visits/comments",
@@ -5727,7 +5827,7 @@
           "operationId": "getCommentsVisitsStats",
           "summary": "Get comments visits stats",
           "covered": true,
-          "requestCount": 1,
+          "requestCount": 6,
           "statusCodes": [
             {
               "code": "200",
@@ -5741,8 +5841,10 @@
               "name": "ids",
               "in": "query",
               "required": false,
-              "covered": false,
-              "observedValues": []
+              "covered": true,
+              "observedValues": [
+                "1,2,999999"
+              ]
             }
           ]
         }
@@ -5759,7 +5861,7 @@
           "operationId": "getTopCommentsVisitsStats",
           "summary": "Get top comments visits stats",
           "covered": true,
-          "requestCount": 1,
+          "requestCount": 2,
           "statusCodes": [
             {
               "code": "200",
@@ -6023,7 +6125,7 @@
           "operationId": "getUserArticlesBookmarks",
           "summary": "Get user articles bookmarks",
           "covered": true,
-          "requestCount": 6,
+          "requestCount": 17,
           "statusCodes": [
             {
               "code": "200",
@@ -6046,7 +6148,7 @@
           "operationId": "addUserArticlesBookmarks",
           "summary": "Add user articles bookmarks",
           "covered": true,
-          "requestCount": 4,
+          "requestCount": 12,
           "statusCodes": [
             {
               "code": "200",
@@ -6073,16 +6175,16 @@
     },
     {
       "path": "/book-shop-accounts/files",
-      "covered": false,
-      "coverage": "none",
+      "covered": true,
+      "coverage": "partial",
       "operations": [
         {
           "path": "/book-shop-accounts/files",
           "method": "POST",
           "operationId": null,
           "summary": "Upload account files",
-          "covered": false,
-          "requestCount": 0,
+          "covered": true,
+          "requestCount": 1,
           "statusCodes": [
             {
               "code": "200",
@@ -8715,6 +8817,78 @@
       "url": "http://127.0.0.1:37071/api/books/999999",
       "status": 404,
       "timestamp": "2026-11-06T13:00:07.584Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/files/articles/uploaded",
+      "url": "http://127.0.0.1:47164/api/files/articles/uploaded",
+      "status": 401,
+      "timestamp": "2026-11-06T16:17:21.299Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/files/articles/uploaded",
+      "url": "http://127.0.0.1:47164/api/files/articles/uploaded",
+      "status": 200,
+      "timestamp": "2026-11-06T16:17:21.312Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/files/articles/uploaded",
+      "url": "http://127.0.0.1:47164/api/files/articles/uploaded?userId=999999",
+      "status": 401,
+      "timestamp": "2026-11-06T16:17:21.327Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/files/articles/uploaded/public",
+      "url": "http://127.0.0.1:47164/api/files/articles/uploaded/public",
+      "status": 200,
+      "timestamp": "2026-11-06T16:17:21.333Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/files/articles/uploaded/public",
+      "url": "http://127.0.0.1:47164/api/files/articles/uploaded/public?userIds=1%2C2",
+      "status": 200,
+      "timestamp": "2026-11-06T16:17:21.339Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://127.0.0.1:44403/api/books",
+      "status": 201,
+      "timestamp": "2026-11-06T17:16:53.309Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/book-shop-orders/6",
+      "url": "http://127.0.0.1:44403/api/book-shop-orders/6",
+      "status": 200,
+      "timestamp": "2026-11-06T17:16:53.520Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "POST",
+      "path": "/api/books",
+      "url": "http://127.0.0.1:44403/api/books",
+      "status": 201,
+      "timestamp": "2026-11-06T17:16:56.733Z",
+      "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
+    },
+    {
+      "method": "GET",
+      "path": "/api/book-shop-orders/7",
+      "url": "http://127.0.0.1:44403/api/book-shop-orders/7",
+      "status": 200,
+      "timestamp": "2026-11-06T17:16:56.889Z",
       "reason": "No coincide con ningún path/método documentado (considerando los servidores de la spec)."
     }
   ]

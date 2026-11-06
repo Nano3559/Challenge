@@ -1,8 +1,102 @@
+## Alcance confirmado: GAD inmutable; brechas contractuales (2026-11-06)
+
+El usuario confirmó que **no se modifica GAD**. Continuar solo en pruebas, fixtures de QA, recorder y documentación. Objetivo: intentar cubrir las 49 respuestas pendientes de forma real, y documentar cada inconsistencia/bug confirmado. Si GAD no emite el estado de OpenAPI, mantener la brecha en cobertura; no falsear el status, alterar el contrato, provocar carreras artificiales ni tocar datos compartidos.
+
+Se creó `docs/OPENAPI-GAD-DISCREPANCIES.md` con línea base, discrepancias verificadas y procedimiento por gap. Línea base vigente: 2875 solicitudes, 2550 reconocidas, 325 sin match, cobertura global 604/653 (92.50%), estados 338/387, parámetros 96/96; quedan 49 estados (0 críticas). Los parámetros se completaron con solicitudes individuales para búsquedas y filtros `ids` de visitas. Se agregó prueba para `GET /book-shop-manage/items/by-book/{bookId}` autenticado: GAD devuelve 200 con array no filtrado; ese status sí queda cubierto, aunque la discrepancia semántica permanece documentada. Recorder del módulo `book-shop-order-items`: 4/4; la ruta OpenAPI sigue devolviendo 404 para add/remove aunque el flujo funcional está bajo `/book-shop-orders/items`.
+
+`ci:check` pasó. IDs inválidos en articles/comments/users devuelven 404 para GET/HEAD, no 400. Continuar auditando gaps por módulo desde `coverage-gaps.json`, registrar solo evidencia verificable y actualizar este HANDOVER después de cada bloque.
+
+---
+
+## Parámetros de búsqueda y visitas; estado book-shop (2026-11-06)
+
+Se cubrieron todos los parámetros que restaban: matriz individual para los filtros documentados de `articles/search`, `comments/search` y `users/search` (handlers devuelven 404), más `ids` en visitas de comments/users. Las rutas de búsqueda conservan la respuesta observada 404; no se declara que funcionen como búsqueda. Se probó también `GET /book-shop-manage/items/by-book/{bookId}` con manager: devuelve 200 con array, pero ignora el `bookId`; la consulta real es `?book_id=`. Se valida solo status/forma, no como resultado filtrado.
+
+Validación: recorder de búsquedas/estadísticas y ruta book-shop; `ci:check` limpio. Se probaron IDs no numéricos, negativos, decimales, `null` e `undefined` para GET/HEAD de articles/comments/users contra localhost; todas devolvieron 404 (sin modificar estado), no los 400 documentados. Baseline: 2845 solicitudes, 2524 reconocidas, 321 sin match (21 archivos); 604/653 = 92.50%; endpoints 136/136, operaciones 170/170, estados 338/387, parámetros 96/96; 49 brechas de estados, cero críticas. Del delta reciente: las 35 brechas de parámetros cerradas y GET by-book 200 cubierto como respuesta observada, con discrepancia funcional registrada.
+
+No se modificó GAD. Próximo trabajo: revisar status gaps por grupos usando fixtures aislados y reproducir solo respuestas del handler; muchas son incompatibilidades ya conocidas entre OpenAPI y GAD. No forzar race conditions, mutar seed compartido ni enmascarar respuestas. Sin commit.
+
+---
+
+## Combinaciones adicionales de estados — artículos sociales (2026-11-06)
+
+Se añadió a `tests/api/article-social.api.spec.ts` un segundo `PUT /article-labels/articles/{id}` sobre una asociación existente. GAD devuelve 404 en este flujo; el caso quedó cubierto como respuesta observada, sin afirmar el 200 documentado. El POST `/likes` con feature desactivado también se incluye en la prueba de 404.
+
+Validación: servidor confirmado activo (`GET /api/labels` responde 404 con servicio); recorder del módulo completó 7/7. `ci:check` pasó. Baseline: 2762 solicitudes, 2441 reconocidas, 321 sin match (15 archivos); 568/653 = 86.98%; endpoints 136/136, operaciones 170/170, estados 337/387, parámetros 61/96; 85 brechas (50 estados, 35 parámetros; 0 críticas). Se cerraron dos brechas de estado: `PUT /article-labels/articles/{id}` 404 y `POST /likes` 404 con feature desactivado. El PUT de etiquetas 200 sigue discrepante.
+
+No se ejecutó regresión completa. GAD fuente intacta. Continuar con las siguientes combinaciones únicamente si el comportamiento observable puede reproducirse de manera válida y aislada; los códigos que OpenAPI documenta pero el handler no devuelve deben permanecer como discrepancias.
+
+---
+
+## Combinaciones adicionales de estado — juegos (2026-11-06)
+
+Se agregaron aserciones para estados documentados reproducibles sin mutación externa: `POST /hangman/score` devuelve 200 si se envía 0 tras guardar 1,000,000,000; `POST /minesweeper/score` devuelve 200 ante un score inferior al ya guardado; segundo `GET /quiz/stop` devuelve 200 conservando la mejor puntuación anterior. Cada caso usa DB/proceso desechables. El reporte de `book-shop-manage/team` sugería 401; una comprobación anónima devolvió 200 y no se agregó una falsa aserción 401 (discrepancia observada).
+
+Validación: casos de quiz/hangman/minesweeper pasaron (7 pruebas combinadas); `ci:check` limpio. Recorder reejecutado con `--keep` para los tres módulos; baseline 2644 solicitudes, 2323 reconocidas, 321 sin match (13 archivos); cobertura 566/653 = 86.68%, endpoints 136/136, operaciones 170/170, estados 335/387, parámetros 61/96; 87 brechas (0 críticas). Quedan 52 estados y 35 parámetros documentados. Total de tests definidos sigue en 415. No regresión completa.
+
+Próximo paso: escoger la siguiente combinación de estado/param solo si handler y fixture permiten producirla con seguridad. Gaps con diferencias conocidas (por ejemplo team 401, searches 200, uploads 200) requieren cambios en GAD y no deben enmascararse. Sin commit desde `025c1c8`; fuente GAD intacta.
+
+---
+
+## Continuación por módulos — últimas rutas sin solicitud (2026-11-06)
+
+Registradas las cuatro rutas que faltaban en coverage: `articles/search`, `comments/search`, `users/search`, `POST book-shop-accounts/files`. Se añadieron métodos de búsqueda a ArticlesClient/CommentsClient/UsersClient y soporte multipart reutilizable en BaseApiClient junto con BookShopAccountsClient.uploadFiles.
+
+Resultados: las tres búsquedas devuelven 404, no se falsea 200. `/book-shop-accounts/files` devolvió 404 con token y multipart vacío; no se envió archivo ni se escribió en disco. La respuesta no corresponde a las únicas respuestas documentadas (200/401). Los handlers de articles/users/comments no implementan búsqueda en esas rutas y el handler de cuentas de tienda cae al 404 para `/files`.
+
+Validación: 2/2 pruebas nuevas puntuales y con recorder; `ci:check` limpio. Se registraron 5 solicitudes. Coverage baseline: 2588 solicitudes, 2267 matcheadas, 321 sin match (10 archivos); 563/653 = 86.22%; endpoints 136/136, operaciones 170/170, estados 332/387, parámetros 61/96; 0 rutas sin solicitud, 90 brechas (0 críticas). Total definido: 415 tests API. Esto significa que todas las operaciones tienen al menos una solicitud, no que la API cumpla sus respuestas/validaciones documentadas. No se ejecutó regresión completa.
+
+Después se cubrieron tres estados adicionales de juegos. Continuar con respuestas/parametrías reproducibles; código fuente GAD intacto.
+
+---
+
+## Continuación por módulos — diagnósticos y restauraciones (2026-11-06)
+
+Completado `tests/api/diagnostics-restore.api.spec.ts` (7 pruebas), usando instancia nueva por prueba. Cubre toggles diagnostics/logs/metrics, GET `/logs` sin exponer su contenido, histograma, log-level (400 sin `level`, 200 con string), lista de restores y `/restoreDB`, `/restoreBigDB`, `/restoreEmptyDB` (201) en estado del sandbox. `/debug/exit` y `/debug/restart` devuelven 200 y terminan el proceso hijo desechable; restart no relanza el servidor.
+
+Validación puntual y recorder: 7/7; `ci:check` limpio. `--keep` añadió 17 solicitudes. Baseline 2581 total, 2260 matcheadas, 321 sin match (8 archivos); coverage 556/653 = 85.15%; endpoints 132/136, operaciones 166/170, estados 332/387, parámetros 58/96; solo 4 rutas sin cobertura, 101 brechas (8 críticas). Total 413 tests API definidos; no regresión completa.
+
+Discrepancias: `/restore/list` entrega 201 aunque OpenAPI declara 200; toggle-metrics devuelve `metricsTrackingEnabled` frente al `metricsEnabled` documentado; `/diagnostic/log-level` sin nivel responde 400 no declarado. `/debug/restart` termina proceso en lugar de reiniciarlo. Las cuatro rutas restantes se registraron como 404 en la siguiente continuación; GAD sigue sin cambios.
+
+---
+
+## Continuación por módulos — archivos y captcha (2026-11-06)
+
+Completado el bloque con `FilesClient`, `CaptchaClient`, esquemas y fixture `filesCaptchaSandbox`. En el hijo desechable se habilitan flags de archivos/captcha y `captchaSolutionInResponse` solo para hacer determinista la comprobación; no se cambió configuración ni datos de GAD compartidos. Se cubrieron las cuatro rutas OpenAPI de archivos (todas responden 404), rutas reales `/api/files/articles/uploaded` (privada con 401 sin auth y lectura autenticada 200), `/public` y `/public?userIds=` (200), usuario privado ajeno 401. No se subieron ni escribieron archivos. El 404 de `/book-shop-accounts/files` multipart ya estaba documentado en el handover previo; no se repitió.
+
+Captcha: GET desafío, POST correcto 200, incorrecto 400, body incompleto 422, UUID desconocido 404 y reuso consumido 404. La respuesta revela `equationString`/`result` únicamente en el proceso aislado de prueba; por defecto la flag está apagada y la solución se omite.
+
+Validación: 3/3 pruebas puntuales y bajo recorder; `npm run ci:check` limpio. Se añadieron 19 solicitudes. Baseline: 2564 solicitudes, 2243 matcheadas, 321 sin match (7 archivos); coverage 533/653 = 81.62%, endpoints 120/136, operaciones 154/170, estados 321/387, parámetros 58/96; 16 rutas sin cobertura, 136 brechas (32 críticas). Total definido 406 tests API. No se ejecutó regresión completa.
+
+Diagnósticos y restauraciones completados en la continuación siguiente. Cambios sin commit desde `025c1c8`; GAD sin cambios.
+
+---
+
+## Continuación por módulos — tic-tac-toe (2026-11-06)
+
+Completado tic-tac-toe con `TicTacToeClient`, esquemas de sesión/highscores, fixture de cuatro clientes autenticados sobre instancia y DB desechables y 2 pruebas (`tests/api/tic-tac-toe.api.spec.ts`). Cubre highscores públicos, start 201, join 200, consulta de estado, validación de códigos/turnos, victoria en cinco movimientos, stop 200 y 401 anónimo. Se ejercitan las seis operaciones documentadas.
+
+Validación puntual y recorder: 2/2 aprobadas; `npm run ci:check` limpio. `--keep` añadió 28 solicitudes; baseline 2545 total, 2229 reconocidas, 316 sin match (6 archivos). Cobertura 516/653 = 79.02%; endpoints 115/136, operaciones 148/170, estados 312/387, parámetros 56/96; 21 rutas sin cobertura, 158 brechas (43 críticas). Total definido: 403 tests API. No se ejecutó regresión completa.
+
+Discrepancias: GET `/tic-tac-toe/status/{code}` exige bearer aunque OpenAPI omite seguridad; celdas del tablero llevan IDs numéricos aunque el esquema dice strings; join de código desconocido devuelve 422. OpenAPI declara 409 para partida llena, pero el flujo secuencial del handler lo rechaza con 422; no se forzó concurrencia artificial. Archivos/captcha completado después. Cambios sin commit desde `025c1c8`; GAD sin cambios.
+
+---
+
+## Continuación por módulos — minesweeper (2026-11-06)
+
+Completado minesweeper con `MinesweeperClient`, esquemas Zod, fixture aislada y 2 pruebas en `tests/api/minesweeper.api.spec.ts`. Cubre highscores público, 401 sin sesión, 422 por score faltante/no numérico, registro válido 201 y persistencia en highscores. La DB es una copia desechable y GAD no se modifica.
+
+Validación: 2/2 pruebas puntuales y ejecución bajo recorder 2/2; `npm run ci:check` limpio. Recorder `--keep` añadió 8 solicitudes; `coverage:baseline` actualizado a 2517 solicitudes, 2201 matcheadas, 316 sin match (5 archivos). Coverage 493/653 = 75.50%; endpoints 109/136, operaciones 142/170, estados 296/387, parámetros 55/96; 27 rutas sin cobertura, 187 brechas (55 críticas). Tests API definidos: 401. No regresión completa.
+
+Discrepancia conservada: OpenAPI no especifica requestBody para POST score, aunque el handler espera `{score:number}`. Highscores devuelve `{highScore:[...]}` frente al esquema declarado `Scores`. Tic-tac-toe fue completado en la siguiente continuación. Último commit `025c1c8`; cambios de minesweeper y módulos posteriores sin commit.
+
+---
+
 ## Continuación por módulos — coverage agregada (2026-11-06)
 
 Se completó lo pendiente de recorder para quiz y hangman: ejecución conjunta 5/5 aprobada con `--keep`, 34 solicitudes nuevas registradas. `npm run coverage:baseline` regeneró los reportes raíz. Acumulado: 2509 solicitudes, 2193 reconocidas, 316 sin match; coverage 488/653 = 74.73%; 107/136 endpoints, 140/170 operaciones, 293/387 estados, 55/96 parámetros; 29 rutas sin cobertura, 194 brechas (59 críticas). IA histórica intacta. La regresión de los 399 tests API no se ejecutó.
 
-El siguiente trabajo es minesweeper. Cambios acumulados listos para el commit solicitado por el usuario; GAD sigue sin cambios.
+Minesweeper se completó en la continuación siguiente. Continuar por tic-tac-toe; GAD sigue sin cambios.
 
 ---
 

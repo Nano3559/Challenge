@@ -58,5 +58,11 @@ test.describe('API de quiz', () => {
     expect(highscores.status()).toBe(200);
     expectSchema(quizHighscoresSchema, await highscores.json());
     expect((await highscores.json()).highScore).toContainEqual(expect.objectContaining({ game: 'Quiz', score: 1 }));
+
+    const replay = await quizSandbox.player.start();
+    expect(replay.status()).toBe(200);
+    const lowerScoreStop = await quizSandbox.player.stop();
+    expect(lowerScoreStop.status()).toBe(200);
+    expect((await lowerScoreStop.json()).score).toBe(1);
   });
 });

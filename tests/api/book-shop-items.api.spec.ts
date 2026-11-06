@@ -249,6 +249,12 @@ test.describe('DELETE /api/book-shop-manage/items/:id', () => {
 });
 
 test.describe('GET /api/book-shop-manage/items/by-book/:bookId', () => {
+  test('la ruta por path devuelve 200 pero no filtra por bookId', { tag: '@regression' }, async ({ inventorySandbox: sandbox }) => {
+    const response = await sandbox.manager.getByBookId(missingBookId);
+    expect(response.status()).toBe(200);
+    expect(Array.isArray(await response.json())).toBe(true);
+  });
+
   for (const role of ['anonymous', 'reader'] as const) {
     test(`devuelve 401 con ${role}`, { tag: '@regression' }, async ({ inventorySandbox: sandbox }) => {
       const response = await sandbox[role].getByBookId(missingBookId);

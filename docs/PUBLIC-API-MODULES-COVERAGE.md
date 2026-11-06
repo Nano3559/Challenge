@@ -1,5 +1,47 @@
 # Cierre por módulos: hangman, quiz, salud, datos y comunidad
 
+## Combinaciones de estado adicionales
+
+- Hangman y minesweeper: score de 0 después de un high score de 1,000,000,000 devuelve 200 y preserva el puntaje mayor.
+- Quiz: start/stop con 0 respuestas después de una partida con score 1 devuelve 200 y conserva el high score.
+- `/book-shop-manage/team` anónimo devolvió 200, aunque OpenAPI especifica 401; no se registra como respuesta correcta.
+
+Recorder actualizado reejecutando los tres módulos: 2644 solicitudes, 2323 match, 321 sin match; 566/653 = 86.68%, endpoints136/136, operaciones170/170, status335/387, parámetros61/96. Quedan 52 estados y 35 parámetros; gaps87, 0 críticos. `ci:check` limpio.
+
+## Últimas cuatro rutas — 2 pruebas
+
+Se registraron articles/comments/users search, cada una observada 404, más POST book-shop-accounts/files con token y multipart vacío, observado 404 sin subir ni escribir archivos. El test preserva explícitamente estos fallos observados; no los convierte en éxitos de contrato.
+
+Recorder: 2/2 pruebas, cinco requests añadidas. Total 2588 solicitudes (2267 match, 321 no match, 10 archivos); 563/653 (86.22%), endpoints 136/136, operaciones 170/170, estados 332/387, params61/96; quedan 55 estados y 35 parámetros, 90 brechas, cero críticas. Total 415 tests definidos; sin regresión completa.
+
+## Diagnósticos y restauraciones — 7 pruebas
+
+Todas operan con instancia independiente, una por test, para aislar los toggles, las restauraciones y la terminación por debug. Cubren toggles diagnostics/logs/metrics, GET logs validando forma sin mostrar contenido, histograma, log level, listado de restores y restores DB/BigDB/EmptyDB. Debug exit y restart comprobados en hijos desechables.
+
+Recorder 7/7 añadió 17 solicitudes; total 2581 (2260 match, 321 sin match, ocho archivos). Coverage 556/653 (85.15%): endpoints132/136, operaciones166/170, status332/387, parámetros58/96; cuatro rutas sin cobertura, 101 brechas y 8 críticas. Total definido 413; sin regresión completa.
+
+Diferencias: restore/list 201 frente a 200 declarado; campo de toggle-metrics cambia; log-level sin nivel da 400 no documentado; debug/restart termina el proceso. Restantes: searches de articles/comments/users y book-shop-accounts/files.
+
+## Archivos y captcha — 3 pruebas y baseline acumulado
+
+Se probaron las cuatro rutas OpenAPI de archivos (404 incluso con feature habilitado) y el prefijo realmente servido `/files/articles/uploaded`: privado sin token 401, privado propio 200, mismatch de usuario 401; rutas públicas 200. Sin uploads ni escrituras al directorio de GAD. `/book-shop-accounts/files` ya tenía un 404 multipart documentado, sin repetir.
+
+Captcha cubre reto, respuesta correcta 200, respuesta incorrecta 400, campos faltantes 422, UUID inexistente 404 y consumo del desafío. Feature flag y exposición de solución solo en instancia desechable.
+
+Recorder: 3/3, 19 solicitudes añadidas. Acumulado 2564 (2243 match, 321 sin match, siete archivos); cobertura 533/653 (81.62%): endpoints 120/136, operaciones 154/170, status 321/387, parámetros 58/96; 16 rutas sin cubrir, 136 brechas, 32 críticas. Total definido 406 tests, sin regresión completa. Próximo: diagnósticos/restauraciones.
+
+## Tic-tac-toe — 2 pruebas y baseline acumulado
+
+Se cubren las seis operaciones documentadas con dos pruebas: highscores público, autenticación, start/join, estado, turnos, victoria, stop y errores. Juego en servidor/DB desechables. Recorder 2/2 añadió 28 solicitudes; total 2545, 2229 match, 316 sin match, seis archivos. Coverage 516/653 (79.02%); endpoints 115/136, operaciones 148/170, status 312/387, parámetros 56/96. Quedan 21 rutas, 158 brechas (43 críticas). Total 403 tests API definidos; no regresión completa.
+
+Diferencias: GET status requiere bearer aunque OpenAPI omite seguridad; tablero serializa IDs numéricos aunque esquema declara strings; join de código desconocido da 422. OpenAPI declara 409 por sesión llena pero el camino secuencial comprobado devuelve 422. Siguiente módulo: archivos/captcha.
+
+## Minesweeper — 2 pruebas y baseline acumulado
+
+`minesweeper.api.spec.ts` verifica highscores público, autorización para POST score, rechazos 422 por dato ausente/no numérico, registro 201 y presencia en highscores. Fixture sobre copia DB aislada. Recorder: 2/2 y 8 solicitudes; baseline total 2517 (2201 match, 316 sin match, 5 archivos). Coverage 493/653 (75.50%): endpoints 109/136, operaciones 142/170, status 296/387, parámetros 55/96; 27 rutas sin cubrir, 187 brechas, 55 críticas. Total definido: 401 tests API; sin regresión completa.
+
+OpenAPI no declara el cuerpo que requiere el handler y su esquema de highscores no refleja `{highScore:[...]}`. Siguiente módulo: tic-tac-toe.
+
 ## Registro agregado de juegos
 
 Quiz y hangman ejecutados conjuntamente bajo recorder: 5/5 aprobados, 34 solicitudes nuevas; `coverage:baseline` regenerado. Acumulado: 2509 solicitudes, 2193 matcheadas, 316 sin match. Coverage 488/653 (74.73%); endpoints 107/136, operaciones 140/170, estados 293/387 y parámetros 55/96. Brechas 194, críticas 59, rutas sin cobertura 29. No se ejecutó toda la regresión de 399 tests.

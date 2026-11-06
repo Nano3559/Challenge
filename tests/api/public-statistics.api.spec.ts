@@ -78,6 +78,20 @@ test.describe('Estadísticas, visitas y datos públicos', () => {
     expect(await selected.json()).toEqual({ '1': all['1'], '2': all['2'] });
   });
 
+  for (const resource of ['comments', 'users']) {
+    test(`visitas ${resource} acepta el filtro documentado ids`, { tag: '@regression' }, async ({ operationsClient: client }) => {
+      const all = await client.read(`/visits/${resource}`);
+      expect(all.status()).toBe(200);
+      const values = await all.json();
+      const ids = Object.keys(values).slice(0, 2);
+      const selected = await client.read(`/visits/${resource}`, { ids: [...ids, '999999'].join(',') });
+      expect(selected.status()).toBe(200);
+      const result = await selected.json();
+      expect(Object.keys(result).sort()).toEqual(ids.sort());
+      expect(result).toEqual(expect.objectContaining(Object.fromEntries(ids.map((id) => [id, expect.any(Number)]))));
+    });
+  }
+
   for (const days of generatedDayCounts) {
     test(`generadores: days=${days}`, { tag: '@regression' }, async ({ operationsClient: client }) => {
       const weatherResponse = await client.read('/v1/data/weather', { days });

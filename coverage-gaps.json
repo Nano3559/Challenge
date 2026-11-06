@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-06T14:57:44.304Z",
+  "generatedAt": "2026-11-06T17:17:02.572Z",
   "spec": {
     "source": "gad-gui-api-demo/public/tools/schema/openapi_rest_demo.json",
     "openapi": "3.0.1",
@@ -7,586 +7,23 @@
     "version": "1.3.3"
   },
   "summary": {
-    "total": 194,
-    "critical": 59,
+    "total": 49,
+    "critical": 0,
     "criticalCategories": [
       "uncovered_endpoint",
       "untested_method"
     ],
     "byCategory": {
-      "uncovered_endpoint": 29,
-      "untested_method": 30,
-      "unexecuted_status_code": 94,
-      "untested_parameter": 41
+      "unexecuted_status_code": 49
     },
     "bySeverity": {
-      "critical": 59,
-      "high": 40,
-      "medium": 2,
-      "low": 93
+      "critical": 0,
+      "high": 49,
+      "medium": 0,
+      "low": 0
     }
   },
   "gaps": [
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/articles/search",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /articles/search no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/articles/search|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/book-shop-accounts/files",
-      "method": "*",
-      "methods": [
-        "POST"
-      ],
-      "description": "El endpoint /book-shop-accounts/files no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/book-shop-accounts/files|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/captcha",
-      "method": "*",
-      "methods": [
-        "GET",
-        "POST"
-      ],
-      "description": "El endpoint /captcha no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/captcha|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/comments/search",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /comments/search no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/comments/search|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/debug/exit",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /debug/exit no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/debug/exit|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/debug/restart",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /debug/restart no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/debug/restart|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/diagnostic/log-level",
-      "method": "*",
-      "methods": [
-        "POST"
-      ],
-      "description": "El endpoint /diagnostic/log-level no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/diagnostic/log-level|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/diagnostic/request/histogram",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /diagnostic/request/histogram no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/diagnostic/request/histogram|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/diagnostic/toggle-diagnostics",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /diagnostic/toggle-diagnostics no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/diagnostic/toggle-diagnostics|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/diagnostic/toggle-logs",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /diagnostic/toggle-logs no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/diagnostic/toggle-logs|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/diagnostic/toggle-metrics",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /diagnostic/toggle-metrics no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/diagnostic/toggle-metrics|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/files/uploaded",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /files/uploaded no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/files/uploaded|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/files/uploaded/{userId}",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /files/uploaded/{userId} no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/files/uploaded/{userId}|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/files/uploaded/public",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /files/uploaded/public no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/files/uploaded/public|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/files/uploaded/public/users/{userIds}",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /files/uploaded/public/users/{userIds} no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/files/uploaded/public/users/{userIds}|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/logs",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /logs no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/logs|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/minesweeper/highscores",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /minesweeper/highscores no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/minesweeper/highscores|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/minesweeper/score",
-      "method": "*",
-      "methods": [
-        "POST"
-      ],
-      "description": "El endpoint /minesweeper/score no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/minesweeper/score|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/restore/list",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /restore/list no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/restore/list|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/restoreBigDB",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /restoreBigDB no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/restoreBigDB|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/restoreDB",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /restoreDB no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/restoreDB|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/restoreEmptyDB",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /restoreEmptyDB no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/restoreEmptyDB|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/tic-tac-toe/highscores",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /tic-tac-toe/highscores no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/tic-tac-toe/highscores|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/tic-tac-toe/join",
-      "method": "*",
-      "methods": [
-        "POST"
-      ],
-      "description": "El endpoint /tic-tac-toe/join no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/tic-tac-toe/join|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/tic-tac-toe/start",
-      "method": "*",
-      "methods": [
-        "POST"
-      ],
-      "description": "El endpoint /tic-tac-toe/start no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/tic-tac-toe/start|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/tic-tac-toe/status",
-      "method": "*",
-      "methods": [
-        "POST"
-      ],
-      "description": "El endpoint /tic-tac-toe/status no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/tic-tac-toe/status|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/tic-tac-toe/status/{code}",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /tic-tac-toe/status/{code} no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/tic-tac-toe/status/{code}|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/tic-tac-toe/stop",
-      "method": "*",
-      "methods": [
-        "POST"
-      ],
-      "description": "El endpoint /tic-tac-toe/stop no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/tic-tac-toe/stop|"
-    },
-    {
-      "severity": "critical",
-      "category": "uncovered_endpoint",
-      "endpoint": "/users/search",
-      "method": "*",
-      "methods": [
-        "GET"
-      ],
-      "description": "El endpoint /users/search no recibió ninguna solicitud que coincida con la especificación.",
-      "id": "uncovered_endpoint|*|/users/search|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/articles/search",
-      "method": "GET",
-      "description": "La operación GET /articles/search está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/articles/search|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/book-shop-accounts/files",
-      "method": "POST",
-      "description": "La operación POST /book-shop-accounts/files está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|POST|/book-shop-accounts/files|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/captcha",
-      "method": "GET",
-      "description": "La operación GET /captcha está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/captcha|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/captcha",
-      "method": "POST",
-      "description": "La operación POST /captcha está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|POST|/captcha|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/comments/search",
-      "method": "GET",
-      "description": "La operación GET /comments/search está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/comments/search|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/debug/exit",
-      "method": "GET",
-      "description": "La operación GET /debug/exit está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/debug/exit|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/debug/restart",
-      "method": "GET",
-      "description": "La operación GET /debug/restart está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/debug/restart|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/diagnostic/log-level",
-      "method": "POST",
-      "description": "La operación POST /diagnostic/log-level está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|POST|/diagnostic/log-level|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/diagnostic/request/histogram",
-      "method": "GET",
-      "description": "La operación GET /diagnostic/request/histogram está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/diagnostic/request/histogram|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/diagnostic/toggle-diagnostics",
-      "method": "GET",
-      "description": "La operación GET /diagnostic/toggle-diagnostics está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/diagnostic/toggle-diagnostics|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/diagnostic/toggle-logs",
-      "method": "GET",
-      "description": "La operación GET /diagnostic/toggle-logs está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/diagnostic/toggle-logs|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/diagnostic/toggle-metrics",
-      "method": "GET",
-      "description": "La operación GET /diagnostic/toggle-metrics está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/diagnostic/toggle-metrics|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/files/uploaded",
-      "method": "GET",
-      "description": "La operación GET /files/uploaded está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/files/uploaded|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/files/uploaded/{userId}",
-      "method": "GET",
-      "description": "La operación GET /files/uploaded/{userId} está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/files/uploaded/{userId}|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/files/uploaded/public",
-      "method": "GET",
-      "description": "La operación GET /files/uploaded/public está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/files/uploaded/public|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/files/uploaded/public/users/{userIds}",
-      "method": "GET",
-      "description": "La operación GET /files/uploaded/public/users/{userIds} está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/files/uploaded/public/users/{userIds}|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/logs",
-      "method": "GET",
-      "description": "La operación GET /logs está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/logs|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/minesweeper/highscores",
-      "method": "GET",
-      "description": "La operación GET /minesweeper/highscores está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/minesweeper/highscores|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/minesweeper/score",
-      "method": "POST",
-      "description": "La operación POST /minesweeper/score está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|POST|/minesweeper/score|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/restore/list",
-      "method": "GET",
-      "description": "La operación GET /restore/list está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/restore/list|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/restoreBigDB",
-      "method": "GET",
-      "description": "La operación GET /restoreBigDB está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/restoreBigDB|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/restoreDB",
-      "method": "GET",
-      "description": "La operación GET /restoreDB está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/restoreDB|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/restoreEmptyDB",
-      "method": "GET",
-      "description": "La operación GET /restoreEmptyDB está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/restoreEmptyDB|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/tic-tac-toe/highscores",
-      "method": "GET",
-      "description": "La operación GET /tic-tac-toe/highscores está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/tic-tac-toe/highscores|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/tic-tac-toe/join",
-      "method": "POST",
-      "description": "La operación POST /tic-tac-toe/join está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|POST|/tic-tac-toe/join|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/tic-tac-toe/start",
-      "method": "POST",
-      "description": "La operación POST /tic-tac-toe/start está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|POST|/tic-tac-toe/start|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/tic-tac-toe/status",
-      "method": "POST",
-      "description": "La operación POST /tic-tac-toe/status está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|POST|/tic-tac-toe/status|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/tic-tac-toe/status/{code}",
-      "method": "GET",
-      "description": "La operación GET /tic-tac-toe/status/{code} está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/tic-tac-toe/status/{code}|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/tic-tac-toe/stop",
-      "method": "POST",
-      "description": "La operación POST /tic-tac-toe/stop está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|POST|/tic-tac-toe/stop|"
-    },
-    {
-      "severity": "critical",
-      "category": "untested_method",
-      "endpoint": "/users/search",
-      "method": "GET",
-      "description": "La operación GET /users/search está documentada pero no fue ejecutada por ninguna prueba.",
-      "id": "untested_method|GET|/users/search|"
-    },
     {
       "severity": "high",
       "category": "unexecuted_status_code",
@@ -608,15 +45,6 @@
     {
       "severity": "high",
       "category": "unexecuted_status_code",
-      "endpoint": "/article-labels/articles/{id}",
-      "method": "PUT",
-      "statusCode": "404",
-      "description": "La operación PUT /article-labels/articles/{id} fue ejecutada, pero nunca devolvió el status 404 documentado.",
-      "id": "unexecuted_status_code|PUT|/article-labels/articles/{id}|404"
-    },
-    {
-      "severity": "high",
-      "category": "unexecuted_status_code",
       "endpoint": "/articles/{id}",
       "method": "HEAD",
       "statusCode": "400",
@@ -631,6 +59,15 @@
       "statusCode": "404",
       "description": "La operación PUT /articles/{id} fue ejecutada, pero nunca devolvió el status 404 documentado.",
       "id": "unexecuted_status_code|PUT|/articles/{id}|404"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/articles/search",
+      "method": "GET",
+      "statusCode": "200",
+      "description": "La operación GET /articles/search fue ejecutada, pero nunca devolvió el status 200 documentado.",
+      "id": "unexecuted_status_code|GET|/articles/search|200"
     },
     {
       "severity": "high",
@@ -662,11 +99,20 @@
     {
       "severity": "high",
       "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-manage/items/by-book/{bookId}",
-      "method": "GET",
+      "endpoint": "/book-shop-accounts/files",
+      "method": "POST",
       "statusCode": "200",
-      "description": "La operación GET /book-shop-manage/items/by-book/{bookId} fue ejecutada, pero nunca devolvió el status 200 documentado.",
-      "id": "unexecuted_status_code|GET|/book-shop-manage/items/by-book/{bookId}|200"
+      "description": "La operación POST /book-shop-accounts/files fue ejecutada, pero nunca devolvió el status 200 documentado.",
+      "id": "unexecuted_status_code|POST|/book-shop-accounts/files|200"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/book-shop-accounts/files",
+      "method": "POST",
+      "statusCode": "401",
+      "description": "La operación POST /book-shop-accounts/files fue ejecutada, pero nunca devolvió el status 401 documentado.",
+      "id": "unexecuted_status_code|POST|/book-shop-accounts/files|401"
     },
     {
       "severity": "high",
@@ -770,6 +216,69 @@
     {
       "severity": "high",
       "category": "unexecuted_status_code",
+      "endpoint": "/comments/search",
+      "method": "GET",
+      "statusCode": "200",
+      "description": "La operación GET /comments/search fue ejecutada, pero nunca devolvió el status 200 documentado.",
+      "id": "unexecuted_status_code|GET|/comments/search|200"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/files/uploaded",
+      "method": "GET",
+      "statusCode": "200",
+      "description": "La operación GET /files/uploaded fue ejecutada, pero nunca devolvió el status 200 documentado.",
+      "id": "unexecuted_status_code|GET|/files/uploaded|200"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/files/uploaded",
+      "method": "GET",
+      "statusCode": "401",
+      "description": "La operación GET /files/uploaded fue ejecutada, pero nunca devolvió el status 401 documentado.",
+      "id": "unexecuted_status_code|GET|/files/uploaded|401"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/files/uploaded/{userId}",
+      "method": "GET",
+      "statusCode": "200",
+      "description": "La operación GET /files/uploaded/{userId} fue ejecutada, pero nunca devolvió el status 200 documentado.",
+      "id": "unexecuted_status_code|GET|/files/uploaded/{userId}|200"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/files/uploaded/{userId}",
+      "method": "GET",
+      "statusCode": "401",
+      "description": "La operación GET /files/uploaded/{userId} fue ejecutada, pero nunca devolvió el status 401 documentado.",
+      "id": "unexecuted_status_code|GET|/files/uploaded/{userId}|401"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/files/uploaded/public",
+      "method": "GET",
+      "statusCode": "200",
+      "description": "La operación GET /files/uploaded/public fue ejecutada, pero nunca devolvió el status 200 documentado.",
+      "id": "unexecuted_status_code|GET|/files/uploaded/public|200"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/files/uploaded/public/users/{userIds}",
+      "method": "GET",
+      "statusCode": "200",
+      "description": "La operación GET /files/uploaded/public/users/{userIds} fue ejecutada, pero nunca devolvió el status 200 documentado.",
+      "id": "unexecuted_status_code|GET|/files/uploaded/public/users/{userIds}|200"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
       "endpoint": "/flashposts",
       "method": "GET",
       "statusCode": "401",
@@ -793,24 +302,6 @@
       "statusCode": "200",
       "description": "La operación POST /flashposts fue ejecutada, pero nunca devolvió el status 200 documentado.",
       "id": "unexecuted_status_code|POST|/flashposts|200"
-    },
-    {
-      "severity": "high",
-      "category": "unexecuted_status_code",
-      "endpoint": "/hangman/score",
-      "method": "POST",
-      "statusCode": "200",
-      "description": "La operación POST /hangman/score fue ejecutada, pero nunca devolvió el status 200 documentado.",
-      "id": "unexecuted_status_code|POST|/hangman/score|200"
-    },
-    {
-      "severity": "high",
-      "category": "unexecuted_status_code",
-      "endpoint": "/likes",
-      "method": "POST",
-      "statusCode": "404",
-      "description": "La operación POST /likes fue ejecutada, pero nunca devolvió el status 404 documentado.",
-      "id": "unexecuted_status_code|POST|/likes|404"
     },
     {
       "severity": "high",
@@ -878,20 +369,20 @@
     {
       "severity": "high",
       "category": "unexecuted_status_code",
-      "endpoint": "/quiz/stop",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /quiz/stop fue ejecutada, pero nunca devolvió el status 200 documentado.",
-      "id": "unexecuted_status_code|GET|/quiz/stop|200"
-    },
-    {
-      "severity": "high",
-      "category": "unexecuted_status_code",
       "endpoint": "/random/article",
       "method": "GET",
       "statusCode": "404",
       "description": "La operación GET /random/article fue ejecutada, pero nunca devolvió el status 404 documentado.",
       "id": "unexecuted_status_code|GET|/random/article|404"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/restore/list",
+      "method": "GET",
+      "statusCode": "200",
+      "description": "La operación GET /restore/list fue ejecutada, pero nunca devolvió el status 200 documentado.",
+      "id": "unexecuted_status_code|GET|/restore/list|200"
     },
     {
       "severity": "high",
@@ -910,6 +401,24 @@
       "statusCode": "404",
       "description": "La operación GET /surveys/{surveyType}/description fue ejecutada, pero nunca devolvió el status 404 documentado.",
       "id": "unexecuted_status_code|GET|/surveys/{surveyType}/description|404"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/tic-tac-toe/join",
+      "method": "POST",
+      "statusCode": "409",
+      "description": "La operación POST /tic-tac-toe/join fue ejecutada, pero nunca devolvió el status 409 documentado.",
+      "id": "unexecuted_status_code|POST|/tic-tac-toe/join|409"
+    },
+    {
+      "severity": "high",
+      "category": "unexecuted_status_code",
+      "endpoint": "/tic-tac-toe/status",
+      "method": "POST",
+      "statusCode": "403",
+      "description": "La operación POST /tic-tac-toe/status fue ejecutada, pero nunca devolvió el status 403 documentado.",
+      "id": "unexecuted_status_code|POST|/tic-tac-toe/status|403"
     },
     {
       "severity": "high",
@@ -948,900 +457,13 @@
       "id": "unexecuted_status_code|PUT|/users/{id}|404"
     },
     {
-      "severity": "medium",
-      "category": "untested_parameter",
-      "endpoint": "/visits/comments",
-      "method": "GET",
-      "parameter": "ids",
-      "parameterIn": "query",
-      "description": "La operación GET /visits/comments fue ejecutada, pero el parámetro query:ids nunca se envió.",
-      "id": "untested_parameter|GET|/visits/comments|ids"
-    },
-    {
-      "severity": "medium",
-      "category": "untested_parameter",
-      "endpoint": "/visits/users",
-      "method": "GET",
-      "parameter": "ids",
-      "parameterIn": "query",
-      "description": "La operación GET /visits/users fue ejecutada, pero el parámetro query:ids nunca se envió.",
-      "id": "untested_parameter|GET|/visits/users|ids"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/articles/search",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /articles/search no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/articles/search|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-accounts/files",
-      "method": "POST",
-      "statusCode": "200",
-      "description": "La operación POST /book-shop-accounts/files no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/book-shop-accounts/files|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/book-shop-accounts/files",
-      "method": "POST",
-      "statusCode": "401",
-      "description": "La operación POST /book-shop-accounts/files no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/book-shop-accounts/files|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/captcha",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /captcha no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/captcha|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/captcha",
-      "method": "POST",
-      "statusCode": "200",
-      "description": "La operación POST /captcha no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/captcha|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/captcha",
-      "method": "POST",
-      "statusCode": "400",
-      "description": "La operación POST /captcha no fue ejecutada; por lo tanto el status 400 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/captcha|400"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/captcha",
-      "method": "POST",
-      "statusCode": "404",
-      "description": "La operación POST /captcha no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/captcha|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/captcha",
-      "method": "POST",
-      "statusCode": "422",
-      "description": "La operación POST /captcha no fue ejecutada; por lo tanto el status 422 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/captcha|422"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/comments/search",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /comments/search no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/comments/search|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/debug/exit",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /debug/exit no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/debug/exit|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/debug/restart",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /debug/restart no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/debug/restart|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/diagnostic/log-level",
-      "method": "POST",
-      "statusCode": "200",
-      "description": "La operación POST /diagnostic/log-level no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/diagnostic/log-level|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/diagnostic/request/histogram",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /diagnostic/request/histogram no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/diagnostic/request/histogram|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/diagnostic/toggle-diagnostics",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /diagnostic/toggle-diagnostics no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/diagnostic/toggle-diagnostics|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/diagnostic/toggle-logs",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /diagnostic/toggle-logs no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/diagnostic/toggle-logs|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/diagnostic/toggle-metrics",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /diagnostic/toggle-metrics no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/diagnostic/toggle-metrics|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/files/uploaded",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /files/uploaded no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/files/uploaded|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/files/uploaded",
-      "method": "GET",
-      "statusCode": "401",
-      "description": "La operación GET /files/uploaded no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/files/uploaded|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/files/uploaded",
-      "method": "GET",
-      "statusCode": "404",
-      "description": "La operación GET /files/uploaded no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/files/uploaded|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/files/uploaded/{userId}",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /files/uploaded/{userId} no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/files/uploaded/{userId}|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/files/uploaded/{userId}",
-      "method": "GET",
-      "statusCode": "401",
-      "description": "La operación GET /files/uploaded/{userId} no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/files/uploaded/{userId}|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/files/uploaded/{userId}",
-      "method": "GET",
-      "statusCode": "404",
-      "description": "La operación GET /files/uploaded/{userId} no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/files/uploaded/{userId}|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/files/uploaded/public",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /files/uploaded/public no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/files/uploaded/public|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/files/uploaded/public",
-      "method": "GET",
-      "statusCode": "404",
-      "description": "La operación GET /files/uploaded/public no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/files/uploaded/public|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/files/uploaded/public/users/{userIds}",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /files/uploaded/public/users/{userIds} no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/files/uploaded/public/users/{userIds}|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/files/uploaded/public/users/{userIds}",
-      "method": "GET",
-      "statusCode": "404",
-      "description": "La operación GET /files/uploaded/public/users/{userIds} no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/files/uploaded/public/users/{userIds}|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/logs",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /logs no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/logs|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/minesweeper/highscores",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /minesweeper/highscores no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/minesweeper/highscores|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/minesweeper/score",
-      "method": "POST",
-      "statusCode": "200",
-      "description": "La operación POST /minesweeper/score no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/minesweeper/score|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/minesweeper/score",
-      "method": "POST",
-      "statusCode": "401",
-      "description": "La operación POST /minesweeper/score no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/minesweeper/score|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/minesweeper/score",
-      "method": "POST",
-      "statusCode": "422",
-      "description": "La operación POST /minesweeper/score no fue ejecutada; por lo tanto el status 422 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/minesweeper/score|422"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/restore/list",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /restore/list no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/restore/list|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/restoreBigDB",
-      "method": "GET",
-      "statusCode": "201",
-      "description": "La operación GET /restoreBigDB no fue ejecutada; por lo tanto el status 201 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/restoreBigDB|201"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/restoreDB",
-      "method": "GET",
-      "statusCode": "201",
-      "description": "La operación GET /restoreDB no fue ejecutada; por lo tanto el status 201 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/restoreDB|201"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/restoreEmptyDB",
-      "method": "GET",
-      "statusCode": "201",
-      "description": "La operación GET /restoreEmptyDB no fue ejecutada; por lo tanto el status 201 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/restoreEmptyDB|201"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/tic-tac-toe/highscores",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /tic-tac-toe/highscores no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/tic-tac-toe/highscores|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/tic-tac-toe/join",
-      "method": "POST",
-      "statusCode": "200",
-      "description": "La operación POST /tic-tac-toe/join no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/tic-tac-toe/join|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/tic-tac-toe/join",
-      "method": "POST",
-      "statusCode": "401",
-      "description": "La operación POST /tic-tac-toe/join no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/tic-tac-toe/join|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/tic-tac-toe/join",
-      "method": "POST",
-      "statusCode": "403",
-      "description": "La operación POST /tic-tac-toe/join no fue ejecutada; por lo tanto el status 403 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/tic-tac-toe/join|403"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/tic-tac-toe/join",
-      "method": "POST",
-      "statusCode": "409",
-      "description": "La operación POST /tic-tac-toe/join no fue ejecutada; por lo tanto el status 409 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/tic-tac-toe/join|409"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/tic-tac-toe/join",
-      "method": "POST",
-      "statusCode": "422",
-      "description": "La operación POST /tic-tac-toe/join no fue ejecutada; por lo tanto el status 422 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/tic-tac-toe/join|422"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/tic-tac-toe/start",
-      "method": "POST",
-      "statusCode": "201",
-      "description": "La operación POST /tic-tac-toe/start no fue ejecutada; por lo tanto el status 201 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/tic-tac-toe/start|201"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/tic-tac-toe/start",
-      "method": "POST",
-      "statusCode": "401",
-      "description": "La operación POST /tic-tac-toe/start no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/tic-tac-toe/start|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/tic-tac-toe/status",
-      "method": "POST",
-      "statusCode": "200",
-      "description": "La operación POST /tic-tac-toe/status no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/tic-tac-toe/status|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/tic-tac-toe/status",
-      "method": "POST",
-      "statusCode": "401",
-      "description": "La operación POST /tic-tac-toe/status no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/tic-tac-toe/status|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/tic-tac-toe/status",
-      "method": "POST",
-      "statusCode": "403",
-      "description": "La operación POST /tic-tac-toe/status no fue ejecutada; por lo tanto el status 403 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/tic-tac-toe/status|403"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/tic-tac-toe/status",
-      "method": "POST",
-      "statusCode": "422",
-      "description": "La operación POST /tic-tac-toe/status no fue ejecutada; por lo tanto el status 422 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/tic-tac-toe/status|422"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/tic-tac-toe/status/{code}",
-      "method": "GET",
-      "statusCode": "200",
-      "description": "La operación GET /tic-tac-toe/status/{code} no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/tic-tac-toe/status/{code}|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/tic-tac-toe/status/{code}",
-      "method": "GET",
-      "statusCode": "401",
-      "description": "La operación GET /tic-tac-toe/status/{code} no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/tic-tac-toe/status/{code}|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/tic-tac-toe/status/{code}",
-      "method": "GET",
-      "statusCode": "404",
-      "description": "La operación GET /tic-tac-toe/status/{code} no fue ejecutada; por lo tanto el status 404 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|GET|/tic-tac-toe/status/{code}|404"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/tic-tac-toe/stop",
-      "method": "POST",
-      "statusCode": "200",
-      "description": "La operación POST /tic-tac-toe/stop no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/tic-tac-toe/stop|200"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/tic-tac-toe/stop",
-      "method": "POST",
-      "statusCode": "401",
-      "description": "La operación POST /tic-tac-toe/stop no fue ejecutada; por lo tanto el status 401 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/tic-tac-toe/stop|401"
-    },
-    {
-      "severity": "low",
-      "category": "unexecuted_status_code",
-      "endpoint": "/tic-tac-toe/stop",
-      "method": "POST",
-      "statusCode": "403",
-      "description": "La operación POST /tic-tac-toe/stop no fue ejecutada; por lo tanto el status 403 documentado tampoco se verificó.",
-      "id": "unexecuted_status_code|POST|/tic-tac-toe/stop|403"
-    },
-    {
-      "severity": "low",
+      "severity": "high",
       "category": "unexecuted_status_code",
       "endpoint": "/users/search",
       "method": "GET",
       "statusCode": "200",
-      "description": "La operación GET /users/search no fue ejecutada; por lo tanto el status 200 documentado tampoco se verificó.",
+      "description": "La operación GET /users/search fue ejecutada, pero nunca devolvió el status 200 documentado.",
       "id": "unexecuted_status_code|GET|/users/search|200"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/articles/search",
-      "method": "GET",
-      "parameter": "q",
-      "parameterIn": "query",
-      "description": "La operación GET /articles/search no fue ejecutada; por lo tanto el parámetro query:q tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/articles/search|q"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/articles/search",
-      "method": "GET",
-      "parameter": "id",
-      "parameterIn": "query",
-      "description": "La operación GET /articles/search no fue ejecutada; por lo tanto el parámetro query:id tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/articles/search|id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/articles/search",
-      "method": "GET",
-      "parameter": "user_id",
-      "parameterIn": "query",
-      "description": "La operación GET /articles/search no fue ejecutada; por lo tanto el parámetro query:user_id tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/articles/search|user_id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/articles/search",
-      "method": "GET",
-      "parameter": "date",
-      "parameterIn": "query",
-      "description": "La operación GET /articles/search no fue ejecutada; por lo tanto el parámetro query:date tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/articles/search|date"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/articles/search",
-      "method": "GET",
-      "parameter": "_sort",
-      "parameterIn": "query",
-      "description": "La operación GET /articles/search no fue ejecutada; por lo tanto el parámetro query:_sort tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/articles/search|_sort"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/articles/search",
-      "method": "GET",
-      "parameter": "_order",
-      "parameterIn": "query",
-      "description": "La operación GET /articles/search no fue ejecutada; por lo tanto el parámetro query:_order tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/articles/search|_order"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/articles/search",
-      "method": "GET",
-      "parameter": "_limit",
-      "parameterIn": "query",
-      "description": "La operación GET /articles/search no fue ejecutada; por lo tanto el parámetro query:_limit tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/articles/search|_limit"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/articles/search",
-      "method": "GET",
-      "parameter": "_page",
-      "parameterIn": "query",
-      "description": "La operación GET /articles/search no fue ejecutada; por lo tanto el parámetro query:_page tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/articles/search|_page"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/articles/search",
-      "method": "GET",
-      "parameter": "_start",
-      "parameterIn": "query",
-      "description": "La operación GET /articles/search no fue ejecutada; por lo tanto el parámetro query:_start tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/articles/search|_start"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/articles/search",
-      "method": "GET",
-      "parameter": "_end",
-      "parameterIn": "query",
-      "description": "La operación GET /articles/search no fue ejecutada; por lo tanto el parámetro query:_end tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/articles/search|_end"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/articles/search",
-      "method": "GET",
-      "parameter": "_embed",
-      "parameterIn": "query",
-      "description": "La operación GET /articles/search no fue ejecutada; por lo tanto el parámetro query:_embed tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/articles/search|_embed"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/articles/search",
-      "method": "GET",
-      "parameter": "_expand",
-      "parameterIn": "query",
-      "description": "La operación GET /articles/search no fue ejecutada; por lo tanto el parámetro query:_expand tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/articles/search|_expand"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/comments/search",
-      "method": "GET",
-      "parameter": "q",
-      "parameterIn": "query",
-      "description": "La operación GET /comments/search no fue ejecutada; por lo tanto el parámetro query:q tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/comments/search|q"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/comments/search",
-      "method": "GET",
-      "parameter": "id",
-      "parameterIn": "query",
-      "description": "La operación GET /comments/search no fue ejecutada; por lo tanto el parámetro query:id tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/comments/search|id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/comments/search",
-      "method": "GET",
-      "parameter": "user_id",
-      "parameterIn": "query",
-      "description": "La operación GET /comments/search no fue ejecutada; por lo tanto el parámetro query:user_id tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/comments/search|user_id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/comments/search",
-      "method": "GET",
-      "parameter": "article_id",
-      "parameterIn": "query",
-      "description": "La operación GET /comments/search no fue ejecutada; por lo tanto el parámetro query:article_id tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/comments/search|article_id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/comments/search",
-      "method": "GET",
-      "parameter": "date",
-      "parameterIn": "query",
-      "description": "La operación GET /comments/search no fue ejecutada; por lo tanto el parámetro query:date tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/comments/search|date"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/comments/search",
-      "method": "GET",
-      "parameter": "_sort",
-      "parameterIn": "query",
-      "description": "La operación GET /comments/search no fue ejecutada; por lo tanto el parámetro query:_sort tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/comments/search|_sort"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/comments/search",
-      "method": "GET",
-      "parameter": "_order",
-      "parameterIn": "query",
-      "description": "La operación GET /comments/search no fue ejecutada; por lo tanto el parámetro query:_order tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/comments/search|_order"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/comments/search",
-      "method": "GET",
-      "parameter": "_limit",
-      "parameterIn": "query",
-      "description": "La operación GET /comments/search no fue ejecutada; por lo tanto el parámetro query:_limit tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/comments/search|_limit"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/comments/search",
-      "method": "GET",
-      "parameter": "_page",
-      "parameterIn": "query",
-      "description": "La operación GET /comments/search no fue ejecutada; por lo tanto el parámetro query:_page tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/comments/search|_page"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/comments/search",
-      "method": "GET",
-      "parameter": "_start",
-      "parameterIn": "query",
-      "description": "La operación GET /comments/search no fue ejecutada; por lo tanto el parámetro query:_start tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/comments/search|_start"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/comments/search",
-      "method": "GET",
-      "parameter": "_end",
-      "parameterIn": "query",
-      "description": "La operación GET /comments/search no fue ejecutada; por lo tanto el parámetro query:_end tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/comments/search|_end"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/comments/search",
-      "method": "GET",
-      "parameter": "_expand",
-      "parameterIn": "query",
-      "description": "La operación GET /comments/search no fue ejecutada; por lo tanto el parámetro query:_expand tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/comments/search|_expand"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/files/uploaded/{userId}",
-      "method": "GET",
-      "parameter": "userId",
-      "parameterIn": "path",
-      "description": "La operación GET /files/uploaded/{userId} no fue ejecutada; por lo tanto el parámetro path:userId tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/files/uploaded/{userId}|userId"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/files/uploaded/public/users/{userIds}",
-      "method": "GET",
-      "parameter": "userIds",
-      "parameterIn": "path",
-      "description": "La operación GET /files/uploaded/public/users/{userIds} no fue ejecutada; por lo tanto el parámetro path:userIds tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/files/uploaded/public/users/{userIds}|userIds"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/tic-tac-toe/status/{code}",
-      "method": "GET",
-      "parameter": "code",
-      "parameterIn": "path",
-      "description": "La operación GET /tic-tac-toe/status/{code} no fue ejecutada; por lo tanto el parámetro path:code tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/tic-tac-toe/status/{code}|code"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/users/search",
-      "method": "GET",
-      "parameter": "q",
-      "parameterIn": "query",
-      "description": "La operación GET /users/search no fue ejecutada; por lo tanto el parámetro query:q tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/users/search|q"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/users/search",
-      "method": "GET",
-      "parameter": "id",
-      "parameterIn": "query",
-      "description": "La operación GET /users/search no fue ejecutada; por lo tanto el parámetro query:id tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/users/search|id"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/users/search",
-      "method": "GET",
-      "parameter": "firstname",
-      "parameterIn": "query",
-      "description": "La operación GET /users/search no fue ejecutada; por lo tanto el parámetro query:firstname tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/users/search|firstname"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/users/search",
-      "method": "GET",
-      "parameter": "lastname",
-      "parameterIn": "query",
-      "description": "La operación GET /users/search no fue ejecutada; por lo tanto el parámetro query:lastname tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/users/search|lastname"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/users/search",
-      "method": "GET",
-      "parameter": "email",
-      "parameterIn": "query",
-      "description": "La operación GET /users/search no fue ejecutada; por lo tanto el parámetro query:email tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/users/search|email"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/users/search",
-      "method": "GET",
-      "parameter": "_sort",
-      "parameterIn": "query",
-      "description": "La operación GET /users/search no fue ejecutada; por lo tanto el parámetro query:_sort tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/users/search|_sort"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/users/search",
-      "method": "GET",
-      "parameter": "_order",
-      "parameterIn": "query",
-      "description": "La operación GET /users/search no fue ejecutada; por lo tanto el parámetro query:_order tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/users/search|_order"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/users/search",
-      "method": "GET",
-      "parameter": "_limit",
-      "parameterIn": "query",
-      "description": "La operación GET /users/search no fue ejecutada; por lo tanto el parámetro query:_limit tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/users/search|_limit"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/users/search",
-      "method": "GET",
-      "parameter": "_page",
-      "parameterIn": "query",
-      "description": "La operación GET /users/search no fue ejecutada; por lo tanto el parámetro query:_page tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/users/search|_page"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/users/search",
-      "method": "GET",
-      "parameter": "_start",
-      "parameterIn": "query",
-      "description": "La operación GET /users/search no fue ejecutada; por lo tanto el parámetro query:_start tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/users/search|_start"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/users/search",
-      "method": "GET",
-      "parameter": "_end",
-      "parameterIn": "query",
-      "description": "La operación GET /users/search no fue ejecutada; por lo tanto el parámetro query:_end tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/users/search|_end"
-    },
-    {
-      "severity": "low",
-      "category": "untested_parameter",
-      "endpoint": "/users/search",
-      "method": "GET",
-      "parameter": "_embed",
-      "parameterIn": "query",
-      "description": "La operación GET /users/search no fue ejecutada; por lo tanto el parámetro query:_embed tampoco se ejercitó.",
-      "id": "untested_parameter|GET|/users/search|_embed"
     }
   ]
 }

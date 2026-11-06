@@ -3,6 +3,7 @@ import type { UserCreate } from '@src/sut/data/users';
 
 export class UsersClient extends BaseApiClient {
   list() { return this.get('/api/users'); }
+  search(params?: Record<string, string | number>) { return this.get('/api/users/search', params); }
   getById(id: number | string) { return this.get(`/api/users/${encodeURIComponent(id)}`); }
   headById(id: number | string) { return this.head(`/api/users/${encodeURIComponent(id)}`); }
   create(user: Partial<UserCreate>) { return this.post('/api/users', user); }

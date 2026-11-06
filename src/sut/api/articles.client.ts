@@ -31,6 +31,10 @@ export class ArticlesClient extends BaseApiClient {
     return this.get('/api/articles', params);
   }
 
+  search(params?: Record<string, string | number>) {
+    return this.get('/api/articles/search', params);
+  }
+
   getById(id: number) {
     return this.get(`/api/articles/${id}`);
   }

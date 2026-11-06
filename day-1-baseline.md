@@ -1,6 +1,6 @@
 # Day 1 Baseline — Cobertura de pruebas automatizadas vs OpenAPI
 
-Generado: 2026-11-06T14:57:44.304Z
+Generado: 2026-11-06T17:17:02.572Z
 
 > Documento generado por la herramienta `coverage-cli`. Los números de la sección "Herramienta"
 > provienen de la ejecución real sobre la especificación y las solicitudes grabadas. Los números de
@@ -21,8 +21,8 @@ estado documentados y parámetros ejercitados. El resultado sirve como línea ba
 | Título / versión | 🦎 GAD  / 1.3.3 |
 | Servidores | `/api`, `http://localhost:3000/api` |
 | Prefijos normalizados | `(vacío)`, `/api` |
-| Solicitudes grabadas | `reports/coverage/requests` (4 archivo(s)) |
-| Solicitudes | 2509 total, 2193 matcheadas, 316 sin match |
+| Solicitudes grabadas | `reports/coverage/requests` (22 archivo(s)) |
+| Solicitudes | 2875 total, 2550 matcheadas, 325 sin match |
 | Pruebas analizadas | `tests` (referencia; el análisis usa las solicitudes grabadas) |
 | Ejecución | `node coverage-cli.js --spec gad-gui-api-demo/public/tools/schema/openapi_rest_demo.json --requests reports/coverage/requests --out . --ai-estimates tools/coverage/ai-estimates.json` |
 
@@ -39,13 +39,13 @@ estado documentados y parámetros ejercitados. El resultado sirve como línea ba
 
 | Dimensión | Cubierto | Total | Cobertura |
 |---|---:|---:|---:|
-| Endpoints | 107 | 136 | 78.68% |
-| Operaciones (método + path) | 140 | 170 | 82.35% |
-| Códigos de estado documentados | 293 | 387 | 75.71% |
-| Parámetros documentados | 55 | 96 | 57.29% |
-| **Global ponderado** | **488** | **653** | **74.73%** |
+| Endpoints | 136 | 136 | 100.00% |
+| Operaciones (método + path) | 170 | 170 | 100.00% |
+| Códigos de estado documentados | 338 | 387 | 87.34% |
+| Parámetros documentados | 96 | 96 | 100.00% |
+| **Global ponderado** | **604** | **653** | **92.50%** |
 
-Endpoints por estado: 79 completos, 28 parciales y 29 sin cobertura.
+Endpoints por estado: 102 completos, 34 parciales y 0 sin cobertura.
 
 ## 4. Primera estimación de IA
 
@@ -108,9 +108,9 @@ Las dos estimaciones son consistentes entre sí (≤ 5 pp).
 
 | Fuente | Cobertura global estimada/medida | Diferencia vs herramienta |
 |---|---:|---:|
-| Herramienta (real) | 74.73% | 0.00 pp |
-| IA 1 | 1.41% | -73.32 pp |
-| IA 2 | 1.38% | -73.35 pp |
+| Herramienta (real) | 92.50% | 0.00 pp |
+| IA 1 | 1.41% | -91.09 pp |
+| IA 2 | 1.38% | -91.12 pp |
 
 La diferencia se expresa en puntos porcentuales (estimación IA − herramienta). Una diferencia positiva
 indica que la IA sobreestimó la cobertura; una negativa, que la subestimó.
@@ -120,49 +120,44 @@ solicitudes grabadas. La herramienta es la fuente de verdad para esta línea bas
 
 ## 8. Principales brechas identificadas
 
-Total de brechas: **194** (críticas: 59).
+Total de brechas: **49** (críticas: 0).
 
 | Categoría | Cantidad | Severidad típica |
 |---|---:|---|
-| `unexecuted_status_code` | 94 | high (low si la operación no se ejecutó) |
-| `untested_parameter` | 41 | medium (low si la operación no se ejecutó) |
-| `untested_method` | 30 | critical |
-| `uncovered_endpoint` | 29 | critical |
+| `unexecuted_status_code` | 49 | high (low si la operación no se ejecutó) |
 
 Brechas prioritarias (máximo 15):
 
-- **[critical]** `* /articles/search`: El endpoint /articles/search no recibió ninguna solicitud que coincida con la especificación.
-- **[critical]** `* /book-shop-accounts/files`: El endpoint /book-shop-accounts/files no recibió ninguna solicitud que coincida con la especificación.
-- **[critical]** `* /captcha`: El endpoint /captcha no recibió ninguna solicitud que coincida con la especificación.
-- **[critical]** `* /comments/search`: El endpoint /comments/search no recibió ninguna solicitud que coincida con la especificación.
-- **[critical]** `* /debug/exit`: El endpoint /debug/exit no recibió ninguna solicitud que coincida con la especificación.
-- **[critical]** `* /debug/restart`: El endpoint /debug/restart no recibió ninguna solicitud que coincida con la especificación.
-- **[critical]** `* /diagnostic/log-level`: El endpoint /diagnostic/log-level no recibió ninguna solicitud que coincida con la especificación.
-- **[critical]** `* /diagnostic/request/histogram`: El endpoint /diagnostic/request/histogram no recibió ninguna solicitud que coincida con la especificación.
-- **[critical]** `* /diagnostic/toggle-diagnostics`: El endpoint /diagnostic/toggle-diagnostics no recibió ninguna solicitud que coincida con la especificación.
-- **[critical]** `* /diagnostic/toggle-logs`: El endpoint /diagnostic/toggle-logs no recibió ninguna solicitud que coincida con la especificación.
-- **[critical]** `* /diagnostic/toggle-metrics`: El endpoint /diagnostic/toggle-metrics no recibió ninguna solicitud que coincida con la especificación.
-- **[critical]** `* /files/uploaded`: El endpoint /files/uploaded no recibió ninguna solicitud que coincida con la especificación.
-- **[critical]** `* /files/uploaded/{userId}`: El endpoint /files/uploaded/{userId} no recibió ninguna solicitud que coincida con la especificación.
-- **[critical]** `* /files/uploaded/public`: El endpoint /files/uploaded/public no recibió ninguna solicitud que coincida con la especificación.
-- **[critical]** `* /files/uploaded/public/users/{userIds}`: El endpoint /files/uploaded/public/users/{userIds} no recibió ninguna solicitud que coincida con la especificación.
-- ... y 179 brechas más en `coverage-gaps.json`.
+- **[high]** `PATCH /api/books/{id}` — status 500: La operación PATCH /api/books/{id} fue ejecutada, pero nunca devolvió el status 500 documentado.
+- **[high]** `PUT /article-labels/articles/{id}` — status 200: La operación PUT /article-labels/articles/{id} fue ejecutada, pero nunca devolvió el status 200 documentado.
+- **[high]** `HEAD /articles/{id}` — status 400: La operación HEAD /articles/{id} fue ejecutada, pero nunca devolvió el status 400 documentado.
+- **[high]** `PUT /articles/{id}` — status 404: La operación PUT /articles/{id} fue ejecutada, pero nunca devolvió el status 404 documentado.
+- **[high]** `GET /articles/search` — status 200: La operación GET /articles/search fue ejecutada, pero nunca devolvió el status 200 documentado.
+- **[high]** `GET /book-authors` — status 404: La operación GET /book-authors fue ejecutada, pero nunca devolvió el status 404 documentado.
+- **[high]** `GET /book-genres` — status 404: La operación GET /book-genres fue ejecutada, pero nunca devolvió el status 404 documentado.
+- **[high]** `GET /book-shop-accounts` — status 401: La operación GET /book-shop-accounts fue ejecutada, pero nunca devolvió el status 401 documentado.
+- **[high]** `POST /book-shop-accounts/files` — status 200: La operación POST /book-shop-accounts/files fue ejecutada, pero nunca devolvió el status 200 documentado.
+- **[high]** `POST /book-shop-accounts/files` — status 401: La operación POST /book-shop-accounts/files fue ejecutada, pero nunca devolvió el status 401 documentado.
+- **[high]** `GET /book-shop-manage/items/by-book/{bookId}` — status 404: La operación GET /book-shop-manage/items/by-book/{bookId} fue ejecutada, pero nunca devolvió el status 404 documentado.
+- **[high]** `GET /book-shop-manage/team` — status 401: La operación GET /book-shop-manage/team fue ejecutada, pero nunca devolvió el status 401 documentado.
+- **[high]** `DELETE /book-shop-order-items` — status 200: La operación DELETE /book-shop-order-items fue ejecutada, pero nunca devolvió el status 200 documentado.
+- **[high]** `POST /book-shop-order-items` — status 201: La operación POST /book-shop-order-items fue ejecutada, pero nunca devolvió el status 201 documentado.
+- **[high]** `POST /book-shop-order-items` — status 409: La operación POST /book-shop-order-items fue ejecutada, pero nunca devolvió el status 409 documentado.
+- ... y 34 brechas más en `coverage-gaps.json`.
 
 ## 9. Conclusiones y recomendaciones
 
-- Cobertura global medida: **74.73%** (488/653 unidades).
-- Endpoints con al menos una solicitud: **107/136** (78.68%).
-- Operaciones ejercitadas: **140/170** (82.35%).
-- Códigos de estado verificados: **293/387** (75.71%).
-- Parámetros ejercitados: **55/96** (57.29%).
+- Cobertura global medida: **92.50%** (604/653 unidades).
+- Endpoints con al menos una solicitud: **136/136** (100.00%).
+- Operaciones ejercitadas: **170/170** (100.00%).
+- Códigos de estado verificados: **338/387** (87.34%).
+- Parámetros ejercitados: **96/96** (100.00%).
 
 Recomendaciones basadas en los datos anteriores:
 
-1. Priorizar los 29 endpoints sin ninguna cobertura; una sola prueba por endpoint ya mueve la aguja más que añadir aserciones a endpoints ya tocados.
-2. Añadir casos para los 94 códigos de estado documentados no ejecutados, especialmente los errores 4xx/5xx de operaciones ya probadas.
-3. Ejercitar los 41 parámetros documentados no enviados (query, header, cookie y path). Ejecutar una solicitud no cubre sus parámetros.
-4. Completar los 28 endpoints parciales: les falta algún método, status o parámetro documentado.
-5. Mantener las estimaciones de IA como señal secundaria: su diferencia máxima con la herramienta fue de 73.35 pp en esta línea base.
+2. Añadir casos para los 49 códigos de estado documentados no ejecutados, especialmente los errores 4xx/5xx de operaciones ya probadas.
+4. Completar los 34 endpoints parciales: les falta algún método, status o parámetro documentado.
+5. Mantener las estimaciones de IA como señal secundaria: su diferencia máxima con la herramienta fue de 91.12 pp en esta línea base.
 
 ## 10. Limitaciones de la medición
 

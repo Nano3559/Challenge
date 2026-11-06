@@ -17,7 +17,7 @@ test.describe('API de hangman', () => {
     expect(unauthenticated.status()).toBe(401);
   });
 
-  test('puntaje validado y persistido; valores faltantes o no numéricos se rechazan', { tag: '@regression' }, async ({ hangmanSandbox }) => {
+test('valida score nuevo e inferior; rechaza valores faltantes o no numéricos', { tag: '@regression' }, async ({ hangmanSandbox }) => {
     const missing = await hangmanSandbox.player.submitScore({});
     expect(missing.status()).toBe(422);
     const invalid = await hangmanSandbox.player.submitScore({ score: 'invalid' });
@@ -26,6 +26,10 @@ test.describe('API de hangman', () => {
     const saved = await hangmanSandbox.player.submitScore({ score: 1000000000 });
     expect(saved.status()).toBe(201);
     expectSchema(hangmanScoreSchema, await saved.json());
+    const lower = await hangmanSandbox.player.submitScore({ score: 0 });
+    expect(lower.status()).toBe(200);
+    expectSchema(hangmanScoreSchema, await lower.json());
+    expect(await lower.json()).toMatchObject({ score: 0 });
     const highscores = await hangmanSandbox.player.highscores();
     expect(highscores.status()).toBe(200);
     expect((await highscores.json()).highScore).toContainEqual(expect.objectContaining({ game: 'Hangman', score: 1000000000 }));

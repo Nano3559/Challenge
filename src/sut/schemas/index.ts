@@ -200,3 +200,30 @@ export const quizHighscoresSchema = z.object({ highScore: z.array(z.object({ use
 export const hangmanWordSchema = z.object({ word: z.string().min(1) });
 export const hangmanHighscoresSchema = z.object({ highScore: z.array(z.object({ user: z.string(), game: z.string(), score: z.number() })) });
 export const hangmanScoreSchema = z.object({ game_id: z.number(), user_id: z.number(), score: z.number() });
+export const minesweeperHighscoresSchema = z.object({ highScore: z.array(z.object({ user: z.string(), game: z.string(), score: z.number() })) });
+export const minesweeperScoreSchema = z.object({ game_id: z.number(), user_id: z.number(), score: z.number() });
+export const ticTacToeSessionSchema = z.object({
+  users: z.object({ '0': z.union([z.number(), z.string()]).optional(), '1': z.union([z.number(), z.string()]).optional() }),
+  scores: z.object({ '0': z.number(), '1': z.number() }),
+  code: z.string().min(1), numberOfMatches: z.number(), hasStarted: z.boolean(), hasEnded: z.boolean(),
+  currentTurn: z.number(), roundTimeInSeconds: z.number(),
+  startTime: z.string().datetime({ offset: true }).optional(), endTime: z.string().datetime({ offset: true }).optional(),
+  currentTime: z.string().datetime({ offset: true }).optional(),
+  board: z.array(z.array(z.union([z.string(), z.number()])).length(3)).length(3),
+});
+export const ticTacToeHighscoresSchema = z.object({ highScore: z.array(z.object({ user: z.string(), game: z.string(), score: z.number() })) });
+export const uploadedFileSchema = z.object({ name: z.string(), size: z.number(), lastModified: z.string() });
+export const uploadedFilesSchema = z.array(uploadedFileSchema);
+export const captchaChallengeSchema = z.object({
+  equation: z.array(z.string()), uuid: z.string().uuid(), equationString: z.string().optional(), result: z.number().optional(),
+});
+export const captchaResultSchema = z.object({ isCaptchaCorrect: z.boolean() });
+export const diagnosticLogsSchema = z.object({
+  logs: z.object({ limit: z.number(), itemCount: z.number(), items: z.array(z.string()) }),
+});
+export const toggleDiagnosticsSchema = z.object({ diagnosticsEnabled: z.boolean(), logsEnabled: z.boolean() });
+export const toggleLogsSchema = z.object({ logsEnabled: z.boolean() });
+export const toggleMetricsSchema = z.object({ metricsTrackingEnabled: z.boolean() });
+export const logLevelResponseSchema = z.object({ level: z.union([z.string(), z.number()]) });
+export const restoreListSchema = z.object({ message: z.string(), dbRestoreList: z.array(z.object({ name: z.string(), path: z.string() })) });
+export const restoreResultSchema = z.object({ message: z.string(), entities: z.record(z.string(), z.number()) });

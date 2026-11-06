@@ -22,7 +22,9 @@ async function stop(child: ChildProcess) {
   });
 }
 
-export async function startAccountSandbox(options: { socialFeatures?: boolean } = {}) {
+export async function startAccountSandbox(options: {
+  socialFeatures?: boolean; fileFeature?: boolean; captchaFeature?: boolean; captchaSolutionInResponse?: boolean;
+} = {}) {
   const root = process.cwd();
   const reports = path.resolve(root, 'reports');
   await mkdir(reports, { recursive: true });
@@ -49,7 +51,13 @@ export async function startAccountSandbox(options: { socialFeatures?: boolean } 
     await new Promise<void>((resolve) => wsProbe.close(() => resolve()));
     child = fork(path.join(root, 'tools/gad/accounts-sandbox.js'), [db], {
       cwd: root,
-      env: { ...process.env, PORT: String(port), DB: '', READ_ONLY: '0', SSL_ENABLED: '0', GAD_SANDBOX_SOCIAL_FEATURES: options.socialFeatures ? '1' : '0' },
+      env: {
+        ...process.env, PORT: String(port), DB: '', READ_ONLY: '0', SSL_ENABLED: '0',
+        GAD_SANDBOX_SOCIAL_FEATURES: options.socialFeatures ? '1' : '0',
+        GAD_SANDBOX_FILE_FEATURE: options.fileFeature ? '1' : '0',
+        GAD_SANDBOX_CAPTCHA_FEATURE: options.captchaFeature ? '1' : '0',
+        GAD_SANDBOX_CAPTCHA_SOLUTION: options.captchaSolutionInResponse ? '1' : '0',
+      },
       stdio: ['ignore', 'ignore', 'ignore', 'ipc'],
     });
     const running = child;

@@ -21,7 +21,7 @@ export abstract class BaseApiClient {
   private async send(
     method: Method,
     path: string,
-    options: { params?: Record<string, string | number>; data?: unknown; headers?: Record<string, string> } = {},
+    options: { params?: Record<string, string | number>; data?: unknown; multipart?: FormData; headers?: Record<string, string> } = {},
   ): Promise<APIResponse> {
     const started = Date.now();
     const headers = { ...this.headers, ...options.headers };
@@ -76,6 +76,9 @@ export abstract class BaseApiClient {
   }
   protected post(path: string, data?: unknown) {
     return this.send('POST', path, { data });
+  }
+  protected postMultipart(path: string, multipart: FormData) {
+    return this.send('POST', path, { multipart });
   }
 
   protected postRawJson(path: string, data: string) {

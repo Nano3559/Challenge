@@ -12,6 +12,7 @@ test.describe('Etiquetas, likes y marcadores de artículos', () => {
     const client = new ArticleSocialClient(request);
     expect((await client.labels()).status()).toBe(404);
     expect((await client.articleLikes(missingArticleId)).status()).toBe(404);
+    expect((await client.like({ article_id: missingArticleId, user_id: socialOwnerId }, socialOwnerId)).status()).toBe(404);
     expect((await client.bookmarks()).status()).toBe(404);
   });
 
@@ -37,6 +38,8 @@ test.describe('Etiquetas, likes y marcadores de artículos', () => {
       const read = await sandbox.anonymousSocial.articleLabels(article.id);
       expect(read.status()).toBe(200);
       expect(await read.json()).toEqual(association);
+      const updated = await sandbox.social.setLabels(article.id, { article_id: article.id, label_ids: [articleLabelIds[0]] });
+      expect(updated.status()).toBe(404);
       expect((await sandbox.otherSocial.setLabels(article.id, { article_id: article.id, label_ids: [] })).status()).toBe(401);
       expect((await sandbox.anonymousSocial.setLabels(article.id, { article_id: article.id, label_ids: [] })).status()).toBe(401);
       expect((await sandbox.social.setLabels(article.id, { article_id: article.id, label_ids: tooManyLabelIds })).status()).toBe(422);

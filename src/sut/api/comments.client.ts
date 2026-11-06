@@ -2,6 +2,7 @@ import { BaseApiClient } from '@src/core';
 
 export class CommentsClient extends BaseApiClient {
   list() { return this.get('/api/comments'); }
+  search(params?: Record<string, string | number>) { return this.get('/api/comments/search', params); }
   getById(id: number | string) { return this.get(`/api/comments/${id}`); }
   headById(id: number | string) { return this.head(`/api/comments/${id}`); }
   create(data: Record<string, unknown>) { return this.post('/api/comments', data); }

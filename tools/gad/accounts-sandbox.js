@@ -21,6 +21,9 @@ if (process.env.GAD_SANDBOX_SOCIAL_FEATURES === '1') {
   featureFlagConfig.feature_likes = true;
   featureFlagConfig.feature_user_bookmark_articles = true;
 }
+if (process.env.GAD_SANDBOX_FILE_FEATURE === '1') featureFlagConfig.feature_files = true;
+if (process.env.GAD_SANDBOX_CAPTCHA_FEATURE === '1') featureFlagConfig.feature_captcha = true;
+if (process.env.GAD_SANDBOX_CAPTCHA_SOLUTION === '1') config.captchaSolutionInResponse = true;
 const { serverApp } = require(path.join(gad, 'server'));
 const ready = () => process.send({ baseUrl: `http://127.0.0.1:${serverApp.address().port}` });
 if (serverApp.listening) ready();

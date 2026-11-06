@@ -3,6 +3,10 @@ import { ArticlesClient } from '@src/sut/api/articles.client';
 import { OperationsClient } from '@src/sut/api/operations.client';
 import { QuizClient } from '@src/sut/api/quiz.client';
 import { HangmanClient } from '@src/sut/api/hangman.client';
+import { MinesweeperClient } from '@src/sut/api/minesweeper.client';
+import { TicTacToeClient } from '@src/sut/api/tic-tac-toe.client';
+import { FilesClient } from '@src/sut/api/files.client';
+import { CaptchaClient } from '@src/sut/api/captcha.client';
 import { CommunityClient } from '@src/sut/api/community.client';
 import { CommentsClient } from '@src/sut/api/comments.client';
 import { ArticleSocialClient } from '@src/sut/api/article-social.client';
@@ -64,8 +68,12 @@ export type OrderSandbox = {
 type Fixtures = {
   operationsClient: OperationsClient;
   freshOperationsClient: OperationsClient;
+  isolatedOperationsClient: OperationsClient;
   quizSandbox: { anonymous: QuizClient; player: QuizClient };
   hangmanSandbox: { anonymous: HangmanClient; player: HangmanClient };
+  minesweeperSandbox: { anonymous: MinesweeperClient; player: MinesweeperClient };
+  ticTacToeSandbox: { anonymous: TicTacToeClient; player: TicTacToeClient; opponent: TicTacToeClient; outsider: TicTacToeClient };
+  filesCaptchaSandbox: { files: FilesClient; anonymousFiles: FilesClient; captcha: CaptchaClient };
   commentSandbox: {
     anonymous: CommentsClient; owner: CommentsClient; other: CommentsClient; articles: ArticlesClient;
     social: ArticleSocialClient; anonymousSocial: ArticleSocialClient; otherSocial: ArticleSocialClient;
@@ -121,6 +129,12 @@ export const test = base.extend<Fixtures, {
     try { await use(new OperationsClient(context)); }
     finally { await context.dispose(); await sandbox.dispose(); }
   },
+  isolatedOperationsClient: async ({ playwright }, use) => {
+    const sandbox = await startAccountSandbox();
+    const context = await playwright.request.newContext({ baseURL: sandbox.baseUrl });
+    try { await use(new OperationsClient(context)); }
+    finally { await context.dispose(); await sandbox.dispose(); }
+  },
   quizSandbox: async ({ playwright }, use) => {
     const sandbox = await startAccountSandbox();
     const context = await playwright.request.newContext({ baseURL: sandbox.baseUrl });
@@ -141,6 +155,47 @@ export const test = base.extend<Fixtures, {
       if (login.status() !== 200) throw new Error(`Login de hangman fallido: ${login.status()}`);
       const { access_token: token } = await login.json();
       await use({ anonymous: new HangmanClient(context), player: new HangmanClient(context, token) });
+    } finally { await context.dispose(); await sandbox.dispose(); }
+  },
+  minesweeperSandbox: async ({ playwright }, use) => {
+    const sandbox = await startAccountSandbox();
+    const context = await playwright.request.newContext({ baseURL: sandbox.baseUrl });
+    try {
+      const auth = new AuthClient(context);
+      const login = await auth.login(users.registered);
+      if (login.status() !== 200) throw new Error(`Login de minesweeper fallido: ${login.status()}`);
+      const { access_token: token } = await login.json();
+      await use({ anonymous: new MinesweeperClient(context), player: new MinesweeperClient(context, token) });
+    } finally { await context.dispose(); await sandbox.dispose(); }
+  },
+  ticTacToeSandbox: async ({ playwright }, use) => {
+    const sandbox = await startAccountSandbox();
+    const context = await playwright.request.newContext({ baseURL: sandbox.baseUrl });
+    try {
+      const auth = new AuthClient(context);
+      const credentials = [users.registered, bookReader, users.valid] as const;
+      const tokens: string[] = [];
+      for (const account of credentials) {
+        const login = await auth.login(account);
+        if (login.status() !== 200) throw new Error(`Login de tic-tac-toe fallido: ${login.status()}`);
+        tokens.push((await login.json()).access_token);
+      }
+      await use({
+        anonymous: new TicTacToeClient(context),
+        player: new TicTacToeClient(context, tokens[0]),
+        opponent: new TicTacToeClient(context, tokens[1]),
+        outsider: new TicTacToeClient(context, tokens[2]),
+      });
+    } finally { await context.dispose(); await sandbox.dispose(); }
+  },
+  filesCaptchaSandbox: async ({ playwright }, use) => {
+    const sandbox = await startAccountSandbox({ fileFeature: true, captchaFeature: true, captchaSolutionInResponse: true });
+    const context = await playwright.request.newContext({ baseURL: sandbox.baseUrl });
+    try {
+      const login = await new AuthClient(context).login(users.registered);
+      if (login.status() !== 200) throw new Error(`Login de files/captcha fallido: ${login.status()}`);
+      const { access_token: token } = await login.json();
+      await use({ files: new FilesClient(context, token), anonymousFiles: new FilesClient(context), captcha: new CaptchaClient(context) });
     } finally { await context.dispose(); await sandbox.dispose(); }
   },
   // eslint-disable-next-line no-empty-pattern -- Playwright requiere desestructurar las dependencias.
