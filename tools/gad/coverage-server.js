@@ -19,3 +19,4 @@ function stopServer() {
 }
 process.once('SIGTERM', stopServer);
 process.once('SIGINT', stopServer);
+process.on('message', (message) => { if (message?.type === 'shutdown') stopServer(); });

@@ -61,14 +61,15 @@ runs:
       continue-on-error: true
       env:
         CI: 'true'
-        START_APP: 'true'
+        START_APP: 'false'
         NODE_V8_COVERAGE: ${{ runner.temp }}/v8-coverage-${{ inputs.target }}
         GAD_APP_DIR: gad-gui-api-demo
-        APP_START_COMMAND: node ../workflow-source/tools/gad/coverage-server.js
+        COVERAGE_WORKFLOW_SOURCE: ../workflow-source
+        COVERAGE_REQUESTS_OUT: reports/coverage/requests
       run: |
         rm -rf "$NODE_V8_COVERAGE"
         mkdir -p "$NODE_V8_COVERAGE"
-        npm run coverage:record -- --project=api --reporter=list
+        node "$COVERAGE_WORKFLOW_SOURCE/tools/coverage/bin/run-api-tests-with-v8.js"
 
     - name: Generate Node code coverage
       id: code-coverage

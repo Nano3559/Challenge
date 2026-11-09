@@ -1,3 +1,11 @@
+## Seguimiento Day 3: ultima ejecucion remota (2026-11-09)
+
+- La ejecucion manual `42618080092` publico correctamente o actualizo el comentario del PR #1 (`42619525568`). El comentario reporto base y PR con validacion de tests fallida; cobertura c8 del PR: lineas/statement 28.15% (32,124/114,102), branches 71.78% (1,659/2,311), funciones 16.87% (337/1,997). La cobertura c8 base no se genero, por lo que no existe delta comparable. OpenAPI: base 92.50%, PR 73.81%, delta -18.69 puntos porcentuales. El artefacto HTML fue publicado.
+- Ajuste pendiente de confirmar en Actions: el job ahora lanza el mismo `coverage-server.js` y recorder por cada ref mediante `tools/coverage/bin/run-api-tests-with-v8.js`, sin depender de diferencias en `playwright.config`. Esto debe permitir c8 equivalente en base y PR. La app se cierra por IPC y el recorder/test suite siguen siendo los de cada ref.
+- Verificacion local posterior: `npm run ci:check` aprobado, `npm run test:coverage:unit` 31/31, `git diff --check` aprobado. La integracion local del runner cubrio un test y valido 943/943 scripts GAD ejecutados; no es cobertura completa de suite.
+- Se mantiene como observacion el 404 intermitente en `DELETE /api/book-shop-orders/items`: 85/86 pruebas iniciales y el caso paso en retry. Assertion 200 preservada; GAD no se modifica. Claude queda excluido por solicitud.
+- Proximo paso: publicar el runner, ejecutar de nuevo API Coverage en Actions y revisar medicion/test status de ambos refs. No declarar finalizada comparacion hasta que base y PR generen datos validos.
+
 ## Cierre tecnico Day 3 (2026-11-09)
 
 - Inventario y pedidos: `orderSandbox` e `inventorySandbox` usan una base aislada por prueba, evitando que libros, stock y estados creados por casos anteriores contaminen los siguientes. Los 7 casos de reproduccion de 404 pasaron. Regresion conjunta con `CI=true`: 85 tests pasaron y 1 fallo intermitente de `DELETE /api/book-shop-orders/items` (404 en intento inicial) paso en el retry. Se conserva la asercion 200; el comportamiento queda registrado como defecto/flaky de GAD y no se modifica la app.
