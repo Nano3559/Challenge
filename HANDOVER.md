@@ -9,11 +9,15 @@ Incluye comparación OpenAPI y c8/V8 entre base y PR, reporte HTML con métricas
 ### Validación realizada
 
 - `npm run ci:check`: pasó.
-- `npm run test:coverage:unit`: 27/27 pasó.
-- `node --test tools/coverage/test/comparison.test.js`: 2/2 pasó.
+- `npm run test:coverage:unit`: 29/29 pasó (incluye cuatro pruebas del comparador y CLI).
+- `node --test tools/coverage/test/comparison.test.js`: 4/4 pasó.
 - Prueba local c8: generó `coverage-summary.json` y `lcov.info` con líneas, ramas, funciones y statements.
 - Prueba de datos faltantes: generó Markdown/HTML, informó que faltaba medición y terminó con código 1; nunca sustituyó los datos faltantes por 0%.
-- La rama local está limpia después del commit.
+- Simulación sintética base/PR: CLI generó JSON, Markdown y HTML; verificó deltas, gaps resueltos, métricas y URL del artefacto.
+- Se corrigió el delta de líneas para que la eliminación de un archivo/línea no aparezca falsamente como recién descubierta en el PR.
+- `npm run ci:check`: pasó después de los cambios.
+- Los cuatro YAML de workflows/actions se parsearon correctamente con la dependencia `yaml`. `actionlint` no está instalado, así que falta esa validación específica.
+- La implementación base está en `8dc0155`; la corrección y pruebas de seguimiento quedaron guardadas en `6ecef71` (`test: cover coverage comparison edge cases`). El worktree de Day 3 quedó limpio después de ese commit.
 
 ### Bloqueos y límites confirmados
 
@@ -25,7 +29,14 @@ Incluye comparación OpenAPI y c8/V8 entre base y PR, reporte HTML con métricas
 
 ### Próximo paso para la siguiente sesión
 
-Continuar localmente sin tocar GitHub ni el GAD: agregar pruebas unitarias del comparador para archivos agregados/eliminados y variaciones de funciones/ramas; correr una simulación completa con reportes sintéticos base/PR para inspeccionar JSON, Markdown y HTML; validar workflows con `actionlint` si está disponible. Después de dejar esa validación documentada, se puede retomar la publicación cuando se autentique una cuenta con permiso de escritura.
+La validación local indicada quedó completada. Pendientes para completar Day 3:
+
+1. Opcionalmente validar workflows con `actionlint` (no está instalado; el parseo YAML ya pasó).
+2. Publicar la rama con una cuenta que tenga permiso de escritura. El intento previo devolvió 403 para `Nano3559`.
+3. Ejecutar el workflow en GitHub y comprobar una comparación real base/PR, el resumen, el artefacto HTML y el comentario actualizado.
+4. Configurar `ANTHROPIC_API_KEY` o `CLAUDE_CODE_OAUTH_TOKEN`, ejecutar una tanda manual y validar que se creen tests significativos, se ejecuten y se abra el PR de tests.
+
+No hay métricas reales base/PR, artefacto publicado, tests generados por el proveedor ni PR hasta completar esos pasos. GAD sigue inmutable.
 
 > Esta sección de Day 3 es la actualización más reciente y prevalece sobre instrucciones de continuación anteriores que describen cobertura OpenAPI del framework como próxima tarea.
 
