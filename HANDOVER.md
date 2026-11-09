@@ -22,7 +22,7 @@ Incluye comparación OpenAPI y c8/V8 entre base y PR, reporte HTML con métricas
 ### Bloqueos y límites confirmados
 
 - No se ejecutó una comparación base/PR completa dentro de GitHub Actions; todavía no hay métricas reales de esas dos ejecuciones ni artefacto de CI publicado.
-- El remoto `origin` es `https://github.com/FerHinojosa/ChallengeFer.git`. GitHub respondió 403 al intentar publicar: la sesión está autenticada como `Nano3559`, que no tiene permiso de escritura. La rama sigue solo local, no hay PR.
+- La rama `day3-ai-test-generation` se publicó correctamente en `https://github.com/Nano3559/Challenge.git` y sigue `origin/day3-ai-test-generation`. El remoto anterior `FerHinojosa/ChallengeFer.git` devolvió 403 porque `Nano3559` no tenía permiso allí.
 - La generación de pruebas con el proveedor no se ejecutó: el workflow requiere el secret `ANTHROPIC_API_KEY` o `CLAUDE_CODE_OAUTH_TOKEN`. No se deben presentar los tests del comparador como tests generados por el agente.
 - No está instalado `gh`; se necesitará acceso autenticado para crear el PR una vez que la rama se publique.
 - c8 cubre código Node incluido durante pruebas API. JavaScript que solo se ejecuta en navegador está fuera de alcance y así se documenta.
@@ -32,7 +32,7 @@ Incluye comparación OpenAPI y c8/V8 entre base y PR, reporte HTML con métricas
 La validación local indicada quedó completada. Pendientes para completar Day 3:
 
 1. Opcionalmente validar workflows con `actionlint` (no está instalado; el parseo YAML ya pasó).
-2. Publicar la rama con una cuenta que tenga permiso de escritura. El intento previo devolvió 403 para `Nano3559`.
+2. Abrir un PR desde `day3-ai-test-generation` hacia la rama base apropiada del repositorio `Nano3559/Challenge`.
 3. Ejecutar el workflow en GitHub y comprobar una comparación real base/PR, el resumen, el artefacto HTML y el comentario actualizado.
 4. Configurar `ANTHROPIC_API_KEY` o `CLAUDE_CODE_OAUTH_TOKEN`, ejecutar una tanda manual y validar que se creen tests significativos, se ejecuten y se abra el PR de tests.
 
