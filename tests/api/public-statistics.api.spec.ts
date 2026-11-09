@@ -73,7 +73,10 @@ test.describe('Estadísticas, visitas y datos públicos', () => {
     const response = await client.read('/visits/articles');
     expect(response.status()).toBe(200);
     const all = await response.json();
-    const selected = await client.read('/visits/articles', { ids: '1,2,999999' });
+    const existingIds = new Set(Object.keys(all));
+    let missingId = Number.MAX_SAFE_INTEGER;
+    while (existingIds.has(String(missingId))) missingId -= 1;
+    const selected = await client.read('/visits/articles', { ids: `1,2,${missingId}` });
     expect(selected.status()).toBe(200);
     expect(await selected.json()).toEqual({ '1': all['1'], '2': all['2'] });
   });

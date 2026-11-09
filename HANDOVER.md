@@ -1,3 +1,10 @@
+## Seguimiento Day 3 — estado de PR (2026-11-09)
+
+- Corregido el test de `/visits/articles`: el ID esperado ausente se calcula como una clave fuera del mapa real de visitas. `999999` no era inexistente en los datos CI. Validación local contra GAD: 1/1 aprobado; `npm run ci:check` aprobado; `npm run test:coverage:unit` 29/29.
+- Siguen pendientes los 404 book-shop observados en pruebas de base/PR y el c8 remoto 0/114102. Una reproducción local de cobertura escribió archivos V8, pero ninguno incluyó módulos GAD procesables; no se debe tomar como cobertura válida. GAD no se modifica.
+- El comentario automático recibió 403 `Resource not accessible by integration` con `issues: write`; requiere revisar permisos efectivos Actions/organización o configurar un token autorizado.
+- El workflow Claude no se ejecutó por falta de `ANTHROPIC_API_KEY`/`CLAUDE_CODE_OAUTH_TOKEN`. La generación manual con Codex es posible, pero no satisface automatización autónoma en Actions.
+
 ## Continuación por módulos — coverage agregada (2026-11-06)
 
 Se completó lo pendiente de recorder para quiz y hangman: ejecución conjunta 5/5 aprobada con `--keep`, 34 solicitudes nuevas registradas. `npm run coverage:baseline` regeneró los reportes raíz. Acumulado: 2509 solicitudes, 2193 reconocidas, 316 sin match; coverage 488/653 = 74.73%; 107/136 endpoints, 140/170 operaciones, 293/387 estados, 55/96 parámetros; 29 rutas sin cobertura, 194 brechas (59 críticas). IA histórica intacta. La regresión de los 399 tests API no se ejecutó.
