@@ -143,9 +143,8 @@ function compareFiles(baseFiles, headFiles) {
     const head = summarizeFile(headFiles.get(path));
     const baseLines = baseFiles.get(path)?.lines || new Map();
     const headLines = headFiles.get(path)?.lines || new Map();
-    const lines = new Set([...baseLines.keys(), ...headLines.keys()]);
-    const newlyCoveredLines = [...lines].filter((line) => (baseLines.get(line) || 0) === 0 && (headLines.get(line) || 0) > 0).sort((a, b) => a - b);
-    const newlyUncoveredLines = [...lines].filter((line) => (baseLines.get(line) || 0) > 0 && (headLines.get(line) || 0) === 0).sort((a, b) => a - b);
+    const newlyCoveredLines = [...headLines.keys()].filter((line) => (baseLines.get(line) || 0) === 0 && (headLines.get(line) || 0) > 0).sort((a, b) => a - b);
+    const newlyUncoveredLines = [...headLines.keys()].filter((line) => (baseLines.get(line) || 0) > 0 && (headLines.get(line) || 0) === 0).sort((a, b) => a - b);
     return {
       path,
       base,
