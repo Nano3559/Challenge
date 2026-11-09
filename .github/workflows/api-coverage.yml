@@ -2,104 +2,164 @@ name: API Coverage
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened]
   workflow_dispatch:
     inputs:
+      base-ref:
+        description: Base branch or SHA to compare with
+        required: false
+        default: main
       min-coverage:
-        description: 'Cobertura global mínima (%)'
+        description: Minimum PR OpenAPI coverage percentage
         required: false
         default: '1.0'
       fail-on-critical-gaps:
-        description: 'Fallar si hay brechas críticas (uncovered_endpoint/untested_method)'
+        description: Fail if PR has uncovered endpoints or methods
         type: choice
-        options:
-          - 'false'
-          - 'true'
+        options: ['false', 'true']
         default: 'false'
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
-  api-coverage:
+  resolve-gad:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    outputs:
+      sha: ${{ steps.resolve.outputs.sha }}
+    steps:
+      - name: Resolve GAD commit once for equivalent runs
+        id: resolve
+        shell: bash
+        run: |
+          SHA="$(git ls-remote https://github.com/jaktestowac/gad-gui-api-demo.git refs/heads/main | awk '{print $1}')"
+          if [ -z "$SHA" ]; then echo 'Could not resolve GAD main.' >&2; exit 1; fi
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+
+  coverage-runs:
+    needs: resolve-gad
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: base
+            ref: ${{ github.event.pull_request.base.sha || inputs.base-ref || github.event.repository.default_branch }}
+          - target: pr
+            ref: ${{ github.event.pull_request.head.sha || github.sha }}
     env:
       CI: true
-      START_APP: 'true'
+    steps:
+      - name: Checkout coverage workflow source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: workflow-source
+
+      - name: Checkout comparison target
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.ref }}
+          path: repo
+
+      - name: Run equivalent coverage suite
+        uses: ./workflow-source/.github/actions/run-api-coverage
+        with:
+          target: ${{ matrix.target }}
+          gad-ref: ${{ needs.resolve-gad.outputs.sha }}
+          repo-dir: repo
+
+      - name: Upload branch coverage inputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-coverage-${{ matrix.target }}
+          path: repo/coverage-run-artifact/
+          if-no-files-found: error
+          retention-days: 14
+
+  compare:
+    needs: [resolve-gad, coverage-runs]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
       MIN_COVERAGE: ${{ inputs.min-coverage || '1.0' }}
       FAIL_ON_CRITICAL_GAPS: ${{ inputs.fail-on-critical-gaps || 'false' }}
-      SPEC_PATH: gad-gui-api-demo/public/tools/schema/openapi_rest_demo.json
-      REQUESTS_DIR: reports/coverage/requests
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout PR comparison tools
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
 
-      - run: npm ci
-
-      - name: Clonar GAD (app bajo prueba)
-        run: git clone --depth 1 https://github.com/jaktestowac/gad-gui-api-demo.git gad-gui-api-demo
-
-      - name: Instalar dependencias de GAD
-        run: npm --prefix gad-gui-api-demo ci
-
-      - run: npm run ci:check # lint + typecheck del framework
-
-      - name: Pruebas unitarias de la herramienta de cobertura
-        run: npm run test:coverage:unit
-
-      - name: Ejecutar pruebas API grabando solicitudes
-        run: npm run coverage:record -- --project=api --reporter=list
-
-      - name: Analizar cobertura y aplicar el gate
-        run: |
-          FLAGS=""
-          if [ "$FAIL_ON_CRITICAL_GAPS" = "true" ]; then
-            FLAGS="--fail-on-critical-gaps"
-          fi
-          node coverage-cli.js \
-            --spec "$SPEC_PATH" \
-            --requests "$REQUESTS_DIR" \
-            --out . \
-            --min-coverage "$MIN_COVERAGE" \
-            --ai-estimates tools/coverage/ai-estimates.json \
-            --console-limit 15 \
-            $FLAGS
-
-      - name: Publicar baseline en la pestaña Summary
+      - name: Download base coverage data
+        id: base-artifact
         if: always()
-        run: cat day-1-baseline.md >> "$GITHUB_STEP_SUMMARY" || true
-
-      - name: Publicar resumen de brechas en la pestaña Summary
-        if: always()
-        run: |
-          if [ -f coverage-gaps.json ]; then
-            node -e "
-              const gaps = require('./coverage-gaps.json');
-              const s = gaps.summary;
-              console.log('### Brechas de cobertura');
-              console.log('');
-              console.log('| Severidad | Cantidad |');
-              console.log('|---|---:|');
-              for (const [sev, count] of Object.entries(s.bySeverity)) console.log('| ' + sev + ' | ' + count + ' |');
-              console.log('');
-              console.log('Total: **' + s.total + '** (críticas: **' + s.critical + '**)');
-            " >> "$GITHUB_STEP_SUMMARY"
-          fi
-
-      - uses: actions/upload-artifact@v4
-        if: always()
+        continue-on-error: true
+        uses: actions/download-artifact@v4
         with:
-          name: api-coverage
-          path: |
-            coverage-report.json
-            coverage-gaps.json
-            day-1-baseline.md
-            reports/coverage/
-            reports/junit.xml
-            test-results/
+          name: api-coverage-base
+          path: coverage-inputs/base
+
+      - name: Download PR coverage data
+        id: pr-artifact
+        if: always()
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: api-coverage-pr
+          path: coverage-inputs/pr
+
+      - name: Build comparison HTML and summary
+        id: comparison
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          RUN_URL="https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          ARGS=(
+            --base coverage-inputs/base
+            --head coverage-inputs/pr
+            --out coverage-comparison
+            --artifact-url "$RUN_URL"
+            --min-coverage "$MIN_COVERAGE"
+          )
+          if [ "$FAIL_ON_CRITICAL_GAPS" = 'true' ]; then ARGS+=(--fail-on-critical-gaps); fi
+          node tools/coverage/bin/compare-coverage.js "${ARGS[@]}"
+
+      - name: Publish coverage summary
+        if: always()
+        shell: bash
+        run: |
+          if [ -f coverage-comparison/summary.md ]; then
+            cat coverage-comparison/summary.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo '## Coverage comparison' >> "$GITHUB_STEP_SUMMARY"
+            echo '' >> "$GITHUB_STEP_SUMMARY"
+            echo '**Measurement failed:** comparison output could not be generated. See job logs.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload HTML comparison artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-coverage-comparison
+          path: coverage-comparison/
+          if-no-files-found: warn
           retention-days: 14
+
+      - name: Enforce test and measurement result
+        if: always()
+        shell: bash
+        run: |
+          node -e 'const fs=require("node:fs"); const path="coverage-comparison/coverage-comparison.json"; if(!fs.existsSync(path)){console.error("Coverage comparison data is missing; measurement did not pass."); process.exit(1)} const c=JSON.parse(fs.readFileSync(path,"utf8")); const failures=[]; if(c.measurement.status!=="available") failures.push(c.measurement.reason||"Test run failed."); if(!c.codeCoverage.available) failures.push(c.codeCoverage.reason); if(!c.apiCoverage.available) failures.push(c.apiCoverage.reason); if(c.apiCoverage.head && c.apiCoverage.head.global < Number(process.env.MIN_COVERAGE)) failures.push(`PR OpenAPI coverage ${c.apiCoverage.head.global}% is below ${process.env.MIN_COVERAGE}%.`); if(process.env.FAIL_ON_CRITICAL_GAPS==="true" && c.apiCoverage.criticalGaps>0) failures.push(`PR has ${c.apiCoverage.criticalGaps} critical OpenAPI gaps.`); if(failures.length){for(const failure of failures) console.error(failure); process.exit(1)} console.log("Coverage measurements are available and all configured gates passed.")'

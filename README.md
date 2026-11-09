@@ -131,7 +131,9 @@ La herramienta **no inventa** estimaciones. `--ai-estimates` solo registra estim
 
 ### CI
 
-`.github/workflows/api-coverage.yml` clona e inicia GAD, ejecuta las pruebas unitarias de la herramienta, graba las solicitudes de `--project=api`, corre la CLI y aplica el gate (`min-coverage`, por defecto 1.0%; `fail-on-critical-gaps` opcional). Publica el baseline y el conteo de brechas en *Summary* y sube `coverage-report.json`, `coverage-gaps.json`, `day-1-baseline.md` y `reports/coverage/` como artefactos. El gate de brechas críticas queda desactivado por defecto porque la línea base del Día 1 tiene 300 brechas críticas: activarlo bloquearía todos los PRs.
+`.github/workflows/api-coverage.yml` compara el SHA base y el SHA del PR con el mismo commit de GAD y las mismas pruebas/configuración. Mide cobertura de contrato OpenAPI y cobertura Node con c8/V8, genera una comparación JSON/Markdown/HTML, publica el resumen en *Summary* y adjunta artefactos de cada rama y el reporte comparativo. El gate OpenAPI mínimo conserva el default de 1.0%; brechas críticas son opcionales. `.github/workflows/api-coverage-comment.yml` actualiza un único comentario en el PR mediante `workflow_run`.
+
+La cobertura de código solo mide archivos Node seleccionados en GAD durante pruebas API. El JavaScript ejecutado exclusivamente en el navegador no se instrumenta y se informa como fuera de alcance; cualquier dato ausente aparece como **Unavailable**, nunca como 0%. Las métricas OpenAPI (operaciones, estados y parámetros) son una dimensión separada y no sustituyen line/branch/function coverage.
 
 
 ## Pipeline (GitHub Actions)
@@ -144,6 +146,7 @@ La herramienta **no inventa** estimaciones. `--ai-estimates` solo registra estim
 - `.claude/skills/`: `add-api-test`, `add-page-object`, `triage-failure`.
 - `.claude/agents/`: `test-reviewer` y `failure-triager`.
 - `.mcp.json`: Playwright MCP para explorar la página real y proponer locators.
+- `.github/workflows/ai-test-generation.yml`: ejecución manual y acotada de una sola tanda de hasta 5 pruebas, con el archivo de gaps, especificación, convenciones, skill y pruebas ejemplo. Requiere un secret `ANTHROPIC_API_KEY` o `CLAUDE_CODE_OAUTH_TOKEN`; valida pruebas, crea rama y abre (no mezcla) un PR. Ver `docs/AI-TEST-GENERATION.md`.
 
 ## Experimento del Día 1 (adaptado a GAD)
 Ver `docs/PROMPTS.md` y `docs/COMPARACION.md`. Endpoint: `GET /api/articles/:id`.
