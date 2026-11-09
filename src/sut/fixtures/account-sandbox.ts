@@ -17,8 +17,10 @@ async function availablePort(): Promise<number> {
 async function stop(child: ChildProcess) {
   if (child.exitCode !== null || child.signalCode !== null) return;
   await new Promise<void>((resolve) => {
-    child.once('exit', () => resolve());
-    child.kill();
+    const forceStop = setTimeout(() => child.kill(), 5_000);
+    child.once('exit', () => { clearTimeout(forceStop); resolve(); });
+    if (child.connected) child.send({ type: 'shutdown' }, (error) => { if (error) child.kill(); });
+    else child.kill();
   });
 }
 

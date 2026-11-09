@@ -83,6 +83,7 @@ type Fixtures = {
   };
   bookShopRolesSandbox: Record<'anonymous' | 'admin' | 'reader' | 'staff' | 'withoutAccount' | 'invalidToken', BookShopRolesClient>;
   bookShopOrderStatusesClient: BookShopOrderStatusesClient;
+  isolatedBookShopDatabase: Awaited<ReturnType<typeof startAccountSandbox>>;
   orderSandbox: OrderSandbox;
   bookReviewsClient: BookReviewsClient;
   inventorySandbox: InventorySandbox;
@@ -214,8 +215,15 @@ export const test = base.extend<Fixtures, {
     } finally { await context.dispose(); }
   },
   bookShopOrderStatusesClient: async ({ request }, use) => use(new BookShopOrderStatusesClient(request)),
-  orderSandbox: async ({ playwright, isolatedAccountDatabase }, use) => {
-    const context = await playwright.request.newContext({ baseURL: isolatedAccountDatabase.baseUrl });
+  // Cada caso de pedidos/inventario recibe una BD fresca para evitar fuga de libros, stock y estados entre pruebas.
+  // eslint-disable-next-line no-empty-pattern -- Playwright requiere desestructurar las dependencias.
+  isolatedBookShopDatabase: [async ({}, use) => {
+    const sandbox = await startAccountSandbox();
+    try { await use(sandbox); }
+    finally { await sandbox.dispose(); }
+  }, { timeout: 45_000 }],
+  orderSandbox: async ({ playwright, isolatedBookShopDatabase }, use) => {
+    const context = await playwright.request.newContext({ baseURL: isolatedBookShopDatabase.baseUrl });
     try {
       const auth = new AuthClient(context);
       const adminToken = (await (await auth.login(bookManager)).json()).access_token;
@@ -253,8 +261,8 @@ export const test = base.extend<Fixtures, {
       });
     } finally { await context.dispose(); }
   },
-  inventorySandbox: async ({ playwright, isolatedAccountDatabase }, use) => {
-    const context = await playwright.request.newContext({ baseURL: isolatedAccountDatabase.baseUrl });
+  inventorySandbox: async ({ playwright, isolatedBookShopDatabase }, use) => {
+    const context = await playwright.request.newContext({ baseURL: isolatedBookShopDatabase.baseUrl });
     try {
       const auth = new AuthClient(context);
       const managerLogin = await auth.login(bookManager);

@@ -1,3 +1,11 @@
+## Cierre tecnico Day 3 (2026-11-09)
+
+- Inventario y pedidos: `orderSandbox` e `inventorySandbox` usan una base aislada por prueba, evitando que libros, stock y estados creados por casos anteriores contaminen los siguientes. Los 7 casos de reproduccion de 404 pasaron. Regresion conjunta con `CI=true`: 85 tests pasaron y 1 fallo intermitente de `DELETE /api/book-shop-orders/items` (404 en intento inicial) paso en el retry. Se conserva la asercion 200; el comportamiento queda registrado como defecto/flaky de GAD y no se modifica la app.
+- c8/V8: Playwright ahora inicia GAD con `tools/gad/coverage-server.js`; ambas formas de sandbox cierran el servidor de manera ordenada para que Node escriba coverage al terminar. `validate-v8-coverage.js` confirma que hay scripts de GAD ejecutados antes de c8; datos ausentes fallan como no disponibles. Prueba local de un caso: 220/220 scripts GAD vistos, 27,957/114,102 lineas (24.50%), 583/1,026 branches (56.82%), 167/1,988 funciones (8.40%). Es una prueba puntual, no el agregado de la suite.
+- Comentarios PR: el workflow usa `pull-requests: write` como permiso acotado al recurso. Requiere una nueva ejecucion de Actions para confirmar el comentario automatico.
+- Claude se omite por instruccion del usuario; no se configuro proveedor ni secreto.
+- Validacion actual: `npm run ci:check` aprobado, 31/31 pruebas de coverage y parseo YAML aprobado. No se cambio GAD ni se debilitaron aserciones.
+
 ## Seguimiento Day 3 — estado de PR (2026-11-09)
 
 - Corregido el test de `/visits/articles`: el ID esperado ausente se calcula como una clave fuera del mapa real de visitas. `999999` no era inexistente en los datos CI. Validación local contra GAD: 1/1 aprobado; `npm run ci:check` aprobado; `npm run test:coverage:unit` 29/29.

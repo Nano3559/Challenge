@@ -22,6 +22,19 @@ if (process.env.GAD_SANDBOX_SOCIAL_FEATURES === '1') {
   featureFlagConfig.feature_user_bookmark_articles = true;
 }
 const { serverApp } = require(path.join(gad, 'server'));
+let stopping = false;
+function stopServer() {
+  if (stopping) return;
+  stopping = true;
+  const forceStop = setTimeout(() => process.exit(1), 5_000);
+  forceStop.unref();
+  const exit = () => { clearTimeout(forceStop); process.exit(0); };
+  if (serverApp.listening) serverApp.close(exit);
+  else exit();
+}
+process.on('message', (message) => { if (message?.type === 'shutdown') stopServer(); });
+process.once('SIGTERM', stopServer);
+process.once('SIGINT', stopServer);
 const ready = () => process.send({ baseUrl: `http://127.0.0.1:${serverApp.address().port}` });
 if (serverApp.listening) ready();
 else serverApp.once('listening', ready);
