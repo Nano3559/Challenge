@@ -167,8 +167,8 @@ export const test = base.extend<Fixtures, {
         otherCommunity: new CommunityClient(context, otherToken), communityForToken: (token) => new CommunityClient(context, token) });
     } finally { await context.dispose(); }
   },
-  paymentCardsSandbox: async ({ playwright, isolatedAccountDatabase }, use) => {
-    const context = await playwright.request.newContext({ baseURL: isolatedAccountDatabase.baseUrl });
+  paymentCardsSandbox: async ({ playwright, isolatedBookShopDatabase }, use) => {
+    const context = await playwright.request.newContext({ baseURL: isolatedBookShopDatabase.baseUrl });
     try {
       const response = await new AuthClient(context).login(users.registered);
       if (response.status() !== 200) throw new Error(`Login de fixture de tarjetas: HTTP ${response.status()}`);
@@ -179,8 +179,8 @@ export const test = base.extend<Fixtures, {
       });
     } finally { await context.dispose(); }
   },
-  shopReportingSandbox: async ({ playwright, isolatedAccountDatabase }, use) => {
-    const context = await playwright.request.newContext({ baseURL: isolatedAccountDatabase.baseUrl });
+  shopReportingSandbox: async ({ playwright, isolatedBookShopDatabase }, use) => {
+    const context = await playwright.request.newContext({ baseURL: isolatedBookShopDatabase.baseUrl });
     try {
       const auth = new AuthClient(context);
       const clientFor = async (credentials: typeof bookManager) => {
