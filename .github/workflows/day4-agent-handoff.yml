@@ -1,0 +1,71 @@
+name: Day 4 Agent Handoff
+
+on:
+  workflow_dispatch:
+    inputs:
+      agent:
+        description: Which local Codex role should receive a task package
+        required: true
+        type: choice
+        options: [feature-development, test-generation]
+      branch:
+        description: Existing Pull Request head branch; both agents target this branch
+        required: true
+        type: string
+      feature-request:
+        description: Engineer request (required for feature-development)
+        required: false
+        type: string
+      coverage-run-id:
+        description: Completed API Coverage run ID (required for test-generation)
+        required: false
+        type: string
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  package-task:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Package feature request for local Agent 1
+        if: inputs.agent == 'feature-development'
+        env:
+          DAY4_BRANCH: ${{ inputs.branch }}
+          DAY4_FEATURE_REQUEST: ${{ inputs.feature-request }}
+          DAY4_OUTPUT: day4-agent-task
+        run: node tools/agents/bin/create-feature-task.js
+
+      - name: Download CI coverage handoff for local Agent 2
+        if: inputs.agent == 'test-generation'
+        uses: actions/download-artifact@v4
+        with:
+          name: day4-agent-handoff
+          run-id: ${{ inputs.coverage-run-id }}
+          github-token: ${{ github.token }}
+          path: day4-agent-task
+
+      - name: Validate test task package
+        if: inputs.agent == 'test-generation'
+        shell: bash
+        env:
+          TARGET_BRANCH: ${{ inputs.branch }}
+        run: |
+          node -e 'const fs=require("node:fs"); const p="day4-agent-task/agent-handoff.json"; if(!fs.existsSync(p)) throw new Error("Coverage handoff JSON is missing."); const h=JSON.parse(fs.readFileSync(p,"utf8")); if(h.task.branch!==process.env.TARGET_BRANCH) throw new Error(`Artifact branch ${h.task.branch} does not match ${process.env.TARGET_BRANCH}.`); if(h.task.remainingAttempts<1) throw new Error("The test-agent retry limit has been reached.");'
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: day4-agent-task
+          path: day4-agent-task/
+          if-no-files-found: error
+          retention-days: 14

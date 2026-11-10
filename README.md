@@ -142,11 +142,12 @@ La cobertura de código solo mide archivos Node seleccionados en GAD durante pru
 - `api-coverage.yml`: en cada PR y manual. Graba solicitudes de las pruebas API, calcula cobertura contra el OpenAPI y falla bajo el umbral configurable (o con brechas críticas si se activa). Sube los reportes como artefactos.
 
 ## IA
-- `CLAUDE.md`: convenciones como contexto.
-- `.claude/skills/`: `add-api-test`, `add-page-object`, `triage-failure`.
-- `.claude/agents/`: `test-reviewer` y `failure-triager`.
-- `.mcp.json`: Playwright MCP para explorar la página real y proponer locators.
-- `.github/workflows/ai-test-generation.yml`: ejecución manual y acotada de una sola tanda de hasta 5 pruebas, con el archivo de gaps, especificación, convenciones, skill y pruebas ejemplo. Requiere un secret `ANTHROPIC_API_KEY` o `CLAUDE_CODE_OAUTH_TOKEN`; valida pruebas, crea rama y abre (no mezcla) un PR. Ver `docs/AI-TEST-GENERATION.md`.
+- `CLAUDE.md` se conserva como archivo de convenciones del framework; no implica uso de proveedor Claude.
+- `.agents/day4/` define los roles locales Codex de Feature Development y Test Generation.
+- `.github/workflows/day4-agent-handoff.yml` empaqueta una solicitud de feature o un artifact de cobertura; no llama a ningún proveedor de modelos.
+- `.github/workflows/api-coverage.yml` genera `day4-agent-handoff` en cada comparación base/PR.
+- `npm run agents:finish-feature` y `npm run agents:finish-tests` validan alcance, pruebas y publicación al branch actual del PR.
+- La orquestación de razonamiento se inicia desde sesiones locales Codex, mientras GitHub Actions entrega artifacts y valida cada push. Ver [Day 4 Multi-Agent Pipeline](docs/DAY-4-MULTI-AGENT.md).
 
 ## Experimento del Día 1 (adaptado a GAD)
 Ver `docs/PROMPTS.md` y `docs/COMPARACION.md`. Endpoint: `GET /api/articles/:id`.

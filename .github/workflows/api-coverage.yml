@@ -149,6 +149,37 @@ jobs:
             echo '**Measurement failed:** comparison output could not be generated. See job logs.' >> "$GITHUB_STEP_SUMMARY"
           fi
 
+      - name: Build Day 4 agent handoff
+        if: always()
+        shell: bash
+        env:
+          AGENT_BRANCH: ${{ github.event.pull_request.head.ref || github.ref_name }}
+          AGENT_BASE_REF: ${{ github.event.pull_request.base.ref || inputs.base-ref || github.event.repository.default_branch }}
+          AGENT_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          AGENT_RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          if [ ! -f coverage-comparison/coverage-comparison.json ]; then
+            echo 'Coverage comparison JSON is missing; no agent handoff can be prepared.' >&2
+            exit 1
+          fi
+          node tools/agents/bin/build-agent-handoff.js \
+            --comparison coverage-comparison/coverage-comparison.json \
+            --api-gaps coverage-inputs/pr/coverage-gaps.json \
+            --out day4-agent-handoff \
+            --branch "$AGENT_BRANCH" \
+            --base-ref "$AGENT_BASE_REF" \
+            --head-sha "$AGENT_HEAD_SHA" \
+            --run-url "$AGENT_RUN_URL"
+
+      - name: Upload Day 4 agent handoff
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: day4-agent-handoff
+          path: day4-agent-handoff/
+          if-no-files-found: warn
+          retention-days: 14
+
       - name: Upload HTML comparison artifact
         if: always()
         uses: actions/upload-artifact@v4
