@@ -44,7 +44,10 @@ function run() {
       headGaps: readJson(headDir, 'coverage-gaps.json'),
       baseLcov: readText(baseDir, 'lcov.info'),
       headLcov: readText(headDir, 'lcov.info'),
-      runStatus: { base: baseStatus?.status || 'unknown', head: headStatus?.status || 'unknown' },
+      runStatus: {
+        base: { status: baseStatus?.status || 'unknown', tests: baseStatus?.tests || 'unknown' },
+        head: { status: headStatus?.status || 'unknown', tests: headStatus?.tests || 'unknown' },
+      },
     });
 
     fs.mkdirSync(options.out, { recursive: true });

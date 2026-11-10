@@ -10,7 +10,13 @@ function buildSummaryMarkdown(comparison, artifactUrl) {
   }
   rows.push(`| OpenAPI contract overall | ${fmtPct(comparison.apiCoverage.base?.global)} | ${fmtPct(comparison.apiCoverage.head?.global)} | ${fmtDelta(comparison.apiCoverage.delta)} |`);
 
-  const status = comparison.measurement.status === 'available' ? 'Comparison generated' : `Measurement failed: ${comparison.measurement.reason}`;
+  const status = comparison.measurement.status !== 'available'
+    ? `Measurement failed: ${comparison.measurement.reason}`
+    : comparison.measurement.headRun !== 'passed'
+      ? 'Comparison generated; PR tests failed.'
+      : comparison.measurement.baseRun !== 'passed'
+        ? 'Comparison generated; base tests failed while PR tests passed.'
+        : 'Comparison generated; base and PR tests passed.';
   const runLine = `Base test run: **${comparison.measurement.baseRun}** · PR test run: **${comparison.measurement.headRun}**`;
   const unavailable = code.available ? '' : `\n\n> Code coverage is unavailable. ${code.reason} It is not reported as 0%.`;
   const gaps = comparison.apiCoverage.topGaps.length

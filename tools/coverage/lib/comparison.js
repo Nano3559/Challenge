@@ -17,7 +17,10 @@ function buildComparison({ base, head, baseGaps, headGaps, baseLcov, headLcov, r
   const apiHead = apiCoverage(head?.report);
   const apiAvailable = apiBase !== null && apiHead !== null;
 
-  const failedRuns = ['base', 'head'].filter((target) => runStatus[target] && runStatus[target] !== 'passed');
+  const failedRuns = ['base', 'head'].filter((target) => {
+    const status = typeof runStatus[target] === 'string' ? runStatus[target] : runStatus[target]?.status;
+    return status && status !== 'passed';
+  });
   const measurementReason = !apiAvailable
     ? 'Falta coverage-report.json del branch base o PR; no se sustituyó por 0%.'
     : failedRuns.length
@@ -29,8 +32,8 @@ function buildComparison({ base, head, baseGaps, headGaps, baseLcov, headLcov, r
     measurement: {
       status: measurementReason ? 'failed' : 'available',
       reason: measurementReason,
-      baseRun: runStatus.base || 'unknown',
-      headRun: runStatus.head || 'unknown',
+      baseRun: normalizeTestStatus(runStatus.base),
+      headRun: normalizeTestStatus(runStatus.head),
     },
     codeCoverage: {
       available: codeAvailable,
@@ -57,6 +60,13 @@ function buildComparison({ base, head, baseGaps, headGaps, baseLcov, headLcov, r
       byRoute: apiAvailable ? compareRoutes(base.report, head.report) : [],
     },
   };
+}
+
+function normalizeTestStatus(run) {
+  const status = typeof run === 'string' ? run : run?.tests || run?.status;
+  if (status === 'success') return 'passed';
+  if (status === 'failure') return 'failed';
+  return status || 'unknown';
 }
 
 function codeCoverage(summary) {

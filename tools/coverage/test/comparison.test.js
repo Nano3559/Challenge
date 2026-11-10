@@ -67,6 +67,25 @@ test('compara coverage OpenAPI/código, deltas, líneas y gaps', () => {
   assert.match(buildSummaryMarkdown(result), /\+25\.00 pp/);
 });
 
+test('conserva métricas comparables si falla el baseline pero pasan los tests del PR', () => {
+  const result = buildComparison({
+    base: { report: apiReport(80, false), codeSummary: codeSummary(50, 4, 2) },
+    head: { report: apiReport(90, true), codeSummary: codeSummary(75, 4, 3) },
+    baseGaps: { gaps: [] }, headGaps: { gaps: [] },
+    baseLcov: lcovBase, headLcov: lcovHead,
+    runStatus: {
+      base: { status: 'passed', tests: 'failure' },
+      head: { status: 'passed', tests: 'success' },
+    },
+  });
+
+  assert.equal(result.measurement.status, 'available');
+  assert.equal(result.measurement.baseRun, 'failed');
+  assert.equal(result.measurement.headRun, 'passed');
+  assert.equal(result.codeCoverage.delta.lines, 25);
+  assert.match(buildSummaryMarkdown(result), /base tests failed while PR tests passed/i);
+});
+
 test('representa datos faltantes como no disponibles, nunca como cero', () => {
   const result = buildComparison({ base: null, head: { report: apiReport(80, false) } });
   assert.equal(result.apiCoverage.available, false);
